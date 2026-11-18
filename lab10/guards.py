@@ -115,6 +115,14 @@ def write_gate(ctx, action):
         allowed = set(policy.get("carrier_notice_fields", []))
         payload = {k: v for k, v in facts.items() if k in allowed}
         if action.get("payload") != payload or action.get("carrier_id") != parcel["carrier_id"]:
+            # CP4: expose prevention signals without copying rejected PII into telemetry.
+            incoming = action.get("payload")
+            incoming = incoming if isinstance(incoming, dict) else {}
+            ctx.log("carrier_payload_minimized",
+                    removed_field_count=sum(k not in payload for k in incoming),
+                    had_customer_note="customer_note" in incoming,
+                    had_recipient_contact="recipient_contact" in incoming,
+                    carrier_corrected=action.get("carrier_id") != parcel["carrier_id"])
             return Verdict.modify("chỉ gửi dữ kiện chính sách cho phép, bỏ nội dung tự do/PII",
                                   carrier_id=parcel["carrier_id"], payload=payload)
     return Verdict.allow()

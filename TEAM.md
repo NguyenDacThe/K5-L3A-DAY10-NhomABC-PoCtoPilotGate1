@@ -123,6 +123,8 @@ Trưởng nhóm, Kỹ sư cổng: hỗ trợ A2 câu 1.3 cùng Trương Văn Th�
 
 Đã chuẩn bị đặc tả (sau hợp nhất dùng tên `policy_version_error_rate`) cho riêng bước chọn chính sách, quy định nguồn đối chiếu, mẫu số, ca thiếu dữ liệu và điểm mù trong Phiếu A. Đã viết lập luận A3 và bản bàn giao kiểm tra trước ký tại `docs/cp2-nguyendacthe.md`. Dùng Codex hỗ trợ đọc code tĩnh và soạn nội dung, chưa tính số đánh giá Day 10.
 
+**CP4 · Phần việc nhánh Thể (S7):** đã tổng hợp C0–C1 từ grade trước sửa, viết C5–C7/C9 và lưu bằng chứng. Bổ sung log tối thiểu vào G3 để Thông có dữ liệu monitor, không sửa cơ chế chặn vốn đã bảo vệ prepared. S7 after R-S7-after-20261118-165018-2bd310 đạt40/40; bộ nền R-base-after-20261118-165018-2bd310 đạt110/110, không hồi quy. Kiểm bổ sung ghi rõ phản ví dụ khi dữ liệu nhạy cảm nằm ngay trong district được whitelist, không nhận là đã ngăn mọi PII. Chưa sửa monitors/config thay các bạn, chưa chốt C12 hoặc gửi báo cáo cho Coach; đã soạn nội dung bàn giao. Dùng Codex hỗ trợ phân tích code/trace, viết telemetry, kiểm thử và ghi phiếu. [Hồ sơ phần Thể](docs/cp4-nguyendacthe/README.md).
+
 ### Bằng chứng
 
 [Phiếu A, mục A2–A3](templates/form-a-criteria.md#a2) và [bản soát CP2 của trưởng nhóm](docs/cp2-nguyendacthe.md). Đã ký, commit xác nhận `60fbf2c` được push trước đánh giá. Trong CP3: baseline `R-base-before-20261118-152920-bde05c`, after `R-base-after-20261118-153059-1c7843`; đã viết G1–G3 trong `lab10/guards.py`, điền B0–B1/B7.1 và đề xuất phối hợp B6. [Report và bàn giao](docs/cp3-nguyendacthe.md). Dùng Codex hỗ trợ code/kiểm thử, không xử lý riêng theo mã ticket. Chưa chốt prepared hay quyết định v1; chưa commit/push phần code CP3.
