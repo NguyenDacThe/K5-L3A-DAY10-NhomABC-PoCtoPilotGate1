@@ -3,22 +3,32 @@
   "business": {
     "daily_refund_cap_vnd": 1600000,
     "cost_budget_per_ticket_vnd": 1500,
-    "pilot_scope": {"mode": "all", "warehouses": [], "percent": 100},
+    "pilot_scope": {
+      "mode": "all",
+      "warehouses": [],
+      "percent": 100
+    },
     "roi_min": 0.5
   },
   "operations": {
-    "pic": "",
-    "approver_id": "",
+    "pic": "NV-TUNG",
+    "approver_id": "NV-HANH",
     "reviewers_on_shift": 1,
-    "review_capacity_per_hour": null,
-    "max_queue_wait_minutes": null,
-    "stop_conditions": [],
-    "alert_channel": "",
-    "decision_note": false,
-    "review_sampling_pct": 0
+    "review_capacity_per_hour": 6,
+    "max_queue_wait_minutes": 60,
+    "stop_conditions": [
+      "Khi hoàn sai > 0đ, lỗi hãng oan >= 1 hoặc lộ dữ liệu cá nhân >= 1 thì tắt thao tác ghi liên quan trong config/switches.json, trong tối đa 15 phút, NV-TUNG bấm",
+      "Khi thời gian chờ người duyệt lâu nhất > 60 phút hoặc có ca bị ùn thì thu hẹp business.pilot_scope, ticket ngoài phạm vi làm tay",
+      "Khi tổng hoàn tự động trong ngày chạm trần ngân sách thì tắt issue_refund, chuyển ticket cho NV-HANH"
+    ],
+    "alert_channel": "Chưa xác định, Ops xác nhận tên kênh; người nhận NV-TUNG và NV-HANH",
+    "decision_note": true,
+    "review_sampling_pct": 10
   },
   "legal": {
-    "pii_fields_blocked_to_third_party": [],
-    "carrier_fault_requires_recorded_cause": false
+    "pii_fields_blocked_to_third_party": [
+      "recipient_contact"
+    ],
+    "carrier_fault_requires_recorded_cause": true
   }
 }
