@@ -24,8 +24,8 @@ rồi mới chạy đánh giá. Khối 1 không sửa code.
 
 ### Câu 1.2 · Mục tiêu nhìn từ hai người
 
-- Chị Oanh, kế toán đối soát (không dùng trợ lý, nhưng phải khớp sổ với hãng và shop mỗi tuần): …
-- Chị Hạnh, trưởng ca CSKH (phải duyệt những ca trợ lý chuyển sang): …
+- Chị Oanh, kế toán đối soát (không dùng trợ lý, nhưng phải khớp sổ với hãng và shop mỗi tuần): Mỗi khoản trợ lý hoàn cho khách và mỗi lỗi ghi cho hãng phải truy ngược được tới một ticket, một đơn và một nguyên nhân trong tracking, để cuối tuần tổng hoàn trong sổ cái khớp với số tiền khách nhận và số lỗi/tiền phạt đối soát với hãng, không còn dòng "mồ côi" nào chị phải tự đi tìm hoặc xin hãng huỷ.
+- Chị Hạnh, trưởng ca CSKH (phải duyệt những ca trợ lý chuyển sang): Hàng chờ chuyển sang chị vừa sức (nằm trong 6 ca/giờ mỗi người duyệt, mỗi ca nhận xử lý trong 60 phút) và mỗi ca đến kèm đủ thông tin (đơn, độ trễ, chính sách áp dụng, lý do chuyển) để chị duyệt trong khoảng 10 phút mà không phải mở lại ticket; đồng thời các quyết định tự động có ghi chú giải thích, để chị và nhân viên có thể kiểm mẫu thay vì kiểm lại bằng tay từng ca.
 
 ---
 
@@ -48,12 +48,12 @@ trợ lý có đang gây thiệt hại cho bên ngoài LogiX không; không có 
 
 | | Offline, cho MỘT bước (câu 1.3) | Telemetry production (câu 1.4) |
 |---|---|---|
-| **Bước / hành vi được đo** | | |
-| **Thước đo** (một câu, có đơn vị) | | |
-| **Dữ liệu** (lấy ở đâu, bao nhiêu, ai gán nhãn) | | |
-| **Cách tính** (công thức, mẫu số, cách xử lý ca thiếu dữ liệu) | | |
-| **Khung thời gian / ngưỡng báo động** | (không áp dụng) | |
-| **Điểm mù** (thước đo này KHÔNG thấy gì) | | |
+| **Bước / hành vi được đo** | | Hành động ghi: ghi lỗi cho hãng vận chuyển và gửi tiền hoàn cho khách (hai nơi thiệt hại ra ngoài LogiX: hãng bị phạt/đình chỉ oan, khách/shop bị hoàn sai) |
+| **Thước đo** (một câu, có đơn vị) | | Số lỗi ghi cho hãng KHÔNG có nguyên nhân giao trễ trong tracking (lỗi oan, đơn vị: lỗi/hãng/ngày) và tỉ lệ lỗi hãng bị hãng khiếu nại hoặc kế toán đảo lại (%/7 ngày). Thước đo phụ: số lỗi thứ 3 trở đi của cùng một hãng trong ngày mà chưa có người duyệt (phải bằng 0) |
+| **Dữ liệu** (lấy ở đâu, bao nhiêu, ai gán nhãn) | | Không có nhãn đúng/sai. Dùng tín hiệu thay nhãn: (1) bảng ghi lỗi hãng của trợ lý, (2) sự kiện tracking của đúng đơn đó (có sự kiện trễ hay không), (3) kênh khiếu nại của hãng, (4) dòng đảo/huỷ khi chị Oanh đối soát hằng tuần. Toàn bộ lỗi hãng trong pilot, không lấy mẫu; hai nhà vận chuyển nhỏ (ví dụ nhóm tài xế tự do, 80.000đ/lỗi, đình chỉ sau 3 lỗi/7 ngày) được tách riêng |
+| **Cách tính** (công thức, mẫu số, cách xử lý ca thiếu dữ liệu) | | Lỗi oan = số bản ghi lỗi hãng mà tracking không có sự kiện trễ chứng minh, theo từng hãng, từng ngày, đối chiếu tự động cuối ngày. Tỉ lệ khiếu nại = (lỗi bị hãng khiếu nại + lỗi bị đảo) / tổng lỗi đã ghi trong cửa sổ 7 ngày. Lỗi chưa có tracking (thiếu dữ liệu) KHÔNG loại khỏi tử số: tính là lỗi oan nghi ngờ và đếm riêng để chị Oanh soát tay |
+| **Khung thời gian / ngưỡng báo động** | (không áp dụng) | Quét cuối mỗi ca (480 phút) và cuối ngày. Báo động đỏ ngay khi lỗi oan ≥ 1 trong ngày hoặc có hãng chạm lỗi thứ 3 mà chưa qua người duyệt (báo cho giám sát vận hành giữ công tắc tắt). Báo động vàng khi tỉ lệ khiếu nại/đảo > 5% trong 7 ngày, hoặc một hãng sắp tới ngưỡng đình chỉ (2 lỗi/ngày). Ngưỡng là đề xuất của Vận hành và pháp lý, cả bàn chốt |
+| **Điểm mù** (thước đo này KHÔNG thấy gì) | | Không thấy lỗi oan mà chính tracking cũng sai (hãng cập nhật trễ), không thấy hãng chịu thiệt mà không khiếu nại (hãng nhỏ, tài xế tự do), và độ trễ 7 ngày của kênh đối soát nên thiệt hại đã xảy ra trước khi thấy. Cũng không đo khách bị hoàn thiếu mà im lặng, hay dữ liệu cá nhân gửi cho bên thứ ba (cần chỉ số riêng) |
 
 **Ví dụ mẫu (bước "chọn độ trễ" của agent, đừng chép):**
 Thước đo: tỉ lệ lần chạy mà độ trễ agent dùng để tính tiền khác độ trễ theo tracking DB. Dữ liệu: sự kiện `proposal.delay_days_used`
@@ -112,8 +112,8 @@ Giải thích một câu: …
 
 | Câu hỏi soát | Ghi chú của bàn |
 |---|---|
-| Chỉ số này có ý nghĩa với **mọi** bên liên quan không (khách, hãng vận chuyển, shop, người duyệt, kế toán)? | |
-| Chạy theo chỉ số này có thể làm **ai thiệt** (ví dụ ép tỉ lệ tự động cao thì ai gánh)? | |
+| Chỉ số này có ý nghĩa với **mọi** bên liên quan không (khách, hãng vận chuyển, shop, người duyệt, kế toán)? | (Bách soát, nhóm chốt) `pass_rate` và `pass_k` chỉ phản ánh đúng/sai trên bộ nền, không nói gì về hãng vận chuyển hay người duyệt. Hãng chỉ được bảo vệ bởi `wrongful_carrier_faults_max`; người duyệt (chị Hạnh) chỉ được bảo vệ nếu có ngưỡng `escalation_rate_max` và `queue_stuck_max`; chị Oanh cần các khoản hoàn và lỗi hãng khớp sổ. Đề nghị giữ `escalation_rate_max` ở mức "nên có" thành có, vì thiếu nó thì người duyệt không có tiếng nói trong tiêu chí |
+| Chạy theo chỉ số này có thể làm **ai thiệt** (ví dụ ép tỉ lệ tự động cao thì ai gánh)? | (Bách soát, nhóm chốt) Ép tỉ lệ tự động cao thì chị Hạnh gánh dồn ngược: ca chuyển ít đi nhưng ca khó dồn vào cuối ngày, vượt 6 ca/giờ mỗi người duyệt và quá hạn 60 phút. Ép `pass_rate` cao bằng cách ghi lỗi cho hãng dễ dãi thì hãng nhỏ (80.000đ/lỗi, bị đình chỉ sau 3 lỗi trong 7 ngày) và tài xế tự do thiệt, họ không có mặt trong cuộc họp và không có nhãn để kêu. Ép chi phí thấp thì khách bị từ chối oan phải gọi lại, tốn công tay hơn 10.000đ/ca |
 | Đây có phải nghĩa của "thành công" ở **ngày 1** của pilot không? | |
 | Còn ở **ngày thứ 1.000** (12 depot, chính sách đã đổi vài lần)? Ngưỡng nào sẽ phải viết lại? | |
 
