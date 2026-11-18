@@ -167,6 +167,43 @@ Dùng Claude để đọc các file markdown của đề, đọc `data/world.jso
 - Một điều học được: phải viết ngưỡng và hành động "nếu trượt thì làm gì" trước khi xem kết quả; ngưỡng an toàn (hoàn sai, lỗi oan cho hãng, lộ PII) phải đứng trên các chỉ số tỉ lệ.
 - Một điều còn chưa chắc: trần chi phí 6.000đ và `escalation_rate_max` 0,25 có quá chặt khi lượng ticket tăng hoặc khi REFUND-v4 hạ hạn mức tự hoàn xuống 100.000đ hay không.
 
+## NguyenTuanBach-2A202603596
+
+### Phần việc phụ trách
+
+Vận hành và pháp lý. CP2: Phiếu A câu 1.2 (A1) và câu 1.4 (A2), soát tác động lên người duyệt và bên thứ ba. CP3: HAZOP B4, checklist B5, config `operations`/`legal`, runbook B7.5–B7.6. CP4 (thẻ S7): C3.3, C4, phần vận hành/pháp lý của C5 và C10, C11 (checklist và runbook 4–5). Việc cuối CP4 (risk register tổng, `submission.json`, kiểm đủ thành phần) và CP5 chưa làm.
+
+### Đóng góp cụ thể
+
+- **CP2:** viết mục tiêu nhìn từ hai người (chị Oanh kế toán đối soát, chị Hạnh trưởng ca CSKH) ở A1 câu 1.2. Điền cột telemetry A2 câu 1.4 cho bước ghi lỗi hãng: thước đo lỗi thiếu bằng chứng và tỷ lệ bị khiếu nại/đảo, cách ghép ID, ngưỡng vàng/đỏ, điểm mù.
+- **CP3:** HAZOP B4 cho `file_carrier_fault` (4 dòng kỹ thuật, 4 dòng ngoài kỹ thuật); checklist B5 đủ 9 nhóm việc, ghi trung thực nhóm 5, 7, 8 là "Chưa"; config `operations` (PIC, người duyệt, công suất, SLA, điều kiện dừng, kênh cảnh báo) và `legal` (trường PII bị chặn, bắt buộc có nguyên nhân khi ghi lỗi hãng); runbook 1–3 và kiểm giờ cao điểm B7.6 (14 ca cùng lúc: 1 người chờ tối đa 130 phút, 2 người chờ 65 phút, vẫn còn ca quá SLA).
+- **CP4 · S7** (nhánh `bach`, commit `8dd380e`), trong `templates/form-c-incident.md`:
+  - **C3.3:** bốn mốc lòng tin cho người đặt và người nhận quà. Dữ liệu rời hệ thống mà họ không biết: `customer_note` (chữ tự do, S7-01, S7-04) và `recipient_contact` lấy từ DB dù khách không gõ (S7-20, S7-21).
+  - **C4:** bốn dòng HAZOP cho `notify_carrier`, gồm một nhánh chưa thấy trên trace (PII đi ra qua kênh ngoài hệ thống, người duyệt chép ticket gửi hãng).
+  - **C5 (phần vận hành/pháp lý):** giả định môi trường và specification; ghi căn cứ pháp lý là chưa xác minh, cần Pháp chế kiểm.
+  - **C10:** một dòng risk register về PII rò qua kênh ngoài allowlist, PIC NV-TUNG.
+  - **C11:** cập nhật checklist nhóm 3, 7, 8; Runbook 4 (7 câu) và Runbook 5 (ba kịch bản: tải gấp 3 lần, LLM lỗi quá 15 phút, người duyệt không tin một quyết định). Hệ số 3 lần và ngưỡng 15 phút là đề xuất, chưa đo thực.
+- Config `operations`/`legal` không đổi ở CP4: `legal` đã chặn đủ `recipient_contact`, `customer_note`, `name`, `phone`, `street`. Trace chẩn đoán `--stage prepared`/`after` trên S7-01 và S7-20 seed 11: payload chỉ còn `order_id`, `parcel_id`, `district`, `delay_days`.
+- Chưa làm: C7 phần vận hành/pháp lý (cần mã lần chạy sau sửa), risk register tổng, `submission/submission.json`, CP5.
+
+### Bằng chứng
+
+- CP2: [Phiếu A, A1 câu 1.2 và A2 câu 1.4](templates/form-a-criteria.md#a2), commit `2f11502`.
+- CP3: [Phiếu B, B4, B5, B7.5–B7.6](templates/form-b-evaluation-gates.md#b4), `config/operating_gates.json` mục `operations`/`legal`; commit `9c7cf5d`, `a810352`, `fb345b8`; đã merge qua `f050f71`.
+- CP4: [Phiếu C, C3.3, C4, C5, C10, C11](templates/form-c-incident.md#c3), commit `8dd380e` trên nhánh `bach`.
+- Mã lần chạy dùng trong C11 (lấy từ bằng chứng của Thể và Thông, Bách không tự tạo mã mới): grade ban đầu `R-S7-grade-20261118-163825-0892bd`; S7 after `R-S7-after-20261118-165018-2bd310`; S7 after sau thêm monitor `R-S7-after-20261118-165851-43edee`. Grade trên bản tích hợp thử trên máy: `R-S7-grade-20261118-171221-d5f014`, đạt criteria, visible, regression, monitor; FAIL integrity vì thiếu 28 file thẻ khác, chờ Coach.
+
+### Dùng AI
+
+Dùng Claude Code để đọc `TEAM.md`, các phiếu A/B/C, thẻ S7 và gói `incidents/S7/`, chạy `lab10.trace` chẩn đoán trên S7-01, S7-04, S7-05, S7-20, S7-21 (base, prepared, after), và soạn nháp C3.3, C4, C5, C10, C11 cùng việc rà các nhánh để thử tích hợp. Chưa chạy `lab10.eval`; grade tích hợp chỉ chạy trên máy cá nhân. Nội dung, các con số đề xuất (15 phút, 3 lần, mẫu thông báo cố định) và căn cứ pháp lý do Bách xem lại và chịu trách nhiệm; căn cứ pháp lý chưa được Pháp chế xác nhận.
+
+### Exit ticket
+
+*(Bản nháp từ việc đã làm; Bách đọc lại và sửa theo ý mình trước khi nộp.)*
+
+- Điều học được ở CP4: một chỉ số tổng (ROI 1,27, chi phí 4.405đ) có thể đạt hết trong khi người nhận quà bị lộ tên và số điện thoại; chỉ số pháp lý `pii_leaks` phải được đọc riêng và đứng trên chỉ số kinh doanh. Bảo vệ tên trường (allowlist) ngăn được dữ liệu cấu trúc, nhưng không thấy đường dữ liệu đi ra ngoài hệ thống như người duyệt tự chép sang hãng.
+- Điều còn chưa chắc: cổng chặn tốt trên bộ mock công khai không chứng minh bắt hết PII thật; chưa biết quy trình tiếp nhận phản ánh của người nhận quà và nghĩa vụ báo cáo pháp lý trên thực tế, cần Pháp chế xác nhận trước khi pilot.
+
 ## Tích hợp CP3
 
 Đã merge nội dung các nhánh Thể, Thông, Bảo và Bách vào main local; đối chiếu phần từng người trong Phiếu B B0–B8. Bản chốt 0580db3e, prepared R-base-prepared-20261118-160738-0892bd. Các số nền đạt, stress queue còn vượt SLA nên v1 Cải tiến thêm. Không tự điền exit ticket hoặc ghi nhận cuộc họp chưa diễn ra. Xem [kiểm tra CP3 sau merge](docs/cp3-integration-review.md).
