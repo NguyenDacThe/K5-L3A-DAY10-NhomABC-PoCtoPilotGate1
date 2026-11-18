@@ -75,3 +75,22 @@ Dùng Codex đọc README, CHECKPOINTS, TEAM, đề bài, tài liệu Lab 9 và 
 - Điều học được ở CP2: thước đo cho một bước cần có nhãn độc lập và mẫu số rõ ràng; loại ca thiếu dữ liệu mà không báo độ phủ có thể khiến tỉ lệ trông tốt hơn thực tế.
 - Điều còn chưa chắc: ngày hiệu lực trong dữ liệu mock có phản ánh đúng quy trình cập nhật chính sách ngoài thực tế hay không; cần nhóm xác minh nguồn và người chịu trách nhiệm trước pilot.
 - Đây là ghi chú học tập CP2; exit ticket cuối buổi sẽ được cập nhật khi hoàn thành CP5.
+Một điều học được, một điều còn chưa chắc.
+
+## NguyenDacThe-2A202603529
+
+### Phần việc phụ trách
+
+Trưởng nhóm, Kỹ sư cổng: hỗ trợ A2 câu 1.3 cùng Trương Văn Thông; chuẩn bị lập luận A3 và soát kỹ thuật A4; điều phối ký sau khi nhóm thống nhất.
+
+### Đóng góp cụ thể
+
+Đã chuẩn bị đặc tả `wrong_policy_rate` cho riêng bước chọn chính sách, quy định nguồn đối chiếu, mẫu số, ca thiếu dữ liệu và điểm mù trong Phiếu A. Đã viết lập luận A3 và bản bàn giao kiểm tra trước ký tại `docs/cp2-nguyendacthe.md`. Dùng Codex hỗ trợ đọc code tĩnh và soạn nội dung, chưa tính số đánh giá Day 10.
+
+### Bằng chứng
+
+[Phiếu A, mục A2–A3](templates/form-a-criteria.md#a2) và [bản soát CP2 của trưởng nhóm](docs/cp2-nguyendacthe.md). Chưa có mã lần chạy, commit CP2 hoặc chữ ký tiêu chí; chưa ghi nhận nhóm đã duyệt các ngưỡng.
+
+### Exit ticket
+
+Chưa điền; cá nhân tự ghi sau khi hoàn thành phần việc và thảo luận với nhóm.
