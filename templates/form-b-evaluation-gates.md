@@ -331,7 +331,7 @@ Phần 1–3 và mục Giờ cao điểm viết ở vòng 1. Phần 4–5 viết
 | PIC của trợ lý (một người) | Lê Thanh Tùng (`NV-TUNG`), giám sát vận hành | Quyết dừng một phần hoặc dừng hẳn; quyết gọi thêm người; chịu trách nhiệm trước Ops | Kênh báo tin trong `operations.alert_channel` (cần Ops xác nhận tên kênh thật, hiện là chỗ giữ chỗ) |
 | Người duyệt đứng tên các khoản vượt hạn mức | Trần Thị Hạnh (`NV-HANH`), trưởng ca CSKH | Duyệt khoản vượt hạn mức hoàn (300.000đ/khách/ngày), duyệt lỗi hãng thứ 3 trở đi trong ngày, đứng tên kiểm mẫu | Cùng kênh báo tin; nhận hàng chờ người duyệt |
 | Người giữ công tắc tắt từng thao tác ghi | Lê Thanh Tùng (`NV-TUNG`) | Đổi `config/switches.json` sang `off` cho `issue_refund`, `file_carrier_fault`, `notify_carrier`, `send_reply` | Trực tiếp (người trực ca) |
-| Người nhận khiếu nại của bên thứ ba (hãng, shop, người nhận quà) | Phạm Kiều Oanh (`NV-OANH`), kế toán đối soát | Nhận khiếu nại của hãng và shop, đối chiếu sổ cái và tracking, yêu cầu đảo lỗi hoặc hoàn lại. Người nhận quà khiếu nại về số điện thoại thì chị Oanh chuyển PIC | Kênh đối soát hằng tuần; cần thêm đầu mối nhận khiếu nại ngoài giờ |
+| Người nhận khiếu nại của bên thứ ba (hãng, shop, người nhận quà) | Phạm Kiều Oanh (`NV-OANH`), kế toán đối soát | (Giả định thiết kế, cần xác nhận khi pilot thật) Nhận khiếu nại của hãng và shop, đối chiếu sổ cái và tracking, yêu cầu đảo lỗi hoặc hoàn lại. Người nhận quà khiếu nại về số điện thoại thì chị Oanh chuyển PIC | Kênh đối soát hằng tuần; cần thêm đầu mối nhận khiếu nại ngoài giờ |
 
 Số người trực duyệt mỗi ca: **2** · Mỗi giờ duyệt được: **12** ca (2 người × 6 ca/giờ) · Phạm vi pilot: **cần Phan Gia Bảo chốt ở B7.4** (tất cả / kho nào / bao nhiêu phần trăm)
 
