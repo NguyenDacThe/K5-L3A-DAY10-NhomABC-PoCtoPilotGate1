@@ -1,5 +1,7 @@
 # CP4 · Phần Nguyễn Đắc Thể · S7
 
+Bản bàn giao tại thời điểm commit `d634d3e`; trạng thái chờ bên dưới mô tả thời điểm đó. Bản chung sau tích hợp và CP5 xem [Phiếu C](../../templates/form-c-incident.md), [phân công/hồ sơ cuối](../cp5/file-review.md).
+
 Nhánh thực hiện: `NguyenDacThe`, dựa trên commit `f1d4e31`. Phạm vi theo TEAM: C0–C1, C5–C7, C9, cổng hệ thống và phối hợp tích hợp. Chưa commit/push phần việc này; chưa merge các nhánh CP4 khác, chọn v2 hoặc gom bài CP5.
 
 ## Nội dung đã làm

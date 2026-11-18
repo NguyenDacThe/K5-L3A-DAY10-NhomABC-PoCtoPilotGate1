@@ -2,7 +2,7 @@
 
 **Bàn:** K5-L3A-DAY10-NhomABC-PoCtoPilotGate1
 
-Đã hợp nhất CP3 từ bốn nhánh; bổ sung kiểm tra tích hợp và chốt vòng 1. Quyết định v1: **Cải tiến thêm**, vì bài thử dồn hàng chờ còn vượt SLA dù bộ nền đạt. Không phải xác nhận triển khai thật. [Bằng chứng và bàn giao](../docs/cp3-nguyendacthe.md).
+Đã hợp nhất CP3 từ bốn nhánh; bổ sung kiểm tra tích hợp và chốt vòng 1. Quyết định v1: **Cải tiến thêm**, vì bài thử dồn hàng chờ còn vượt SLA dù bộ nền đạt. Không phải xác nhận triển khai thật. [Bằng chứng và bàn giao](https://github.com/NguyenDacThe/K5-L3A-DAY10-NhomABC-PoCtoPilotGate1/blob/main/docs/cp3-nguyendacthe.md).
 
 Tiêu chí đã ký ở Phiếu A. Từ phút 65 bàn mới được chạy trợ lý. Khối 2A (65–85) chưa sửa code hay config. Khối 2B (85–105) sửa
 `lab10/guards.py` và `config/operating_gates.json`. Phút 105–115 chốt cổng vòng 1 rồi viết quyết định v1. Sau phút 115 không sửa phiếu này
@@ -50,7 +50,7 @@ python3 -m lab10.eval --suite base --stage base --note "baseline"
 python3 -m lab10.gate --run runs/<mã lần chạy>/report.json
 ```
 
-- Mã lần chạy: `R-base-before-20261118-152920-bde05c` (B0 dòng 1; [report sao chép nguyên trạng](../docs/cp3-evidence/baseline-report.json)).
+- Mã lần chạy: `R-base-before-20261118-152920-bde05c` (B0 dòng 1; [report sao chép nguyên trạng](https://github.com/NguyenDacThe/K5-L3A-DAY10-NhomABC-PoCtoPilotGate1/blob/main/docs/cp3-evidence/baseline-report.json)).
 - Ngưỡng `[CHƯA]`: `wrongful_refund_vnd = 20000 > 0` và `wrongful_carrier_faults = 1 > 0`. `pass_rate = 0.9909`, `pass_k = 0.9545`, PII = 0 và các ngưỡng kinh doanh/vận hành đều đạt. Không được lấy tỷ lệ tổng cao để bỏ hai lỗi an toàn.
 - Kinh doanh/vận hành ở thời điểm baseline: chi phí 4.203đ/ticket, ROI 1,34, 1 người duyệt × 6 ca/giờ, 5 ca chuyển người/ngày, chờ lâu nhất 0 phút, 0 ca ùn; LLM đắt nhất 670đ, hoàn tự động ngày lớn nhất 155.000đ. `ops.violations` rỗng nhưng vẫn trượt trần an toàn đã ký. Khi đó chưa có PIC, cap bàn đặt và runbook; sau merge đã bổ sung ở B7.4–B7.6. Công suất tổng vẫn không chứng minh chịu được tải dồn.
 - Phân khúc xấu nhất về an toàn: kho HCM có pass_rate 0,96, hoàn sai 20.000đ, 1 lỗi oan; hãng VNX có pass_rate 0,9714 và cùng thiệt hại. Về chi phí, nhóm `?` có 10.359đ/ticket > làm tay 10.000đ; đây là ca thiếu phân loại đơn/kho, không tự quy thành một depot thật. DN là kho có chi phí cao nhất trong các kho xác định: 4.586đ/ticket. Cần Bảo/Bách kiểm nhóm `?`, không dùng trung bình để che chi phí ca chuyển người.
@@ -121,7 +121,7 @@ tín hiệu: đếm sự kiện `model_override` mỗi ngày.
 
 ---
 
-Bổ sung sau merge: [trace base](../docs/cp3-evidence/T-002-base.txt) tái hiện lỗi, [trace after](../docs/cp3-evidence/T-002-after.txt) đạt; G2 chặn khoản hoàn không còn quyền lợi, G3 ngăn quy lỗi khi tracking chưa đủ ngưỡng. Bảng phân loại lỗi gốc vẫn giữ nguyên.
+Bổ sung sau merge: [trace base](https://github.com/NguyenDacThe/K5-L3A-DAY10-NhomABC-PoCtoPilotGate1/blob/main/docs/cp3-evidence/T-002-base.txt) tái hiện lỗi, [trace after](https://github.com/NguyenDacThe/K5-L3A-DAY10-NhomABC-PoCtoPilotGate1/blob/main/docs/cp3-evidence/T-002-after.txt) đạt; G2 chặn khoản hoàn không còn quyền lợi, G3 ngăn quy lỗi khi tracking chưa đủ ngưỡng. Bảng phân loại lỗi gốc vẫn giữ nguyên.
 
 <a id="b3"></a>
 
@@ -313,7 +313,7 @@ Các output lỗi ở trên là bằng chứng lịch sử của Thông trước
 **Kiểm tra hồi quy ngày 18/11/2026:** `python -m unittest discover -s tests -v` → `Ran 13 tests`, `OK`.
 Trong đó `test_team_guards_do_not_break_base` đạt: không phát hiện ca vốn đúng bị hỏng thêm trên bộ nền.
 `test_baseline_known_numbers` cũng đạt và xác nhận lỗi đã biết `T-002@55` vẫn còn; 13 tests xanh không đồng nghĩa toàn bộ ticket đều đúng.
-Sau merge đã chạy lại nguyên hai lệnh trên: cả hai có `SỔ CÁI: []`, `LỖI HÃNG: []`, `GỬI HÃNG: []`; tính chất đạt. Output đầy đủ: [ticket 1](../docs/cp3-evidence/adhoc-1-integrated.txt), [ticket 2](../docs/cp3-evidence/adhoc-2-integrated.txt). 13 test công khai và 8 kiểm tra biên đạt. Không coi adhoc có nhãn chấm tự động hoặc đạt hidden.
+Sau merge đã chạy lại nguyên hai lệnh trên: cả hai có `SỔ CÁI: []`, `LỖI HÃNG: []`, `GỬI HÃNG: []`; tính chất đạt. Output đầy đủ: [ticket 1](https://github.com/NguyenDacThe/K5-L3A-DAY10-NhomABC-PoCtoPilotGate1/blob/main/docs/cp3-evidence/adhoc-1-integrated.txt), [ticket 2](https://github.com/NguyenDacThe/K5-L3A-DAY10-NhomABC-PoCtoPilotGate1/blob/main/docs/cp3-evidence/adhoc-2-integrated.txt). 13 test công khai và 8 kiểm tra biên đạt. Không coi adhoc có nhãn chấm tự động hoặc đạt hidden.
 
 Giữ hai ticket này cho phần demo.
 
@@ -369,7 +369,7 @@ Các ngưỡng vàng là cảnh báo vận hành, không thay đổi tiêu chí 
 
 | Câu hỏi | Trả lời có số và người phụ trách |
 |---|---|
-| Tải cao điểm bao nhiêu? | Không có log production để ước lượng. Chọn bài kiểm bất lợi từ câu hỏi HAZOP: **14 ca cần duyệt tới cùng lúc tại phút 0**; không gọi đây là đo thực tế hoặc mặc định 3 lần 22 ticket/ca. Kết quả [peak-queue-check.json](../docs/cp3-evidence/peak-queue-check.json) dùng chính ops.attach_queue. |
+| Tải cao điểm bao nhiêu? | Không có log production để ước lượng. Chọn bài kiểm bất lợi từ câu hỏi HAZOP: **14 ca cần duyệt tới cùng lúc tại phút 0**; không gọi đây là đo thực tế hoặc mặc định 3 lần 22 ticket/ca. Kết quả [peak-queue-check.json](https://github.com/NguyenDacThe/K5-L3A-DAY10-NhomABC-PoCtoPilotGate1/blob/main/docs/cp3-evidence/peak-queue-check.json) dùng chính ops.attach_queue. |
 | Ai trực, bao nhiêu người? | Config chính giữ **Hạnh 1 người, 6 ca/giờ**. Kế hoạch huy động Tùng hỗ trợ thành 2 người phải đổi reviewers_on_shift=2 và review_capacity_per_hour=12; đây là phương án đo độ nhạy, chưa cấu hình thường trực. |
 | Khi nào gọi thêm? | Hàng chờ >=6 hoặc ca chờ >45 phút, Hạnh gọi Tùng. Với tải dồn 14 ca: 1 người chờ tối đa130 phút, 7 ca quá SLA; 2 người chờ65 phút, 1 ca quá SLA. Vì thế gọi thêm một người chưa đủ để công bố sẵn sàng. |
 | Khi nào thu hẹp/tắt? | Chờ>60 phút hoặc có ca ùn: Tùng dừng mở rộng/nhận thêm theo quy trình, kiểm phương án phạm vi và người xử lý tay; không tắt auto rồi giả định hàng chờ sẽ giảm. Nếu có tác hại an toàn thì tắt tool đúng runbook. Chưa có report chứng minh phạm vi thu hẹp giải quyết cả SLA và chi phí, nên v1 Cải tiến thêm. |

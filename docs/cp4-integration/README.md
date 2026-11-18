@@ -1,5 +1,7 @@
 # CP4 và C12 sau tích hợp · NhomABC · S7
 
+Bằng chứng tại mốc tích hợp CP4 `1bbad85`. Bản cuối CP5 đã được push lên main; [hồ sơ cuối](../cp5/README.md) và [rà soát file/phân công](../cp5/file-review.md) cập nhật report mới cùng manifest 22 file. Các mô tả local/chưa push và manifest 19 file bên dưới giữ theo thời điểm tích hợp.
+
 ## Nguồn đã merge vào main local
 
 | Nhánh | Commit nguồn | Phần chính |

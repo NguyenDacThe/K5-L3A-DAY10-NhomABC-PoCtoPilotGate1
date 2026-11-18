@@ -6,10 +6,11 @@
 |---|---|
 | Đúng repo, lớp, nhóm | Đạt: K5-L3A-DAY10-NhomABC-PoCtoPilotGate1; L3A; NhomABC |
 | Bốn thành viên, MSSV, vai và mục cá nhân | Đủ trong TEAM; khớp submission.members; đã bỏ mẫu, phần trùng và các trạng thái lỗi thời |
-| Phần dùng AI và exit ticket | Đủ nội dung cho bốn người; ghi rõ phần CP5 do Codex làm và các ghi chú cần cá nhân rà soát, không giả nhận mỗi người đã xác nhận |
+| Phần dùng AI và exit ticket | Đủ nội dung cho bốn người; CP5 ghi theo phân công của nhóm, giữ khai báo công cụ AI hỗ trợ; từng người rà soát mục cá nhân trước khi nộp |
 | Ký trước đánh giá, không sửa tiêu chí | Đạt: signed15:15:34; commit60fbf2c lúc15:29:04; lần eval đầu15:29:20; hash36863666… còn nguyên |
 | Cổng vòng1 giữ nguyên | Đạt: checkpoint0580db3e; so hash trước/sau demo không đổi |
 | Phiếu A/B/C và C12 | Đủ mục theo kiểm thành phần; C3 chỉ phần S7; v1 giữ nguyên, v2 và ba câu bắt buộc khớp submission.json |
+| Bàn giao từng vai | Thể/Thông có bằng chứng kỹ thuật; bổ sung bàn giao Bảo/Bách, ghi rõ Bảo tổng hợp C12 và Bách phối hợp vận hành/pháp lý, metadata/gom bài; xem file-review.md |
 | Kiểm thử bản cuối | 13 test công khai,8 kiểm cổng,9 kiểm monitor,5 kiểm ranh giới chạy thành công; 1 phép kiểm ranh giới chủ đích tái hiện giới hạn, không coi là an toàn |
 | Grade đúng một thẻ | Đã chạy duy nhất `--incident S7`; không lấy thẻ khác, không sửa grader/manifest |
 | Kết quả chức năng | S7after40/40, nền110/110; criteria/visible/regression/monitor đạt, coverage1.0 |

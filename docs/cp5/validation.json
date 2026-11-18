@@ -21,5 +21,7 @@
     "repo_privacy_and_grader_invite": "not_confirmed",
     "push_cp5": "verified_origin_main",
     "pushed_cp5_commit": "192bf0ba5f91023e59fb4f4e941529f6f68323cc"
-  }
+  },
+  "file_audit": "docs/cp5/file-audit.json",
+  "all_file_checks_passed": true
 }

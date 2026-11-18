@@ -22,7 +22,7 @@ số thẻ của bàn; các phần khác để trống.
 
 ---
 
-**Mốc tích hợp CP4 trước kiểm cuối CP5:** grade `R-S7-grade-20261118-171745-d5f014`. C12 đã điền theo report; kết quả tổng **FAIL do integrity**, không ghi thành đạt toàn bộ. [Bằng chứng tích hợp](../docs/cp4-integration/README.md).
+**Mốc tích hợp CP4 trước kiểm cuối CP5:** grade `R-S7-grade-20261118-171745-d5f014`. C12 đã điền theo report; kết quả tổng **FAIL do integrity**, không ghi thành đạt toàn bộ. [Bằng chứng tích hợp](https://github.com/NguyenDacThe/K5-L3A-DAY10-NhomABC-PoCtoPilotGate1/blob/main/docs/cp4-integration/README.md).
 
 <a id="c0"></a>
 
@@ -42,7 +42,7 @@ Grade ban đầu: **R-S7-grade-20261118-163825-0892bd**. Trước đó đã có 
 
 Grade sau bổ sung: **R-S7-grade-20261118-165225-2bd310**, verdict **FAIL**: 28 đường dẫn thẻ không được giao đang thiếu; monitor mới chưa được Thông bàn giao. Các dòng đỏ được giữ nguyên, không sửa grader/manifest hoặc lấy thẻ khác.
 
-Bản report, trace chọn lọc và nhật ký được lưu ở [bằng chứng phần Thể](../docs/cp4-nguyendacthe/README.md), vì runs/ bị gitignore. Bản sao JSON/text chuẩn hóa LF, giữ nguyên nội dung và giá trị; không giả nhận cùng hash byte với bản CRLF gốc.
+Bản report, trace chọn lọc và nhật ký được lưu ở [bằng chứng phần Thể](https://github.com/NguyenDacThe/K5-L3A-DAY10-NhomABC-PoCtoPilotGate1/blob/main/docs/cp4-nguyendacthe/README.md), vì runs/ bị gitignore. Bản sao JSON/text chuẩn hóa LF, giữ nguyên nội dung và giá trị; không giả nhận cùng hash byte với bản CRLF gốc.
 
 ---
 
@@ -59,9 +59,9 @@ Bản report, trace chọn lọc và nhật ký được lưu ở [bằng chứn
 Grade cuối `R-S7-grade-20261118-171745-d5f014` có4mục đạt (criteria, visible, regression, monitor), hidden chưa có, integrity thiếu28file của S1–S6/S8. Lượt đầu `R-S7-grade-20261118-163825-0892bd` được giữ làm mốc nhận thẻ trước sửa; không thay bằng prepared tái dựng ở lượt cuối.
 
 
-### Ki?m cu?i CP5 sau ch?y th? demo
+### Kiểm cuối CP5 sau chạy thử demo
 
-Grade `R-S7-grade-20261118-173554-d5f014`, ch? th? S7; ba m?c base/prepared/after l?n l??t `R-S7-before-20261118-173555-d5f014`, `R-S7-prepared-20261118-173555-d5f014`, `R-S7-after-20261118-173555-d5f014`. S7 base pass_rate/pass^5=0.25, PII30; prepared/after 1.0, PII0. N?n after110/110. Kh?ng s?a code/config trong demo; grade t?ng FAIL do integrity, monitor ?? ??t. [Log v? metadata CP5](../docs/cp5/README.md).
+Grade `R-S7-grade-20261118-173554-d5f014`, chỉ thẻ S7; ba mốc base/prepared/after lần lượt `R-S7-before-20261118-173555-d5f014`, `R-S7-prepared-20261118-173555-d5f014`, `R-S7-after-20261118-173555-d5f014`. S7 base pass_rate/pass^5=0.25, PII30; prepared/after 1.0, PII0. Nền after110/110. Không sửa code/config trong demo; grade tổng FAIL do integrity, monitor đã đạt. [Log và metadata CP5](https://github.com/NguyenDacThe/K5-L3A-DAY10-NhomABC-PoCtoPilotGate1/blob/main/docs/cp5/README.md).
 
 <a id="c1"></a>
 
@@ -162,7 +162,7 @@ Trong cả bốn ca sự cố, base có lỗi ở sự kiện 07; prepared và a
 rồi sự kiện 08 `notify_carrier` chỉ chứa `order_id`, `parcel_id`, `district`, `delay_days`. Cả bốn ca chuyển từ HỎNG sang ĐẠT.
 S7-05 có mã vận đơn `8840012345` và **ĐẠT ở cả ba mốc**: đây không phải bằng chứng SĐT bị lộ.
 Monitor schema vẫn đánh dấu base của S7-05 vì có `customer_note` ngoài hợp đồng, không gán dãy số đó là PII.
-[Trace và report giữ trong repo](../docs/cp4-thong.md), chỉ chứa dữ liệu mock của lab.
+[Trace và report giữ trong repo](https://github.com/NguyenDacThe/K5-L3A-DAY10-NhomABC-PoCtoPilotGate1/blob/main/docs/cp4-thong.md), chỉ chứa dữ liệu mock của lab.
 
 ---
 
@@ -431,7 +431,7 @@ Kiểm chứng: 9 test monitor, 13 test công khai đều đạt; grade đạt c
 19 file sẵn có khác byte hash do CRLF/LF (tất cả khớp manifest nếu chỉ chuẩn hóa trong bộ nhớ),
 28 đường dẫn thuộc bảy thẻ khác chưa có trên máy. Không sửa manifest/grader hay lấy thẻ khác để làm xanh.
 Các hash tiêu chí, snapshot, guards, config và gói S7 không đổi qua lần làm này;
-xem [bằng chứng và bàn giao cho Thể](../docs/cp4-thong.md). Chưa khép CP4 của cả nhóm hoặc ra quyết định v2.
+xem [bằng chứng và bàn giao cho Thể](https://github.com/NguyenDacThe/K5-L3A-DAY10-NhomABC-PoCtoPilotGate1/blob/main/docs/cp4-thong.md). Chưa khép CP4 của cả nhóm hoặc ra quyết định v2.
 
 ---
 
@@ -542,6 +542,8 @@ Phát triển từ phần Bách; cập nhật bằng report `R-S7-grade-20261118
 
 Đã chạy eval S7, eval nền, grade và gate trên bản tích hợp. Lệnh không tự viết quyết định: các ô dưới được điền từ report thật và tiêu chí đã ký; không giả nhận cuộc họp/duyệt triển khai ngoài repo.
 
+Phân công C12: Phan Gia Bảo tổng hợp quyết định và đối chiếu ngưỡng kinh doanh; Nguyễn Tuấn Bách phối hợp điều kiện vận hành/pháp lý, PIC, hạn và ba dòng bắt buộc, đồng bộ `submission/submission.json` và gom bài; Trương Văn Thông đối chiếu test/monitor; Nguyễn Đắc Thể tích hợp và đẩy bản chung.
+
 | Mục | v2 |
 |---|---|
 | Commit ký tiêu chí | **60fbf2c**, Sign acceptance criteria; hash file36863666… giống v1 |
@@ -560,6 +562,15 @@ Phát triển từ phần Bách; cập nhật bằng report `R-S7-grade-20261118
 | Nếu Dừng | Chưa chọn: S7 và nền hết lỗi an toàn công khai, có hướng sửa/điều kiện xác minh cụ thể. Không tự sửa grader/manifest hoặc nới ngưỡng để né điều kiện Dừng. |
 | Ngày quyết định lại | **2026-11-28**, sớm hơn nếu phát hiện tác hại an toàn hoặc Coach xác nhận thay đổi công cụ cần đo lại. |
 | PIC hồ sơ | **Nguyễn Đắc Thể – 2A202603529**, trưởng nhóm; bản tổng hợp để nhóm review, không nhận thay chữ ký pháp lý/người vận hành thật. |
+
+### Đối chiếu vận hành/pháp lý và bài nộp · Nguyễn Tuấn Bách
+
+| Nội dung phối hợp C12 | Kết luận và bằng chứng |
+|---|---|
+| Năng lực và SLA | Bộ nền/S7 sau cổng không ùn; B7.6 vẫn có 7 ca quá SLA với 1 người, 1 ca với 2 người khi 14 ca tới cùng lúc. Chưa có phương án phân tải mới được đo đạt; giữ Cải tiến thêm. |
+| Pháp lý và dữ liệu người nhận | C3.3/C4/C10/C11 còn giả định nguồn DB, quyền chia sẻ và kênh xuất khác; hai monitor bằng 0 không xác nhận đủ căn cứ triển khai thật. |
+| PIC, hạn và điều kiện đánh giá lại | Bách phối hợp Hạnh/Tùng kiểm nguồn lực/phân tải và Pháp chế kiểm căn cứ chia sẻ; Bảo đo chi phí, Thông kiểm thử, Thể tích hợp. Xem lại trước 2026-11-28, tối đa 2 vòng sửa tổng cộng theo bản ký; hết hạn/giới hạn vẫn chưa đạt thì Dừng. |
+| Hồ sơ nộp | `submission/submission.json` có đúng bốn thành viên/MSSV, S7, v1/v2 Cải tiến thêm và ba câu chép nguyên bên dưới; lệnh 7 kiểm đủ thành phần, không thay verdict FAIL của grade. |
 
 ### Chỉ ở v2
 

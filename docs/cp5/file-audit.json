@@ -1,0 +1,67 @@
+{
+  "checked_at_local": "2026-11-18T17:52:19",
+  "incident": "S7",
+  "incident_directories": [
+    "S7"
+  ],
+  "required_paths_checked": 24,
+  "missing_required_files": [],
+  "submission_manifest_files": 22,
+  "manifest_hash_mismatches": [],
+  "source_copy_mismatches": [],
+  "form_sections": {
+    "form-a-criteria.md": [
+      "A1",
+      "A2",
+      "A3",
+      "A4",
+      "A5"
+    ],
+    "form-b-evaluation-gates.md": [
+      "B0",
+      "B1",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "B6",
+      "B7",
+      "B8"
+    ],
+    "form-c-incident.md": [
+      "C0",
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5",
+      "C6",
+      "C7",
+      "C8",
+      "C9",
+      "C10",
+      "C11",
+      "C12"
+    ]
+  },
+  "team_personal_sections_complete": {
+    "NguyenDacThe-2A202603529": true,
+    "TruongVanThong-2A202603560": true,
+    "PhanGiaBao-2A202603562": true,
+    "NguyenTuanBach-2A202603596": true
+  },
+  "c12_three_lines_match_submission": true,
+  "documents_link_checked": 17,
+  "links_checked": 185,
+  "broken_document_links": [],
+  "repository_url_validation": "Mapped own-repository blob/main URLs to local files; no external site access.",
+  "protected_files_checked": 15,
+  "changed_protected_files": [],
+  "submission_check_exit_code": 0,
+  "submission_check_failures": [],
+  "grade_reused": "R-S7-grade-20261118-173554-d5f014",
+  "grade_verdict": "FAIL",
+  "bach_c12": "Shared C12 includes operations/legal review; docs/cp4-bach.md links handoff to submission.",
+  "historical_source_forms": "Preserved original handoff snapshots; final forms live in templates and submission/docs.",
+  "all_file_checks_passed": true
+}

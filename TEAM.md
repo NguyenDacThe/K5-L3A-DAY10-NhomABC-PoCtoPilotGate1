@@ -25,7 +25,7 @@
 | Trạng thái grade | Criteria/visible/regression/monitor đạt; tổng **FAIL** vì 28 đường dẫn thẻ không được giao vắng mặt. Mọi file hiện có khớp hash; không sửa grader/manifest để làm xanh |
 | CP5 | Đã chuẩn bị demo, chạy thử kỹ thuật, soát checklist và gom hồ sơ; xem [checklist cuối](docs/cp5/checklist.md) |
 
-Đóng góp bên dưới được rút từ commit, phiếu và report, không phải xác nhận từng người tự chạy mọi lệnh. Theo yêu cầu trưởng nhóm, **Codex thực hiện phần hoàn thiện CP5 cho cả bốn vai**. Exit ticket của Thông/Bảo được rút gọn từ nội dung đã có; phần của Thể/Bách được soạn hoặc chuẩn hóa từ bằng chứng để cá nhân rà soát. Không tự xác nhận đã demo trước lớp, được Coach phê duyệt, hoặc đã nộp LMS.
+CP5 là phần việc chung của nhóm, phân chia theo vai bên dưới. Đóng góp được đối chiếu với commit, phiếu và report; từng thành viên rà soát mục cá nhân và exit ticket trước khi nộp. Trạng thái demo, quyền truy cập team chấm và LMS được theo dõi trong checklist CP5.
 
 ## NguyenDacThe-2A202603529
 
@@ -34,7 +34,7 @@
 - CP2: phối hợp metric chọn chính sách, soát tiêu chí và tổ chức ký; hỗ trợ A2–A5, giữ tiêu chí nguyên vẹn.
 - CP3: chạy baseline/gate, viết G1–G3 ngoài model, điền B0–B1/B7.1, tích hợp cấu hình và chốt prepared; quyết định v1 dựa cả bằng chứng tải dồn.
 - CP4: C0–C1/C5–C7/C9; thêm telemetry G3 chỉ ghi số đếm/cờ, tích hợp monitor, hồ sơ và C12, giữ các giới hạn dữ liệu nguồn và integrity.
-- CP5 (Codex thực hiện thay): tổng hợp bản cuối, kiểm tính nhất quán C12/submission, chạy thử demo và chuẩn bị đẩy bài.
+- CP5: tích hợp bản cuối, kiểm tính nhất quán C12/submission, điều phối demo và đẩy bài.
 
 ### Bằng chứng
 
@@ -42,7 +42,7 @@ Commit `4382f2d` (CP3), `d634d3e` (CP4), `1bbad85` (tích hợp/C12); [hồ sơ 
 
 ### Dùng AI
 
-Codex hỗ trợ đọc repo/trace, soạn phiếu, viết và kiểm cổng/telemetry, tích hợp, kiểm thử và hoàn thiện CP5. Không xử lý riêng theo ID ticket/seed; không sửa tiêu chí hoặc snapshot để hợp thức hóa số đo.
+Codex hỗ trợ đọc repo/trace, soạn phiếu, viết và kiểm cổng/telemetry, tích hợp và kiểm thử. Nhóm rà soát nội dung và chịu trách nhiệm về quyết định. Không xử lý riêng theo ID ticket/seed; không sửa tiêu chí hoặc snapshot để hợp thức hóa số đo.
 
 ### Exit ticket · bản soạn để cá nhân rà soát
 
@@ -56,7 +56,7 @@ Codex hỗ trợ đọc repo/trace, soạn phiếu, viết và kiểm cổng/tel
 - CP2: A2 câu 1.3, `policy_version_error_rate`, nguồn nhãn theo ngày hiệu lực, mẫu số và ca không đánh giá được.
 - CP3: B2 trace T-002@55, B7.2 chống rò dữ liệu đánh giá, B7.3 hai ticket hiểm và kiểm hồi quy. Kết quả lỗi trước sửa đã được giữ và chạy lại đạt sau tích hợp.
 - CP4: C2 phân biệt PII từ ticket với liên hệ từ DB; C8 và hai monitor `carrier_unexpected_field_rate`/`carrier_contact_field_rate`, chỉ đọc outbound không có nhãn; 9 kiểm tra monitor.
-- CP5 (Codex thực hiện thay): kiểm thử bản cuối, chạy thử ca ba mốc và hai ticket hiểm, lưu output để demo/phản biện.
+- CP5: kiểm thử bản cuối, chạy thử ca ba mốc và hai ticket hiểm, lưu output để demo/phản biện.
 
 ### Bằng chứng
 
@@ -64,7 +64,7 @@ Commit `2ea029f` (CP3), `91ea2ca` (CP4); [bàn giao monitor](docs/cp4-thong.md),
 
 ### Dùng AI
 
-Theo khai báo trong nhánh cá nhân, dùng Codex hỗ trợ đọc dữ liệu/code, trace, thước đo, ticket kiểm thử, monitor và ghi bằng chứng; Codex tiếp tục hoàn thiện CP5 theo yêu cầu trưởng nhóm. Monitor phát hiện sau gửi, không tự nhận là biện pháp ngăn hay thu hồi dữ liệu.
+Theo khai báo trong nhánh cá nhân, dùng Codex hỗ trợ đọc dữ liệu/code, trace, thước đo, ticket kiểm thử, monitor và ghi bằng chứng. Monitor phát hiện sau gửi, không tự nhận là biện pháp ngăn hay thu hồi dữ liệu.
 
 ### Exit ticket · rút gọn từ ghi chú cá nhân
 
@@ -78,15 +78,15 @@ Theo khai báo trong nhánh cá nhân, dùng Codex hỗ trợ đọc dữ liệu
 - CP2: A1 câu 1.1, A3/A4, bản nháp ngưỡng và hành động; các ngưỡng số giữ trong bản ký. Phát hiện vấn đề CRLF/LF của file tiêu chí, không tự sửa lock.
 - CP3: B3 bản đồ dữ liệu/drift, B6 phần kinh doanh, B7.4; cap tự động 1.600.000đ, ngân sách máy 1.500đ, phạm vi all và ROI tối thiểu 0,5, có lý do từ dữ liệu.
 - CP4: phần kinh doanh C1/C7 và C10; chỉ ra ROI/chi phí đạt vẫn có thể che 30 lần lộ PII, cùng rủi ro phí người trực khi lượng ticket thấp và nhóm kho chưa xác định.
-- CP5 (Codex thực hiện thay): đối chiếu số cuối với tiêu chí, giữ v2 Cải tiến thêm và chuẩn bị lập luận demo về ROI, độ phủ và hàng chờ.
+- CP5: tổng hợp C12/quyết định v2, đối chiếu số cuối với tiêu chí; chuẩn bị lập luận demo về ROI, độ phủ và hàng chờ.
 
 ### Bằng chứng
 
-Commit `1817d93` (CP2), `964aae9` (CP3), `989d5cb` (CP4); [C1/C7/C10/C12](templates/form-c-incident.md#c1), [tóm tắt quyết định](docs/cp5/demo.md).
+Commit `1817d93` (CP2), `964aae9` (CP3), `989d5cb` (CP4); [bàn giao CP4–CP5](docs/cp4-bao.md), [quyết định C12](templates/form-c-incident.md#c12), [tóm tắt quyết định](docs/cp5/demo.md).
 
 ### Dùng AI
 
-Theo khai báo cá nhân, Claude hỗ trợ nháp tiêu chí, phân tích dữ liệu, phần kinh doanh và phát hiện lệch CRLF/LF. Codex hỗ trợ rà soát/tích hợp bản chung và thực hiện CP5. Ngưỡng và quyết định phải được nhóm hiểu, giải thích và chịu trách nhiệm; không coi AI là phê duyệt kinh doanh.
+Theo khai báo cá nhân, Claude hỗ trợ nháp tiêu chí, phân tích dữ liệu, phần kinh doanh và phát hiện lệch CRLF/LF. Codex hỗ trợ rà soát/tích hợp bản chung. Ngưỡng và quyết định phải được nhóm hiểu, giải thích và chịu trách nhiệm; không coi AI là phê duyệt kinh doanh.
 
 ### Exit ticket · rút gọn từ ghi chú cá nhân
 
@@ -99,16 +99,16 @@ Theo khai báo cá nhân, Claude hỗ trợ nháp tiêu chí, phân tích dữ l
 
 - CP2: mục tiêu của Oanh/Hạnh và telemetry A2 câu 1.4; tác động lên người duyệt và bên thứ ba.
 - CP3: HAZOP/checklist B4–B5, khối operations/legal và runbook B7.5–B7.6; phân tích giới hạn năng lực giờ cao điểm.
-- CP4: C3.3 lòng tin người đặt/người nhận, C4 HAZOP kênh notify_carrier và C11 checklist/runbook; phần cập nhật vận hành C7 và tên monitor ở commit mới được đối chiếu khi hoàn thiện hồ sơ.
-- CP5 (Codex thực hiện thay): bổ sung mục cá nhân còn thiếu, soát chín nhóm checklist, runbook, thông tin bốn thành viên và bản gom bài nộp.
+- CP4: C3.3 lòng tin người đặt/người nhận, C4 HAZOP kênh notify_carrier và C11 checklist/runbook; phối hợp phần vận hành/pháp lý C5/C7/C10.
+- CP5: phối hợp C12 với Bảo về điều kiện vận hành/pháp lý, PIC, hạn và điều kiện đánh giá lại; phụ trách `submission/submission.json`, gom bài và kiểm đủ thành phần.
 
 ### Bằng chứng
 
-Commit `2f11502` (CP2), `a810352` (CP3), `8dd380e` (CP4 đã merge); nguồn bổ sung mục cá nhân `1819afd` và cập nhật vận hành `1143577` trên nhánh bach. Nội dung cuối xem [C3.3/C4/C11](templates/form-c-incident.md#c3) và [checklist CP5](docs/cp5/checklist.md); không ghi hai commit bổ sung là đã được merge nếu lịch sử chưa có.
+Commit `2f11502` (CP2), `a810352` (CP3), `8dd380e` (CP4 đã merge); nguồn bổ sung mục cá nhân `1819afd` và vận hành `1143577` trên nhánh bach. [Bàn giao CP4–CP5](docs/cp4-bach.md) liên kết C3.3/C4/C11, phần phối hợp [C12](templates/form-c-incident.md#c12) và hồ sơ nộp; hai commit bổ sung được dùng để đối chiếu nội dung.
 
 ### Dùng AI
 
-Theo khai báo trong cập nhật nhánh bach, Claude Code hỗ trợ đọc repo/thẻ S7, trace chẩn đoán, nháp phần vận hành/pháp lý và thử tích hợp. Codex chuẩn hóa mục cá nhân, soát bản chung và thực hiện CP5. Các mốc phản ứng 15 phút/24 giờ là đề xuất vận hành, không tự nhận là nghĩa vụ pháp lý đã xác minh.
+Theo khai báo trong cập nhật nhánh bach, Claude Code hỗ trợ đọc repo/thẻ S7, trace chẩn đoán, nháp phần vận hành/pháp lý và thử tích hợp. Codex hỗ trợ chuẩn hóa tài liệu và soát bản chung. Các mốc phản ứng 15 phút/24 giờ là đề xuất vận hành, không tự nhận là nghĩa vụ pháp lý đã xác minh.
 
 ### Exit ticket · bản nháp từ nhánh cá nhân đã chuẩn hóa
 

@@ -1,6 +1,6 @@
 # CP5 · Bản cuối của NhomABC · S7
 
-CP5 được Codex thực hiện cho cả bốn vai theo yêu cầu trưởng nhóm: chuẩn hóa TEAM, soát C12 và ba câu bắt buộc, chạy thử demo/phản biện kỹ thuật, kiểm thử, gom bài và chuẩn bị lưu/đẩy bản cuối. Phần trình bày thật, xác nhận cá nhân, quyền truy cập team chấm và LMS không được đánh dấu đã xong nếu chưa có bằng chứng.
+CP5 là phần việc chung của nhóm: Thể tích hợp và đẩy bài; Thông kiểm thử, trace và monitor; Bảo tổng hợp quyết định v2/C12; Bách phối hợp C12 về vận hành/pháp lý, phụ trách metadata và gom bài. Phần trình bày thật, xác nhận cá nhân, quyền truy cập team chấm và LMS được theo dõi riêng theo bằng chứng.
 
 ## Tài liệu dùng trực tiếp
 
@@ -10,6 +10,8 @@ CP5 được Codex thực hiện cho cả bốn vai theo yêu cầu trưởng nh
 - [TEAM đã chuẩn hóa](../../TEAM.md): đủ bốn mục cá nhân, đóng góp/bằng chứng/AI/exit ticket; bỏ mẫu và trạng thái cũ.
 - [C12 cuối](../../templates/form-c-incident.md#c12) và [thông tin bài nộp](../../submission/submission.json): cùng giữ v1/v2 **Cải tiến thêm**.
 - [Report sau chạy thử demo](evidence/grade-report.md), [metadata kiểm cuối](summary.json), log trong evidence.
+- [Bàn giao Bách](../cp4-bach.md), [bàn giao Bảo](../cp4-bao.md): liên kết phần CP4 sang C12/CP5, không tách thành quyết định riêng cho từng người.
+- [Rà soát file và phân công](file-review.md), [kết quả kiểm file](file-audit.json).
 
 ## Đã thực hiện
 

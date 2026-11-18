@@ -1,5 +1,7 @@
 # CP4 · Bàn giao Trương Văn Thông · S7
 
+Bản bàn giao tại thời điểm commit `91ea2ca`; trạng thái chờ bên dưới mô tả thời điểm đó. Bản chung sau tích hợp và CP5 xem [Phiếu C](../templates/form-c-incident.md), [phân công/hồ sơ cuối](cp5/file-review.md).
+
 Ngày thực hiện: 18/11/2026 (GMT+7). Phạm vi: C2, C8, `lab10/monitors.py`, bằng chứng kiểm thử và bổ sung C0 để Thể tích hợp. Đây là kết quả trên nhánh làm việc của Thông; chưa xác nhận merge vào main, khép CP4 cả nhóm hay quyết định CP5.
 
 ## Kết quả và giới hạn
