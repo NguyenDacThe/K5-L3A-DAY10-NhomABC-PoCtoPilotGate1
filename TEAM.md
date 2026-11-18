@@ -61,3 +61,21 @@ Mã commit, mã lần chạy (`runs/<mã>`), dòng trong phiếu.
 ### Exit ticket
 
 Một điều học được, một điều còn chưa chắc.
+
+## NguyenDacThe-2A202603529
+
+### Phần việc phụ trách
+
+Trưởng nhóm, Kỹ sư cổng: hỗ trợ A2 câu 1.3 cùng Trương Văn Thông; chuẩn bị lập luận A3 và soát kỹ thuật A4; điều phối ký sau khi nhóm thống nhất.
+
+### Đóng góp cụ thể
+
+Đã chuẩn bị đặc tả `wrong_policy_rate` cho riêng bước chọn chính sách, quy định nguồn đối chiếu, mẫu số, ca thiếu dữ liệu và điểm mù trong Phiếu A. Đã viết lập luận A3 và bản bàn giao kiểm tra trước ký tại `docs/cp2-nguyendacthe.md`. Dùng Codex hỗ trợ đọc code tĩnh và soạn nội dung, chưa tính số đánh giá Day 10.
+
+### Bằng chứng
+
+[Phiếu A, mục A2–A3](templates/form-a-criteria.md#a2) và [bản soát CP2 của trưởng nhóm](docs/cp2-nguyendacthe.md). Chưa có mã lần chạy, commit CP2 hoặc chữ ký tiêu chí; chưa ghi nhận nhóm đã duyệt các ngưỡng.
+
+### Exit ticket
+
+Chưa điền; cá nhân tự ghi sau khi hoàn thành phần việc và thảo luận với nhóm.
