@@ -49,7 +49,25 @@ python3 -m lab10.grade --incident Sx
 
 - Mã lần chạy grade: `__________` · base: `__________` · prepared: `__________`
 - Cổng vòng 1 đỡ được ô / con số nào (so cột base với cột prepared): …
-- Khối kinh doanh và vận hành còn dòng nào vượt trần: …
+- Khối kinh doanh và vận hành còn dòng nào vượt trần: **Không có dòng nào vượt trần ở cả ba mốc**, trên gói S7 lẫn bộ nền (report ghi "Không vượt trần kinh doanh / vận hành nào"). Tác hại của S7 **không hiện ra ở chỉ số kinh doanh**: ở mốc base, gói S7 có **30 lần lộ dữ liệu người nhận cho hãng**, nhưng ROI vẫn là **1,27** và chi phí 4.405đ/ticket, đều đạt trần. Nếu chỉ đọc ROI và chi phí thì sẽ chọn nhầm Tiếp tục; vì vậy chỉ số pháp lý `pii_leaks` (trần đã ký = 0) phải đọc riêng, đứng trên ROI. *(Phần kinh doanh: Phan Gia Bảo.)*
+
+**Phần kinh doanh và vận hành của C1 (Phan Gia Bảo).** Số lấy từ report grade S7 chạy **trước khi sửa vòng 2**, trên `main` @ `f1d4e31`, hash code đội `0892bd295a9e`, cổng vòng 1 đã chốt `0580db3e`. Lab chạy tất định, nên cùng hash code thì cùng số; mã lần chạy chính thức xem dòng "Mã lần chạy grade" ở trên.
+
+| Chỉ số (gói S7, 8 ticket/ngày) | base | prepared | Đọc thế nào |
+|---|---|---|---|
+| pháp lý: lần lộ dữ liệu cá nhân cho bên thứ ba | **30** | **0** | Cổng vòng 1 chặn hết ở bộ công khai; đây là tác hại chính của thẻ |
+| pass_rate · pass_k | 0,25 · 0,25 | 1,0 · 1,0 | 6/8 ticket hỏng ở base đều vì lộ PII, không vì tiền |
+| tỉ lệ chuyển người duyệt (gồm kiểm mẫu) | 0,0 | 0,125 | Tăng do kiểm mẫu 10% (`review_sampling_pct`) của vòng 1 |
+| chi phí mỗi ticket (đ) · trần đã ký 6.000 | 4.405 | **5.005** | Tăng 600đ (+13,6%): ghi chú giải thích (+100đ tiền máy) và công kiểm mẫu. Còn cách trần 995đ |
+| trong đó phí giữ chỗ người trực / ticket | 3.750 | 3.750 | 30.000đ/ngày ÷ 8 ticket: **chiếm 75% chi phí** ở lượng việc nhỏ |
+| ROI · ngưỡng đã ký 0,5 | 1,27 | **1,0** | Vẫn gấp đôi ngưỡng |
+| tổng hoàn tự động một ngày (đ) · trần bàn 1.600.000 | 26.000 | 26.000 | Rất xa trần; cổng `daily_refund_cap_vnd` không liên quan tới S7 |
+| hàng chờ: chờ lâu nhất · ca ùn | 0 phút · 0 | 0 phút · 0 | 1 người trực, 6 ca/giờ, đủ cho 1 ca/ngày vào hàng chờ |
+| độ phủ pilot | 1,0 | 1,0 | Không cắt phạm vi |
+
+**Theo kho và hãng (gói S7, mốc base):** lộ PII có ở **cả 4 kho** (HCM 15, HN 10, DN 5; CT 0 vì không có ticket bị lộ) và ở 3 hãng (VNX 15, GHSH 10, DNB 5). Sự cố không gắn với một kho hay một hãng, nên **Thu hẹp theo kho không xử lý được S7**. Ở mốc prepared, mọi phân khúc đều pass 1,0, PII 0. Kho HN đắt nhất (2.102đ/ticket, do 1/3 ca HN vào kiểm mẫu), nhưng vẫn rẻ hơn làm tay 10.000đ.
+
+**Trên bộ nền (mốc prepared, 22 ticket/ngày):** chi phí 4.456đ, ROI 1,24, hoàn sai 0đ, lỗi oan 0, 0 ca ùn. Không phân khúc nào đắt hơn làm tay, trừ nhóm **"kho ?"** (ticket không tra được đơn): **10.359đ/ticket**, đắt hơn làm tay. Báo cáo không đếm nhóm này vào "số kho đắt hơn làm tay" (= 0), nên bàn ghi vào risk register C10.
 
 **Mở lại pre-mortem (Phiếu B mục B6), viết bằng bút khác màu.** Với thẻ S1, S3, S4, S5 đây là một phần của phần riêng theo thẻ.
 
@@ -319,6 +337,17 @@ python3 -m lab10.grade --incident Sx
 | [2] | | | | | |
 | [3] | | | | | |
 
+
+**Phần kinh doanh của bảng sửa (Phan Gia Bảo) · mục `business` trong `config/operating_gates.json`**
+
+| Câu hỏi | Kết luận và số đỡ |
+|---|---|
+| Nguyên nhân của S7 có nằm ở tiền, phạm vi hay ngân sách không? | **Không.** Ở mốc base, mọi chỉ số kinh doanh đã đạt trần (chi phí 4.405đ ≤ 6.000đ, ROI 1,27 ≥ 0,5, hoàn tự động 26.000đ ≪ 1.600.000đ) mà vẫn có 30 lần lộ PII. Nguyên nhân nằm ở kênh gửi hãng (code: `notify_carrier`, `write_gate`) và cổng pháp lý (`legal.*`), không ở mục `business`. |
+| Có đổi khoá nào trong mục `business` không? | **Giữ nguyên cả bốn khoá:** `daily_refund_cap_vnd` 1.600.000 · `cost_budget_per_ticket_vnd` 1.500 · `pilot_scope` all · `roi_min` 0,5. Theo luật của thẻ, chỉ đổi một thứ khi có nguyên nhân; đổi con số tiền không làm giảm lộ PII. Tầng: không áp dụng. |
+| Có nên Thu hẹp phạm vi (`pilot_scope`) để xử lý S7 không? | **Không.** Lộ PII có ở cả 4 kho và 3 hãng (theo kho và hãng, mốc base), nên cắt kho không loại được nguyên nhân. Cắt kho còn làm **đắt hơn**: phí giữ chỗ 30.000đ/ngày chia cho ít ticket hơn. Ước tính trên gói S7: chi phí biến đổi ≈ (6.043 + 4.000) ÷ 8 ≈ 1.255đ/ticket, cộng 30.000 ÷ n, nên **dưới khoảng 7 ticket/ngày thì vượt trần 6.000đ**. Thu hẹp còn 1–2 kho có thể tự tạo ra một vi phạm kinh doanh. |
+| `cost_budget_per_ticket_vnd` 1.500 có chặn nhầm ca S7 nào không? | Không: tiền máy ticket đắt nhất trên S7 là 782đ ở mốc prepared, trên bộ nền 770đ, đều dưới 1.500đ. |
+| Sau khi Thể (cổng) và Thông (monitor) sửa vòng 2, cần kiểm lại số nào? | Ở mốc after: chi phí S7 ≤ 6.000đ, ROI ≥ 0,5, độ phủ = 1,0 (> 0), 0 ca ùn, và "Không vượt trần kinh doanh / vận hành nào", trên cả S7 lẫn bộ nền. Nếu cổng mới chuyển thêm ca sang người, mỗi ca thêm tốn 10.000đ: trên S7 chỉ chịu thêm khoảng **0,8 ca/ngày** (≈ 995đ × 8 ÷ 10.000) trước khi chạm trần chi phí. Mã lần chạy after: ghi ở cột cuối các dòng [1]–[3] phía trên. |
+
 ---
 
 <a id="c8"></a>
@@ -369,7 +398,9 @@ Vẽ lại cây ở C6. Ở mỗi nhánh đã xử lý, thêm một nút `VÀ [g
 
 | Rủi ro | Khả năng | Tác động | Người phụ trách (PIC, một người) | Dấu hiệu (metric nào, ngưỡng nào) | Xử lý | Ảnh hưởng bước đánh giá | Nhóm chức năng (GOVERN / MAP / MEASURE / MANAGE) |
 |---|---|---|---|---|---|---|---|
-| | | | | | | | |
+| Chỉ số tổng (ROI, chi phí, pass_rate trên bộ nền) che tác hại cho bên thứ ba: ở S7 mốc base, ROI 1,27 và mọi trần kinh doanh đều đạt trong khi có 30 lần lộ PII, nên người đọc lướt report có thể chọn Tiếp tục | Trung bình | Cao: lộ dữ liệu người nhận quà, vi phạm hợp đồng chia sẻ dữ liệu với hãng | Phan Gia Bảo (Sản phẩm và kinh doanh) | `pii_leaks` (report, theo từng gói) > 0; `wrongful_carrier_faults` > 0 | Bất kể ROI, không chọn Tiếp tục; C12 phải đọc riêng dòng pháp lý trước dòng kinh doanh. Nhóm thêm kiểm này vào bước soát v2 | Chặn Tiếp tục ở Gate 1 v2 và Bước đánh giá 2 khi còn lộ PII | GOVERN |
+| Lượng ticket mỗi ngày thấp hoặc bị cắt phạm vi làm chi phí mỗi ticket vượt trần, vì phí giữ chỗ 30.000đ/ngày chia cho ít ticket: gói S7 (8 ticket/ngày) đã ở 5.005đ, ngưỡng hoà vốn ước tính khoảng 7 ticket/ngày | Trung bình | Trung bình: vượt `cost_per_ticket_vnd_max` 6.000đ, ROI xuống dưới 0,5, Finance dừng pilot | Phan Gia Bảo (Sản phẩm và kinh doanh) | Report: chi phí mỗi ticket > 5.500đ (cảnh báo sớm trước trần 6.000đ); ROI < 0,7; `tickets_in_scope_per_day` < 8 | Không Thu hẹp còn 1 kho nếu số ticket/ngày dưới mức hoà vốn; ưu tiên giữ `pilot_scope` đủ lượng việc, hoặc đề xuất người trực dùng chung với ca CSKH để không tính phí giữ chỗ riêng | Ràng buộc mọi phương án Thu hẹp ở v2: phải đo lại chi phí sau khi cắt | MANAGE |
+| Ticket không tra được đơn (nhóm "kho ?" trên bộ nền) tốn 10.359đ/ticket, đắt hơn làm tay 10.000đ: máy vẫn đọc ticket rồi mới chuyển người. Report không đếm nhóm này vào "số kho đắt hơn làm tay" | Cao (bài kiểm tra ẩn có đơn mới, khách mới) | Thấp: lỗ khoảng 359đ mỗi ticket (công người 10.000đ cộng tiền máy), không gây hại cho bên thứ ba; mọi ca phải chuyển người đều tốn ít nhất bằng làm tay | Phan Gia Bảo (Sản phẩm và kinh doanh) | `by_segment` "kho ?" trong report: chi phí mỗi ticket > 10.000đ (làm tay) | Đề xuất Kỹ sư cổng (Thể): trong `pre_guard`, ticket không tra được đơn thì `Verdict.escalate` trước khi máy đọc (quy tắc chung, không theo mã ticket), bớt phần tiền máy đọc ticket; kiểm lại bộ nền không hồi quy | Không chặn Gate 1; theo dõi ở Bước đánh giá 2 khi lượng ticket thật tăng | MEASURE |
 
 Quy tắc: **mỗi dòng phải đổi được một quyết định.** Cột "Dấu hiệu" phải là một metric có trong `monitors.py` hoặc trong report.
 

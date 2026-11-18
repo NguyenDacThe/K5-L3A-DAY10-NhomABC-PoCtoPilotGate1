@@ -149,14 +149,16 @@ Vai: **Sản phẩm và kinh doanh**.
 - **Phiếu B mục B3:** bản đồ dữ liệu 9 dòng (nguồn sự thật hay bản sao cho từng trường then chốt) và ví dụ drift REFUND-v3 → v4 ngày 01/12/2026 (concept drift; ảnh hưởng `wrongful_carrier_faults_max`, `escalation_rate_max`; v4 đang `index_active = false`).
 - **Phiếu B mục B7.4 và `config/operating_gates.json` mục `business`:** `daily_refund_cap_vnd` 1.600.000 · `cost_budget_per_ticket_vnd` 1.500 · `pilot_scope` all · `roi_min` 0,5, mỗi số một câu lý do từ `ops_limits`, `ops_facts`.
 - **Phiếu B mục B6 (lăng kính Kinh doanh):** ba lý do thất bại: chi phí mỗi ticket vượt làm tay; tổng hoàn tự động vượt ngân sách Finance; ticket giá trị lớn luôn phải chuyển người. Hai lý do đầu gắn với cổng config đã đặt (`cost_budget_per_ticket_vnd`, `roi_min`, `daily_refund_cap_vnd`) và đề xuất một cổng code trần 300.000đ/khách/ngày; lý do thứ ba vào risk register.
-- Chưa làm: B8 (chờ mã lần chạy base và prepared), Phiếu C (chờ thẻ sự cố). Các lăng kính còn lại của B6 do cả bàn điền.
+- **CP4 · Thẻ S7 · Phiếu C:** phần kinh doanh của **C1** (bảng so base/prepared trên gói S7: 30 lần lộ PII → 0 trong khi ROI 1,27 → 1,0 và chi phí 4.405đ → 5.005đ, đều đạt trần; theo kho và hãng cho thấy lộ PII rải ở 3 kho, 3 hãng nên Thu hẹp theo kho không xử lý được S7), phần kinh doanh của **C7** (giữ nguyên mục `business`, kèm lý do; ước tính dưới khoảng 7 ticket/ngày thì vượt trần chi phí 6.000đ; danh sách số phải kiểm lại ở mốc after), cầm bút **C10** (3 dòng risk register: chỉ số tổng che tác hại bên thứ ba · lượng ticket thấp làm vượt trần chi phí · ticket không tra được đơn đắt hơn làm tay).
+- Chưa làm: cột after của C7 phần kinh doanh (chờ Thể sửa vòng 2), C12 và quyết định v2 (CP5). Các lăng kính còn lại của B6 do cả bàn điền.
 
 ### Bằng chứng
 
 - Commit `1817d93` "CP2: draft acceptance criteria and Phieu A (1.1, 1.5, 1.6)", merge vào `main` qua PR #3 (`d203dfd`).
-- Commit CP3 (B3, B7.4, mục `business`, A5): `________` (điền sau khi commit).
-- Mã lần chạy dùng cho B8 và C12: `________` (điền sau khi có).
-- Dòng trong phiếu: Phiếu A mục A1 câu 1.1, A3, A4, A5; Phiếu B mục B3, B6 (dòng Kinh doanh), B7.4.
+- Commit CP3 (B3, B6 dòng Kinh doanh, B7.4, mục `business`, A5): `964aae9`, merge vào `main` qua `050d10e`.
+- Mã lần chạy dùng cho B8 (theo Phiếu B mục B8): base `R-base-before-20261118-152920-bde05c` · prepared `R-base-prepared-20261118-160738-0892bd`. Mã lần chạy cho C12: `________` (điền ở CP5).
+- Dòng trong phiếu: Phiếu A mục A1 câu 1.1, A3, A4, A5; Phiếu B mục B3, B6 (dòng Kinh doanh), B7.4; Phiếu C mục C1 (phần kinh doanh), C7 (phần kinh doanh), C10.
+- Số liệu CP4 lấy từ grade S7 trước sửa vòng 2 trên `main` @ `f1d4e31`, hash code đội `0892bd295a9e`, cổng vòng 1 `0580db3e`.
 
 ### Dùng AI
 
