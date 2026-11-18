@@ -1,0 +1,133 @@
+{
+  "initial_grade": "R-S7-grade-20261118-165630-0892bd",
+  "final_grade": "R-S7-grade-20261118-165851-43edee",
+  "final_checks": {
+    "integrity": false,
+    "criteria": true,
+    "visible": true,
+    "hidden": null,
+    "regression": true,
+    "monitor": true
+  },
+  "protected_changed": [],
+  "integrity_existing_mismatches": [
+    "data/tickets.jsonl",
+    "data/world.json",
+    "lab10/__init__.py",
+    "lab10/_gradectx.py",
+    "lab10/_noop_guards.py",
+    "lab10/agent.py",
+    "lab10/check_submission.py",
+    "lab10/checkpoint.py",
+    "lab10/criteria.py",
+    "lab10/eval.py",
+    "lab10/gate.py",
+    "lab10/grade.py",
+    "lab10/helpers.py",
+    "lab10/mock_llm.py",
+    "lab10/ops.py",
+    "lab10/tools.py",
+    "lab10/trace.py",
+    "lab10/world.py",
+    "tests/test_public.py"
+  ],
+  "integrity_existing_match_after_CRLF_to_LF": [
+    "data/tickets.jsonl",
+    "data/world.json",
+    "lab10/__init__.py",
+    "lab10/_gradectx.py",
+    "lab10/_noop_guards.py",
+    "lab10/agent.py",
+    "lab10/check_submission.py",
+    "lab10/checkpoint.py",
+    "lab10/criteria.py",
+    "lab10/eval.py",
+    "lab10/gate.py",
+    "lab10/grade.py",
+    "lab10/helpers.py",
+    "lab10/mock_llm.py",
+    "lab10/ops.py",
+    "lab10/tools.py",
+    "lab10/trace.py",
+    "lab10/world.py",
+    "tests/test_public.py"
+  ],
+  "integrity_missing": [
+    "incidents/S1/card.json",
+    "incidents/S1/card.md",
+    "incidents/S1/tickets.jsonl",
+    "incidents/S1/world_patch.json",
+    "incidents/S2/card.json",
+    "incidents/S2/card.md",
+    "incidents/S2/tickets.jsonl",
+    "incidents/S2/world_patch.json",
+    "incidents/S3/card.json",
+    "incidents/S3/card.md",
+    "incidents/S3/tickets.jsonl",
+    "incidents/S3/world_patch.json",
+    "incidents/S4/card.json",
+    "incidents/S4/card.md",
+    "incidents/S4/tickets.jsonl",
+    "incidents/S4/world_patch.json",
+    "incidents/S5/card.json",
+    "incidents/S5/card.md",
+    "incidents/S5/tickets.jsonl",
+    "incidents/S5/world_patch.json",
+    "incidents/S6/card.json",
+    "incidents/S6/card.md",
+    "incidents/S6/tickets.jsonl",
+    "incidents/S6/world_patch.json",
+    "incidents/S8/card.json",
+    "incidents/S8/card.md",
+    "incidents/S8/tickets.jsonl",
+    "incidents/S8/world_patch.json"
+  ],
+  "stages": {
+    "before": {
+      "S7_trials": 40,
+      "S7_pass_rate": 0.25,
+      "S7_pii_leaks": 30,
+      "S7_monitors": {
+        "escalation_rate": 0.0,
+        "carrier_unexpected_field_rate": 0.875,
+        "carrier_contact_field_rate": 0.25
+      },
+      "base_monitors": {
+        "escalation_rate": 0.227273,
+        "carrier_unexpected_field_rate": 0.509091,
+        "carrier_contact_field_rate": 0.0
+      }
+    },
+    "prepared": {
+      "S7_trials": 40,
+      "S7_pass_rate": 1.0,
+      "S7_pii_leaks": 0,
+      "S7_monitors": {
+        "escalation_rate": 0.0,
+        "carrier_unexpected_field_rate": 0.0,
+        "carrier_contact_field_rate": 0.0
+      },
+      "base_monitors": {
+        "escalation_rate": 0.227273,
+        "carrier_unexpected_field_rate": 0.0,
+        "carrier_contact_field_rate": 0.0
+      }
+    },
+    "after": {
+      "S7_trials": 40,
+      "S7_pass_rate": 1.0,
+      "S7_pii_leaks": 0,
+      "S7_monitors": {
+        "escalation_rate": 0.0,
+        "carrier_unexpected_field_rate": 0.0,
+        "carrier_contact_field_rate": 0.0
+      },
+      "base_monitors": {
+        "escalation_rate": 0.227273,
+        "carrier_unexpected_field_rate": 0.0,
+        "carrier_contact_field_rate": 0.0
+      }
+    }
+  },
+  "verdict": "FAIL"
+}

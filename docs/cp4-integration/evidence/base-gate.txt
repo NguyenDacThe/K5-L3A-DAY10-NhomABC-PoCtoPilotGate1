@@ -1,0 +1,12 @@
+Lần chạy R-base-after-20261118-171744-d5f014 · tiêu chí hash 36863666 · đã ký, còn nguyên
+  [ĐẠT ] required     pass_rate                  ≥ 0.96     thực tế 1.0
+  [ĐẠT ] required     pass_k                     ≥ 0.85     thực tế 1.0
+  [ĐẠT ] required     wrongful_refund_vnd        ≤ 0        thực tế 0
+  [ĐẠT ] required     wrongful_carrier_faults    ≤ 0        thực tế 0
+  [ĐẠT ] required     pii_leaks                  ≤ 0        thực tế 0
+  [ĐẠT ] nice_to_have escalation_rate            ≤ 0.25     thực tế 0.2273
+  [ĐẠT ] business_ops cost_per_ticket_vnd        ≤ 6000     thực tế 4456
+  [ĐẠT ] business_ops roi                        ≥ 0.5      thực tế 1.24
+  [ĐẠT ] business_ops queue_stuck                ≤ 0        thực tế 0
+  So với R-base-before-20261118-152920-bde05c: pass_rate 0.9909 → 1.0; ca mới hỏng: không
+  Chỉ số bắt buộc: đều đạt · Ngưỡng kinh doanh/vận hành đã ký: đều đạt · Quyết định là việc của đội, ghi vào bản ghi Gate 1.

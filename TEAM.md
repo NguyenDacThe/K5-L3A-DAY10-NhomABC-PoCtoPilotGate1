@@ -76,7 +76,7 @@ Mỗi thành viên tự viết một mục bên dưới (chép mẫu, đổi ti�
 
 ### Phần việc phụ trách
 
-Kỹ sư cổng · kiểm thử và theo dõi. Trong CP2, cầm bút Phiếu A mục A2, câu 1.3: thiết kế offline metric cho một bước của agent, phối hợp Thể rà soát. Trong CP3, phụ trách trace T-002@55/B2, hai bước tránh rò rỉ dữ liệu B7.2, hai ticket kiểm tính chất B7.3 và kiểm tra hồi quy. CP4–CP5 chưa thực hiện.
+Kỹ sư cổng · kiểm thử và theo dõi. Trong CP2, cầm bút Phiếu A mục A2, câu 1.3: thiết kế offline metric cho một bước của agent, phối hợp Thể rà soát. Trong CP3, phụ trách trace T-002@55/B2, hai bước tránh rò rỉ dữ liệu B7.2, hai ticket kiểm tính chất B7.3 và kiểm tra hồi quy. CP4 phụ trách C2, C8, monitor và bằng chứng S7, phối hợp bàn giao mã run vào C0. CP5 chưa thực hiện.
 
 ### Đóng góp cụ thể
 
@@ -96,6 +96,18 @@ Kỹ sư cổng · kiểm thử và theo dõi. Trong CP2, cầm bút Phiếu A m
 - Đã bàn giao đề xuất cho Thể: kiểm quyền lợi từ tracking/chính sách trước `issue_refund` và kiểm điều kiện ghi lỗi độc lập trước `file_carrier_fault`. Chờ cổng B7.1 để chạy lại hai ticket và xác nhận hồi quy trên bản sửa; chưa tự làm phần code cổng, ký/chốt vòng 1 hay quyết định v1 của nhóm.
 - Tiêu chí vẫn chưa ký: chỉ chạy trace chẩn đoán và unittest, không chạy eval/grade hoặc tạo báo cáo đạt ngưỡng. Chưa thêm monitor CP4; các tên metric ở B2 chỉ là đề xuất.
 
+**CP4 · Thẻ S7 · Phần của Thông (18/11/2026):**
+
+- Trên bản chung đã có chữ ký và snapshot hợp lệ, đã lưu grade trước thêm monitor; dò 15 trace: S7-01/04/20/21 và đối chứng S7-05, mỗi ticket ở base/prepared/after, seed 11. Đã điền đủ ba phần C2 cho hai nguồn lộ khác nhau: chép PII từ ticket và tự thêm liên hệ người nhận từ DB; ghi rõ địa chỉ không cần SĐT và mã vận đơn không phải PII.
+- Thêm, đăng ký `carrier_unexpected_field_rate` và `carrier_contact_field_rate` trong `lab10/monitors.py`, chỉ dùng outbound không có nhãn. Điền C8 đủ dữ liệu, công thức/mẫu số, lỗi telemetry, ngưỡng đề xuất và điểm mù; không đọc mã ticket/seed hay coi mọi dãy số là điện thoại.
+- Đã kiểm thử: 9 test monitor và 13 test công khai đạt. Grade đạt criteria/visible/regression/monitor, nền after 110/110 và S7 after 40/40, độ phủ 100%; PII S7 từ base 30 xuống prepared/after 0. Không có hidden để xác nhận.
+- Cổng G3 vòng 1 đã bảo vệ S7 công khai, nên giữ nguyên guards/config/tiêu chí/snapshot/gói S7. Thay đổi của Thông chỉ thêm phát hiện; không nhận monitor là biện pháp ngăn hoặc nhận công sửa cổng của Thể.
+- Grade tổng vẫn **FAIL integrity** cả trước và sau: 19 file cũ lệch hash do CRLF/LF, 28 đường dẫn thuộc thẻ khác không có. Đã chẩn đoán chỉ đọc, không sửa manifest/grader hoặc lấy thẻ khác. Bàn giao chi tiết để Thể/Coach xử lý; chưa xác nhận CP4 toàn nhóm đạt hay quyết định v2.
+
+### Phần dùng AI · CP4
+
+Dùng Codex đọc phân công/thẻ S7, chạy trace/eval/grade và kiểm thử, hỗ trợ viết monitor, C2/C8, lưu bằng chứng và bàn giao. Các kết quả là output thực chạy trên nhánh cá nhân; chưa ghi nhận Bách đã chốt ngưỡng runbook hoặc Thể đã merge. Ngưỡng giám sát pilot mới là đề xuất, không sửa tiêu chí đã ký.
+
 ### Bằng chứng
 
 - Sản phẩm CP2: [Phiếu A · A2, cột Offline câu 1.3](templates/form-a-criteria.md#a2), đủ bước đo, thước đo, dữ liệu, công thức và điểm mù.
@@ -104,6 +116,7 @@ Kỹ sư cổng · kiểm thử và theo dõi. Trong CP2, cầm bút Phiếu A m
 - Chưa tạo commit hoặc mã lần chạy đánh giá cho phần CP2 này. A5 và việc ký, commit, push tiêu chí do trưởng nhóm thực hiện sau khi cả nhóm thống nhất.
 - Sản phẩm CP3: [Phiếu B · B2](templates/form-b-evaluation-gates.md#b2) và [B7.2–B7.3](templates/form-b-evaluation-gates.md#b7), có lệnh trace tái lập và kết quả thực chạy. CLI trace chỉ in kết quả, không tạo thư mục `runs/<mã>`; không có mã eval để ghi vào B0.
 - Kiểm tra CP3: `python -m unittest discover -s tests -v` ngày 18/11/2026, Python 3.11.9: **13 tests, OK**. `test_team_guards_do_not_break_base` đạt trên bản hiện tại; cần chạy lại sau khi cổng thay đổi. Chưa tạo commit cho lần cập nhật CP3 này.
+- CP4: [bàn giao và lệnh tái lập](docs/cp4-thong.md), [C2](templates/form-c-incident.md#c2), [C8](templates/form-c-incident.md#c8), [bản sao report/trace](docs/cp4-thong-evidence/verification-summary.json). Grade trước `R-S7-grade-20261118-165630-0892bd`; grade sau `R-S7-grade-20261118-165851-43edee`; eval nền sau `R-base-after-20261118-165851-43edee`. Chưa tạo commit/push cho phần CP4 trong lần làm này.
 
 ### Exit ticket
 
@@ -112,6 +125,8 @@ Kỹ sư cổng · kiểm thử và theo dõi. Trong CP2, cầm bút Phiếu A m
 - Đây là ghi chú học tập CP2; exit ticket cuối buổi sẽ được cập nhật khi hoàn thành CP5.
 - Điều học được ở CP3: test hồi quy xanh chỉ chứng minh chưa phá ca vốn đúng; hai ticket mới vẫn có thể làm lộ tính chất an toàn bị vi phạm. Cần đọc cả tracking, sổ cái và lỗi hãng thay vì chỉ đọc lời trả lời khách.
 - Điều chưa chắc ở CP3: sau khi Thể thêm cổng, tính chất có giữ được trên hai ticket mới và các ca vốn đúng hay không; cần chạy lại trên đúng bản cổng đã sửa trước khi chốt.
+- Điều học được ở CP4: dữ liệu có thể tự đi từ DB ra ngoài dù ticket không có PII; tín hiệu vi phạm schema và bằng chứng lộ PII là hai điều khác nhau. Monitor sau gửi phát hiện được sự cố nhưng không thu hồi thông tin.
+- Điều chưa chắc ở CP4: PII có thể lọt qua giá trị của trường được phép hoặc kênh ngoài outbound; cần kiểm dữ liệu thật và chất lượng telemetry. Grade còn lỗi integrity môi trường, cần Thể/Coach xử lý trước khi khép CP4.
 
 ## NguyenDacThe-2A202603529
 
@@ -122,6 +137,8 @@ Trưởng nhóm, Kỹ sư cổng: hỗ trợ A2 câu 1.3 cùng Trương Văn Th�
 ### Đóng góp cụ thể
 
 Đã chuẩn bị đặc tả (sau hợp nhất dùng tên `policy_version_error_rate`) cho riêng bước chọn chính sách, quy định nguồn đối chiếu, mẫu số, ca thiếu dữ liệu và điểm mù trong Phiếu A. Đã viết lập luận A3 và bản bàn giao kiểm tra trước ký tại `docs/cp2-nguyendacthe.md`. Dùng Codex hỗ trợ đọc code tĩnh và soạn nội dung, chưa tính số đánh giá Day 10.
+
+**CP4 · Phần việc nhánh Thể (S7):** đã tổng hợp C0–C1 từ grade trước sửa, viết C5–C7/C9 và lưu bằng chứng. Bổ sung log tối thiểu vào G3 để Thông có dữ liệu monitor, không sửa cơ chế chặn vốn đã bảo vệ prepared. S7 after R-S7-after-20261118-165018-2bd310 đạt40/40; bộ nền R-base-after-20261118-165018-2bd310 đạt110/110, không hồi quy. Kiểm bổ sung ghi rõ phản ví dụ khi dữ liệu nhạy cảm nằm ngay trong district được whitelist, không nhận là đã ngăn mọi PII. Chưa sửa monitors/config thay các bạn, chưa chốt C12 hoặc gửi báo cáo cho Coach; đã soạn nội dung bàn giao. Dùng Codex hỗ trợ phân tích code/trace, viết telemetry, kiểm thử và ghi phiếu. [Hồ sơ phần Thể](docs/cp4-nguyendacthe/README.md).
 
 ### Bằng chứng
 
@@ -149,14 +166,16 @@ Vai: **Sản phẩm và kinh doanh**.
 - **Phiếu B mục B3:** bản đồ dữ liệu 9 dòng (nguồn sự thật hay bản sao cho từng trường then chốt) và ví dụ drift REFUND-v3 → v4 ngày 01/12/2026 (concept drift; ảnh hưởng `wrongful_carrier_faults_max`, `escalation_rate_max`; v4 đang `index_active = false`).
 - **Phiếu B mục B7.4 và `config/operating_gates.json` mục `business`:** `daily_refund_cap_vnd` 1.600.000 · `cost_budget_per_ticket_vnd` 1.500 · `pilot_scope` all · `roi_min` 0,5, mỗi số một câu lý do từ `ops_limits`, `ops_facts`.
 - **Phiếu B mục B6 (lăng kính Kinh doanh):** ba lý do thất bại: chi phí mỗi ticket vượt làm tay; tổng hoàn tự động vượt ngân sách Finance; ticket giá trị lớn luôn phải chuyển người. Hai lý do đầu gắn với cổng config đã đặt (`cost_budget_per_ticket_vnd`, `roi_min`, `daily_refund_cap_vnd`) và đề xuất một cổng code trần 300.000đ/khách/ngày; lý do thứ ba vào risk register.
-- Chưa làm: B8 (chờ mã lần chạy base và prepared), Phiếu C (chờ thẻ sự cố). Các lăng kính còn lại của B6 do cả bàn điền.
+- **CP4 · Thẻ S7 · Phiếu C:** phần kinh doanh của **C1** (bảng so base/prepared trên gói S7: 30 lần lộ PII → 0 trong khi ROI 1,27 → 1,0 và chi phí 4.405đ → 5.005đ, đều đạt trần; theo kho và hãng cho thấy lộ PII rải ở 3 kho, 3 hãng nên Thu hẹp theo kho không xử lý được S7), phần kinh doanh của **C7** (giữ nguyên mục `business`, kèm lý do; ước tính dưới khoảng 7 ticket/ngày thì vượt trần chi phí 6.000đ; danh sách số phải kiểm lại ở mốc after), cầm bút **C10** (3 dòng risk register: chỉ số tổng che tác hại bên thứ ba · lượng ticket thấp làm vượt trần chi phí · ticket không tra được đơn đắt hơn làm tay).
+- Chưa làm: cột after của C7 phần kinh doanh (chờ Thể sửa vòng 2), C12 và quyết định v2 (CP5). Các lăng kính còn lại của B6 do cả bàn điền.
 
 ### Bằng chứng
 
 - Commit `1817d93` "CP2: draft acceptance criteria and Phieu A (1.1, 1.5, 1.6)", merge vào `main` qua PR #3 (`d203dfd`).
-- Commit CP3 (B3, B7.4, mục `business`, A5): `________` (điền sau khi commit).
-- Mã lần chạy dùng cho B8 và C12: `________` (điền sau khi có).
-- Dòng trong phiếu: Phiếu A mục A1 câu 1.1, A3, A4, A5; Phiếu B mục B3, B6 (dòng Kinh doanh), B7.4.
+- Commit CP3 (B3, B6 dòng Kinh doanh, B7.4, mục `business`, A5): `964aae9`, merge vào `main` qua `050d10e`.
+- Mã lần chạy dùng cho B8 (theo Phiếu B mục B8): base `R-base-before-20261118-152920-bde05c` · prepared `R-base-prepared-20261118-160738-0892bd`. Mã lần chạy cho C12: `________` (điền ở CP5).
+- Dòng trong phiếu: Phiếu A mục A1 câu 1.1, A3, A4, A5; Phiếu B mục B3, B6 (dòng Kinh doanh), B7.4; Phiếu C mục C1 (phần kinh doanh), C7 (phần kinh doanh), C10.
+- Số liệu CP4 lấy từ grade S7 trước sửa vòng 2 trên `main` @ `f1d4e31`, hash code đội `0892bd295a9e`, cổng vòng 1 `0580db3e`.
 
 ### Dùng AI
 
@@ -207,3 +226,7 @@ Dùng Claude Code để đọc `TEAM.md`, các phiếu A/B/C, thẻ S7 và gói 
 ## Tích hợp CP3
 
 Đã merge nội dung các nhánh Thể, Thông, Bảo và Bách vào main local; đối chiếu phần từng người trong Phiếu B B0–B8. Bản chốt 0580db3e, prepared R-base-prepared-20261118-160738-0892bd. Các số nền đạt, stress queue còn vượt SLA nên v1 Cải tiến thêm. Không tự điền exit ticket hoặc ghi nhận cuộc họp chưa diễn ra. Xem [kiểm tra CP3 sau merge](docs/cp3-integration-review.md).
+
+## Tích hợp CP4 và C12
+
+Đã merge bốn nhánh CP4 vào main local, ghi đủ Phiếu C C0–C12 theo phần bàn giao và report `R-S7-grade-20261118-171745-d5f014`. S7 40/40, nền110/110; criteria/visible/regression/monitor đạt; grade tổng FAIL vì thiếu28file thẻ khác theo manifest. V2 giữ Cải tiến thêm, không xác nhận pilot thật. Xem [bản kiểm tra tích hợp](docs/cp4-integration/README.md). Chưa nhận hướng dẫn Coach xử lý integrity, chưa gửi tin nhắn hoặc nộp LMS.

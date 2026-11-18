@@ -12,3 +12,5 @@
 # Generated evidence is copied byte-for-byte from runs/.
 /docs/cp3-evidence/*.json -text whitespace=cr-at-eol
 /docs/cp3-evidence/*.jsonl -text whitespace=cr-at-eol
+# The submission manifest hashes exact collected bytes, including signed CRLF files.
+/submission/** -text whitespace=cr-at-eol
