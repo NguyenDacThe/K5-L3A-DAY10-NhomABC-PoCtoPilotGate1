@@ -5,7 +5,7 @@
 - Tên nhóm (`TenNhom`, không dấu, không khoảng trắng): NhomABC
 - Lớp: `L3A`
 - Repo của bàn: https://github.com/NguyenDacThe/K5-L3A-DAY10-NhomABC-PoCtoPilotGate1.git
-- Thẻ sự cố đã bốc (S1–S8):
+- Thẻ sự cố đã bốc (S1–S8): S7
 
 ## Thành viên
 
@@ -40,6 +40,34 @@ Ghi `members` trong `submission/submission.json` theo dạng `"HoVaTen-MSSV"`, k
 - CP2 chỉ viết tiêu chí; sau khi ký, commit và push thành công mới chạy đánh giá. CP1 chưa sửa cổng hay đặt ngưỡng.
 - Từng thành viên tự ghi đóng góp, bằng chứng, phần dùng AI và exit ticket vào mục cá nhân trước khi nộp; bảng trên là việc được giao.
 
+## Phân công CP4 · Thẻ S7
+
+**Sự cố:** lộ thông tin người nhận quà qua thông báo gửi hãng vận chuyển. Phân công dưới đây là việc cần làm, không phải xác nhận từng thành viên đã hoàn thành hoặc cả nhóm đã họp chốt. Chỉ làm thẻ S7; CP5 và quyết định v2 sẽ thực hiện sau khi đủ bằng chứng CP4.
+
+| Thành viên · nhánh | Công việc chính | Mục Phiếu C / file phụ trách | Sản phẩm bàn giao |
+|---|---|---|---|
+| **Nguyễn Đắc Thể** · `NguyenDacThe` | Điều phối và giữ bằng chứng trước sửa; tổng hợp cổng vòng 1 đã đỡ được gì. Viết specification, giả định môi trường và fault tree trước/sau. Chỉ sửa cổng nếu phân tích chỉ ra phần còn thiếu; tích hợp các nhánh, chạy kiểm tra cuối. | **C0–C1, C5–C7, C9**; `lab10/guards.py`; tích hợp config sau khi Bảo/Bách bàn giao | Mã report base/prepared/after thực tế; spec kênh gửi hãng và giả định; hai fault tree có nhánh code, dữ liệu, người/quy trình; bảng sửa nêu giảm hay ngăn và nguyên nhân. Report cuối không hồi quy; báo Coach vấn đề integrity kiểm thẻ chưa được giao. |
+| **Trương Văn Thông** · `Thông` | Dò ít nhất hai ca lỗi theo cơ chế khác nhau ở mốc base, so với prepared/after. Kiểm các ca S7-01, S7-04, S7-20, S7-21 theo gợi ý thẻ; chọn ca thể hiện hai cơ chế khác nhau, dùng S7-05 làm đối chứng có số nhưng không phải SĐT. Thiết kế, thêm và kiểm chứng ít nhất một monitor mới. | **C2, C8**; `lab10/monitors.py`; phối hợp Thể ghi lần chạy vào C0 | Bảng lỗi đủ biểu hiện, bên chịu hại, mức độ, loại lỗi, nguồn và hướng xử lý; trace có vị trí sự kiện. Monitor nhận `trials` không có nhãn, trả về số và được đăng ký trong `MONITORS`; đủ thước đo–dữ liệu–cách tính, ngưỡng/điểm mù. Kiểm hồi quy và ghi đúng kết quả, không coi mọi dãy số là PII. |
+| **Phan Gia Bảo** · `2A202603562_PhanGiaBao` | Đọc chi phí, ROI, độ phủ, hàng chờ, phân khúc theo kho/hãng của S7; phân biệt tác hại bên thứ ba với chỉ số tổng thể. Đề xuất thay đổi kinh doanh nếu bằng chứng yêu cầu, tổng hợp rủi ro còn lại. | Phần kinh doanh **C1, C7**; cầm bút **C10**; `config/operating_gates.json` mục `business` | Bảng so base/prepared/after kèm mã report; lý do từng thay đổi tiền/phạm vi, giữ độ phủ >0; ít nhất một dòng risk register có PIC, tín hiệu, hành động. Bàn giao số liệu cho C12 ở CP5, chưa tự chốt v2 trong CP4. |
+| **Nguyễn Tuấn Bách** · `bach` | Phân tích lòng tin của người đặt và người nhận quà, dữ liệu rời hệ thống khi họ không biết. Làm HAZOP riêng cho S7, cập nhật trách nhiệm, khiếu nại, điều kiện dừng và phục hồi. Soát giả định môi trường và rủi ro cùng Thể/Bảo. | **C3.3, C4, C11**; phần vận hành/pháp lý **C5, C7, C10**; config mục `operations` và `legal` | C3.3 đủ hai mốc tin quá mức/không tin cho cả hai đối tượng; HAZOP ít nhất ba dòng, không ghi đè B4. Checklist đủ chín nhóm, mỗi dòng có PIC; runbook phần 4–5 có tín hiệu, ngưỡng, người quyết định, hành động và điều kiện bật lại, khớp config và monitor. Căn cứ pháp lý chưa xác minh ghi rõ cần Pháp chế kiểm. |
+
+### Thứ tự làm và bàn giao CP4
+
+1. **Đồng bộ bản chung:** sau khi trưởng nhóm đã đưa bản CP3 và thẻ S7 lên `main`, mỗi người cập nhật `main` vào nhánh của mình. Kiểm tra chữ ký và snapshot còn nguyên. Không chép thẻ của bàn khác.
+2. **Giữ mốc trước sửa:** Thể lưu report grade S7 ban đầu vào C0–C1. Grade đã được chạy trước sửa vòng 2; cả nhóm dùng cùng mã bằng chứng, không coi báo cáo sau sửa là prepared ban đầu. Vấn đề integrity do manifest kiểm cả thẻ khác phải nhờ Coach hướng dẫn, không sửa grader/manifest để làm xanh.
+3. **Phân tích trước:** Thông bàn giao C2, Bách bàn giao C3.3–C4; Thể tổng hợp C5–C6 với dữ kiện của Bảo. Cả nhóm đối chiếu specification và giả định, chọn đúng nguyên nhân rồi mới triển khai thay đổi vòng 2.
+4. **Sửa và đo:** Thể phụ trách cổng, Thông phụ trách monitor; Bảo/Bách chỉ chỉnh khối JSON được giao. Ghi mỗi thay đổi và mã lần chạy vào C0/C7. Cổng vòng 1 đã bảo vệ được bộ S7 công khai thì không sửa chỉ để có thay đổi; vẫn phải có monitor mới theo yêu cầu thẻ và kiểm tra các giả định/điểm mù.
+5. **Tích hợp:** từng người bàn giao commit hoặc PR trên nhánh riêng. Thể merge theo từng mục Phiếu C và khối config, giữ đủ nội dung; chạy lại S7, bộ nền và grade trên bản tích hợp. Không tự ghi kết quả từ code nhánh riêng thành kết quả của `main`.
+6. **Khép CP4:** Thể hoàn thiện C9, Bảo C10, Bách C11; soát C0–C11 và bằng chứng. Mục tiêu tự kiểm: integrity, visible, regression, monitor đạt và độ phủ >0; nếu còn lỗi thì ghi đúng nguyên nhân, không tuyên bố CP4 đã đạt. Sau đó cả nhóm mới tổng hợp quyết định v2/C12 và bài nộp CP5.
+
+### Quy ước tránh xung đột và giữ bằng chứng
+
+- `templates/form-c-incident.md` là file chung: mỗi người chỉ chỉnh mục được giao; các mục phối hợp gửi nội dung cho người cầm bút chính, không thay cả file bằng bản từ nhánh mình.
+- `config/operating_gates.json`: Bảo giữ `business`, Bách giữ `operations`/`legal`, Thể tích hợp và kiểm cả ba khối. Không tự đặt lại ngưỡng trong tiêu chí đã ký.
+- Giữ nguyên `config/acceptance_criteria.json`, `.lock`, `lab10/guards_round1.py`, `config/operating_gates.round1.json`, `config/round1.lock` và nội dung gói `incidents/S7/` đã khớp hash gốc. Không xử lý riêng theo mã ticket, seed hay câu chữ.
+- Report/trace trong `runs/` bị gitignore: người chạy cung cấp mã và bản bằng chứng để các bạn đọc được; không chỉ gửi tên thư mục trên máy cá nhân. Chỉ điền phần riêng **C3.3 của S7**, không làm phần thẻ khác.
+- Mỗi người ghi phần dùng AI và đóng góp thật trong mục cá nhân; không tự viết xác nhận hoàn thành hoặc exit ticket thay thành viên khác.
+
 ## Cá nhân
 
 Mỗi thành viên tự viết một mục bên dưới (chép mẫu, đổi tiêu đề thành họ tên không dấu và MSSV, ví dụ `## NguyenVanAn-20241234`).
@@ -67,12 +95,6 @@ Kỹ sư cổng · kiểm thử và theo dõi. Trong CP2, cầm bút Phiếu A m
 - Đã chạy bộ kiểm tra công khai: **13 tests, OK**, gồm kiểm tra không làm hỏng ca vốn đúng. Lỗi nền T-002@55 và hai ticket hiểm vẫn còn vì cổng hiện tại chưa được sửa; không ghi là đã sửa xong hoặc đạt Gate 1.
 - Đã bàn giao đề xuất cho Thể: kiểm quyền lợi từ tracking/chính sách trước `issue_refund` và kiểm điều kiện ghi lỗi độc lập trước `file_carrier_fault`. Chờ cổng B7.1 để chạy lại hai ticket và xác nhận hồi quy trên bản sửa; chưa tự làm phần code cổng, ký/chốt vòng 1 hay quyết định v1 của nhóm.
 - Tiêu chí vẫn chưa ký: chỉ chạy trace chẩn đoán và unittest, không chạy eval/grade hoặc tạo báo cáo đạt ngưỡng. Chưa thêm monitor CP4; các tên metric ở B2 chỉ là đề xuất.
-
-### Phần dùng AI
-
-Dùng Codex đọc README, CHECKPOINTS, TEAM, đề bài, tài liệu Lab 9 và cấu trúc code/dữ liệu Day 10; hỗ trợ soạn thước đo câu 1.3, soát công thức, điểm mù và cập nhật mục cá nhân. Nội dung cần được Thông rà soát và trao đổi với Thể trước khi nhóm chốt tiêu chí; không coi nội dung AI soạn là phê duyệt của cả nhóm.
-
-Ở CP3, dùng Codex chạy trace và test công khai, hỗ trợ phân tích bằng chứng, thiết kế hai ticket kiểm thử, điền B2/B7.2/B7.3 và cập nhật đóng góp. Kết quả thất bại được giữ nguyên để bàn giao sửa cổng; chưa có xác nhận của Bách hoặc phê duyệt thay nhóm.
 
 ### Bằng chứng
 
