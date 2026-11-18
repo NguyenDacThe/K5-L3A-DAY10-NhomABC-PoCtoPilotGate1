@@ -9,8 +9,8 @@
   "operations": {
     "pic": "NV-TUNG",
     "approver_id": "NV-HANH",
-    "reviewers_on_shift": 2,
-    "review_capacity_per_hour": 12,
+    "reviewers_on_shift": 1,
+    "review_capacity_per_hour": 6,
     "max_queue_wait_minutes": 60,
     "stop_conditions": [
       "Khi hoàn sai > 0đ, lỗi hãng oan >= 1 hoặc lộ dữ liệu cá nhân >= 1 thì tắt thao tác ghi liên quan trong config/switches.json, trong tối đa 15 phút, NV-TUNG bấm",
