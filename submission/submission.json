@@ -1,8 +1,13 @@
 {
-  "team": "",
-  "members": [],
-  "incident": "",
-  "decision_v1": "",
+  "team": "K5-L3A-DAY10-NhomABC-PoCtoPilotGate1",
+  "members": [
+    "NguyenDacThe-2A202603529",
+    "TruongVanThong-2A202603560",
+    "PhanGiaBao-2A202603562",
+    "NguyenTuanBach-2A202603596"
+  ],
+  "incident": "S7",
+  "decision_v1": "Cải tiến thêm",
   "decision_v2": "",
   "three_lines": {
     "environment_assumption": "",
