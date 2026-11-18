@@ -94,6 +94,42 @@ Trưởng nhóm, Kỹ sư cổng: hỗ trợ A2 câu 1.3 cùng Trương Văn Th�
 
 Chưa điền; cá nhân tự ghi sau khi hoàn thành phần việc và thảo luận với nhóm.
 
+## PhanGiaBao-2A202603562
+
+### Phần việc phụ trách
+
+Vai: **Sản phẩm và kinh doanh**.
+
+- CP2 · Phiếu A: câu 1.1 (A1), tổng hợp câu 1.5 (A3), câu 1.6 (A4), file `config/acceptance_criteria.json` (bản nháp trước ký), A5 sau khi ký.
+- CP3 · Phiếu B: câu 2.3 (B3, bản đồ dữ liệu và drift), câu 2.9 (B7.4 và mục `business` trong `config/operating_gates.json`), lăng kính kinh doanh trong pre-mortem B6, tổng hợp quyết định v1 (B8).
+- CP4–CP5 · Phiếu C: phân tích chi phí, ROI, phạm vi pilot; tổng hợp quyết định v2 (C12).
+
+### Đóng góp cụ thể
+
+- **Bản tiêu chí** (`config/acceptance_criteria.json`): đề xuất toàn bộ ngưỡng số mà bản đã ký giữ nguyên: `pass_rate_min` 0,96 · `pass_k_min` 0,85 · ba chỉ số an toàn bằng 0 · `escalation_rate_max` 0,25 · `cost_per_ticket_vnd_max` 6.000đ · `roi_min` 0,5 · `queue_stuck_max` 0. Viết bản đầu `stop_condition` và bốn dòng `decision_rule`; bản ký là bản đã được Thể rà soát lại (phân biệt v1/v2, tối đa 2 vòng sửa), xem `docs/cp2-review.md`.
+- **Phiếu A:** câu 1.1; câu 1.5 chọn (b) kèm giải thích; câu 1.6 gồm câu "Nếu … thì chúng tôi sẽ …" cho 6 chỉ số, hai câu ranh giới đầu ra, bảng soát bốn câu hỏi, lý do nhóm `business_ops`, ngày xem lại 28/11/2026 (trước khi REFUND-v4 có hiệu lực ngày 01/12).
+- **Phiếu A mục A5:** cập nhật giờ ký, commit `60fbf2c` "Sign acceptance criteria", trạng thái push. Phát hiện file tiêu chí được ký trên bản xuống dòng CRLF (hash `36863666…`) trong khi repo lưu LF (hash `afdd890f…`), nên máy lấy về bản LF thấy "ĐÃ BỊ SỬA sau khi ký". Đã báo trưởng nhóm, không tự sửa JSON hay file khoá.
+- **Phiếu B mục B3:** bản đồ dữ liệu 9 dòng (nguồn sự thật hay bản sao cho từng trường then chốt) và ví dụ drift REFUND-v3 → v4 ngày 01/12/2026 (concept drift; ảnh hưởng `wrongful_carrier_faults_max`, `escalation_rate_max`; v4 đang `index_active = false`).
+- **Phiếu B mục B7.4 và `config/operating_gates.json` mục `business`:** `daily_refund_cap_vnd` 1.600.000 · `cost_budget_per_ticket_vnd` 1.500 · `pilot_scope` all · `roi_min` 0,5, mỗi số một câu lý do từ `ops_limits`, `ops_facts`.
+- **Phiếu B mục B6 (lăng kính Kinh doanh):** ba lý do thất bại: chi phí mỗi ticket vượt làm tay; tổng hoàn tự động vượt ngân sách Finance; ticket giá trị lớn luôn phải chuyển người. Hai lý do đầu gắn với cổng config đã đặt (`cost_budget_per_ticket_vnd`, `roi_min`, `daily_refund_cap_vnd`) và đề xuất một cổng code trần 300.000đ/khách/ngày; lý do thứ ba vào risk register.
+- Chưa làm: B8 (chờ mã lần chạy base và prepared), Phiếu C (chờ thẻ sự cố). Các lăng kính còn lại của B6 do cả bàn điền.
+
+### Bằng chứng
+
+- Commit `1817d93` "CP2: draft acceptance criteria and Phieu A (1.1, 1.5, 1.6)", merge vào `main` qua PR #3 (`d203dfd`).
+- Commit CP3 (B3, B7.4, mục `business`, A5): `________` (điền sau khi commit).
+- Mã lần chạy dùng cho B8 và C12: `________` (điền sau khi có).
+- Dòng trong phiếu: Phiếu A mục A1 câu 1.1, A3, A4, A5; Phiếu B mục B3, B6 (dòng Kinh doanh), B7.4.
+
+### Dùng AI
+
+Dùng Claude để đọc các file markdown của đề, đọc `data/world.json` và PRD Lab 9, rồi viết nháp Phiếu A (1.1, 1.5, 1.6, A5), Phiếu B (B3, B7.4) và đề xuất ngưỡng, con số cổng `business`. Claude cũng giúp phát hiện lỗi lệch xuống dòng CRLF/LF của file tiêu chí. Mọi ngưỡng và con số do cả bàn soát và chịu trách nhiệm giải thích lúc demo.
+
+### Exit ticket
+
+- Một điều học được: phải viết ngưỡng và hành động "nếu trượt thì làm gì" trước khi xem kết quả; ngưỡng an toàn (hoàn sai, lỗi oan cho hãng, lộ PII) phải đứng trên các chỉ số tỉ lệ.
+- Một điều còn chưa chắc: trần chi phí 6.000đ và `escalation_rate_max` 0,25 có quá chặt khi lượng ticket tăng hoặc khi REFUND-v4 hạ hạn mức tự hoàn xuống 100.000đ hay không.
+
 ## Rà soát CP2 trước ký
 
 Phần việc bốn thành viên đã hợp nhất trong Phiếu A. Xem [bản rà soát trước ký](docs/cp2-review.md). Sau rà soát, trưởng nhóm đã yêu cầu ký; commit xác nhận `60fbf2c` đã push, tiêu chí giữ nguyên. Không tự điền exit ticket cho thành viên khác.
