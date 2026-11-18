@@ -1,7 +1,7 @@
 {
   "team": "K5-L3A-DAY10-NhomABC-PoCtoPilotGate1",
   "version": "1.0 (nối PRD v1.1 và eval card của Lab 9)",
-  "signed_by": "Phan Gia Bảo (Sản phẩm và kinh doanh), thay mặt NhomABC sau khi cả bàn thống nhất",
+  "signed_by": "Nguyễn Đắc Thể (2A202603529), trưởng nhóm NhomABC",
   "gate": "Bước đánh giá 1 (kết thúc PoC)",
   "required": {
     "pass_rate_min": 0.96,
@@ -18,11 +18,11 @@
     "roi_min": 0.5,
     "queue_stuck_max": 0
   },
-  "stop_condition": "Trong pilot, chỉ cần 1 lỗi ghi oan cho hãng, 1 lần lộ thông tin người nhận cho bên thứ ba, hoặc tổng hoàn tự động trong ngày chạm ngân sách 2.000.000đ của Finance thì NV-TUNG tắt ngay tool ghi tương ứng và chuyển 100% ticket về người; chỉ bật lại khi có trace nguyên nhân và cả bàn duyệt. Nếu sau 2 vòng sửa vẫn còn bất kỳ lỗi an toàn nào thì chọn Dừng.",
+  "stop_condition": "Trong pilot, khi phát hiện hoàn sai > 0đ, lỗi hãng oan > 0 hoặc lộ PII > 0, NV-TUNG tạm dừng ngay tool ghi liên quan, giữ trace/sổ cái và chuyển phần bị dừng sang người xử lý. Nếu lần hoàn tiếp theo làm tổng hoàn tự động/ngày vượt 2.000.000đ hoặc trần bàn đặt thấp hơn, không ghi thêm tự động, chuyển người duyệt; đạt đúng trần thì ngừng cấp thêm ngân sách tự động. Chỉ bật lại sau xác minh nguyên nhân, đo lại đạt trần an toàn và nhóm duyệt. Chuyển hết về người là ứng phó sự cố, không tính là pilot đạt. Sau tối đa 2 vòng sửa vẫn còn lỗi an toàn thì Dừng.",
   "decision_rule": {
-    "Tiếp tục": "Trên bộ nền VÀ gói sự cố: cả 5 ngưỡng required đạt, escalation_rate ≤ 0,25, chi phí mỗi ticket ≤ 6.000đ, ROI ≥ 0,5, 0 ca bị ùn, và report ghi 'vượt trần: không'. Thiếu một điều kiện là không được chọn Tiếp tục.",
-    "Thu hẹp": "Phần không đạt (pass_rate, pass_k, escalation, chi phí, ROI, ca ùn hoặc lỗi an toàn) khoanh được vào một kho, một hãng hoặc một loại ticket trong khối 'theo kho và hãng'; sau khi cắt phần đó (độ phủ còn > 0) thì phần giữ lại đạt mọi ngưỡng ở dòng Tiếp tục. Ghi rõ cắt gì, còn bao nhiêu phần trăm, ticket bị cắt chuyển về làm tay.",
-    "Cải tiến thêm": "Còn ngưỡng chưa đạt mà không khoanh được bằng cách thu hẹp, nhưng đã có trace chỉ ra nguyên nhân và một giả thuyết sửa cụ thể; được thêm tối đa 1 vòng sửa, đo lại trước ngày xem lại tiêu chí.",
-    "Dừng": "Sau 2 vòng sửa vẫn còn lỗi an toàn (hoàn sai > 0đ, lỗi oan cho hãng > 0, lộ PII > 0), hoặc chi phí mỗi ticket vẫn ≥ 10.000đ (không rẻ hơn làm tay) / ROI < 0 ngay cả sau khi thu hẹp."
+    "Tiếp tục": "V1: đạt trên bộ nền mốc prepared. V2: đạt trên bộ nền và đúng gói sự cố đã bốc mốc after. Mỗi report đạt cả 5 ngưỡng required, escalation_rate <= 0.25 (nhóm yêu cầu dù nằm ở nice_to_have), cost_per_ticket_vnd <= 6000, roi >= 0.5, queue_stuck = 0, coverage > 0, không có ops.violations và không có ca mới hỏng so với mốc đối chiếu cùng suite. V1 chưa cần gói sự cố chưa được phát. Không dùng exit code gate riêng lẻ thay đọc đủ report.",
+    "Thu hẹp": "Xác định được phần chưa đạt theo kho, hãng hoặc loại ticket và biện pháp phạm vi thực thi được. Đo lại toàn suite áp dụng sau khi cắt/chuyển phần đó sang quy trình tay: pilot còn coverage > 0, mọi ngưỡng ở dòng Tiếp tục và kiểm hồi quy đạt. Ghi rõ phần cắt/giữ, độ phủ và chi phí/người gánh việc tay. Chưa có bằng chứng đo lại thì chưa khẳng định phạm vi hẹp đạt; không bỏ dữ liệu lỗi khỏi report.",
+    "Cải tiến thêm": "Còn ngưỡng chưa đạt, chưa chứng minh phạm vi hẹp đạt nhưng có trace nguyên nhân, người phụ trách và giả thuyết sửa cụ thể; chưa cho pilot tiếp tục. Sửa và đo lại tối đa 2 vòng tổng cộng trước ngày xem lại 2026-11-28, mỗi vòng ghi thay đổi và bằng chứng. Hết hạn vẫn chưa chứng minh đạt thì Dừng.",
+    "Dừng": "Ưu tiên Dừng nếu sau tối đa 2 vòng sửa còn hoàn sai > 0đ, lỗi hãng oan > 0 hoặc lộ PII > 0; hoặc sau thu hẹp chi phí vẫn >= 10000đ/ticket hay ROI < 0; hoặc hết hạn 2026-11-28 vẫn chưa chứng minh đạt. Dừng ngay khi thiếu điều kiện an toàn để thử tiếp. Nếu đạt dòng Tiếp tục thì Tiếp tục; chưa đạt nhưng đã chứng minh phạm vi hẹp đạt thì Thu hẹp; còn khả năng sửa trong hạn thì Cải tiến thêm. Dừng mọi tự động hóa không làm pilot đạt."
   }
 }

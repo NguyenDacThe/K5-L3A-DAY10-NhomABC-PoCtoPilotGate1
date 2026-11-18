@@ -2,6 +2,8 @@
 
 **Bàn:** K5-L3A-DAY10-NhomABC-PoCtoPilotGate1 · **Người cầm bút chính:** vai Sản phẩm và kinh doanh (câu 1.3: Kỹ sư cổng; câu 1.2, 1.4: Vận hành và pháp lý)
 
+**Trạng thái:** đã ký theo yêu cầu trưởng nhóm Nguyễn Đắc Thể; thời gian trong lock `2026-11-18T15:15:34`, SHA-256 bắt đầu `36863666`. Chưa commit/push. Giữ nguyên JSON tiêu chí từ thời điểm ký.
+
 Điền phiếu này **trước khi chạy trợ lý lần nào**. Viết xong thì chép ngưỡng sang `config/acceptance_criteria.json`, ký ở phút 60–65,
 rồi mới chạy đánh giá. Khối 1 không sửa code.
 
@@ -48,30 +50,14 @@ trợ lý có đang gây thiệt hại cho bên ngoài LogiX không; không có 
 
 | | Offline, cho MỘT bước (câu 1.3) | Telemetry production (câu 1.4) |
 |---|---|---|
-| **Bước / hành vi được đo** | Chọn phiên bản chính sách hoàn tiền tại bước `policy`, trước khi tính quyền lợi; chỉ đo bước chọn chính sách, không đo cả luồng. | |
-| **Thước đo** (một câu, có đơn vị) | `policy_version_error_rate`: tỉ lệ lần thực hiện bước chọn chính sách mà `policy_id` được chọn khác phiên bản có hiệu lực tại ngày vận hành giả lập, đơn vị %. | |
-| **Dữ liệu** (lấy ở đâu, bao nhiêu, ai gán nhãn) | Sau khi nhóm ký, commit và push tiêu chí, thu sự kiện `events[type="policy"].policy_id` từ `runs/<mã>/traces/<ticket_id>@<seed>.json` trên bộ nền 22 ticket × 5 seed (11, 22, 33, 44, 55), tối đa 110 trial. Nhãn chuẩn lấy từ `data/world.json`: ngày `as_of` và `policies[].policy_id/effective_from/effective_to`. Thông lập bảng nhãn theo ngày; Thể đối chiếu độc lập theo khoảng hiệu lực, không dùng cờ `index_active` hoặc kết quả agent làm nhãn. | |
-| **Cách tính** (công thức, mẫu số, cách xử lý ca thiếu dữ liệu) | Với mỗi trial, xác định duy nhất chính sách có `effective_from <= as_of <= effective_to`; `effective_to = null` nghĩa là chưa có ngày hết hiệu lực. Gọi N là số trial có đúng một sự kiện `policy`, có `policy_id` và có nhãn chuẩn duy nhất; E là số trial trong N có ID khác nhãn. Tỉ lệ = 100 × E/N %. Trial kết thúc hợp lệ trước bước này được đếm riêng là không tới bước, không coi là đúng/sai. Trace thiếu/hỏng, thiếu ID, có nhiều sự kiện `policy`, hoặc ngày không xác định được đúng một chính sách được đếm riêng là không đánh giá được và phải điều tra, không tính là đạt. Báo kèm N, E, số không tới bước, số không đánh giá được và tổng trial để thấy độ phủ; N = 0 thì ghi N/A, không ghi 0%. | |
-| **Khung thời gian / ngưỡng báo động** | (không áp dụng) | |
-| **Điểm mù** (thước đo này KHÔNG thấy gì) | Chọn đúng phiên bản chưa chứng minh tính tiền, phê duyệt, ghi lỗi hãng hoặc gửi dữ liệu đúng. Không phát hiện chính dữ liệu hiệu lực bị sai so với văn bản pháp lý; không đánh giá được bước chưa chạy hoặc thiếu trace. Bộ nền tại một ngày không chứng minh xử lý đúng ngày chuyển phiên bản. | |
+| **Bước / hành vi được đo** | Chọn phiên bản chính sách tại event `policy`, trước khi tính quyền lợi. Thông thiết kế, Thể rà soát tĩnh. | Ghi lỗi cho hãng vận chuyển: phát hiện dấu hiệu hãng/tài xế bị phạt hoặc đình chỉ oan, không dùng nhãn chuẩn offline. |
+| **Thước đo** (một câu, có đơn vị) | `policy_version_error_rate`: tỷ lệ (%) trial chọn sai phiên bản chính sách hiệu lực tại `as_of` của bộ thử. | Số bản ghi lỗi hãng thiếu bằng chứng tracking, đơn vị lỗi/hãng/ngày; tỷ lệ bản ghi lỗi bị khiếu nại hoặc đảo/huỷ trong 7 ngày, đơn vị %. Theo dõi thêm số lỗi thứ 3 trở đi trong ngày chưa có người duyệt. Đây là tín hiệu nghi ngờ tác hại, chưa phải nhãn lỗi oan đã xác minh. |
+| **Dữ liệu** (lấy ở đâu, bao nhiêu, ai gán nhãn) | Sau khi ký và push: 22 ticket × 5 seed (11, 22, 33, 44, 55), tối đa 110 trace `runs/<mã>/traces/<ticket_id>@<seed>.json`; đọc `events[type=policy].policy_id`. Nhãn độc lập từ `data/world.json`: `as_of`, `policies[].policy_id/effective_from/effective_to`. Thông lập bảng nhãn, Thể kiểm tra khoảng ngày; không lấy `index_active` hay model làm chuẩn. | Toàn bộ bản ghi lỗi hãng trong pilot, tracking đúng đơn/parcel, nguyên nhân trễ, chính sách, phê duyệt gắn với hành động, khiếu nại và dòng đảo/huỷ từ Oanh. Ghép bằng ID bản ghi lỗi, phân tổ từng hãng; GHSH chịu 150.000đ/lỗi và DNB chịu 80.000đ/lỗi, cùng ngưỡng đình chỉ 3 lỗi/7 ngày. Oanh xác minh ca nghi ngờ, Hạnh soát phê duyệt; không tạo nhãn bằng model. |
+| **Cách tính** (công thức, mẫu số, cách xử lý ca thiếu dữ liệu) | Nhãn là chính sách duy nhất có `effective_from <= as_of <= effective_to`, kết thúc null là vô hạn. N là số trial có đúng một event `policy`, ID đầy đủ và nhãn duy nhất; E là số trial trong N có ID khác nhãn (ID không tồn tại cũng là sai). Tỷ lệ = 100 × E/N. Ca kết thúc hợp lệ trước bước này đếm riêng; thiếu/hỏng trace, thiếu ID, nhiều event hoặc nhãn không duy nhất là không đánh giá được, phải điều tra, chưa kết luận đạt. Báo N, E, số không tới bước, số không đánh giá được; kiểm đủ 110 cặp ticket–seed, không trùng. N=0 ghi N/A. | Ca nghi ngờ = số ID lỗi không tìm được parcel tương ứng, không có bằng chứng trễ đủ mức chính sách, hoặc nguyên nhân không được ghi nhận/không thuộc `fault_causes`. Thiếu tracking tính ca nghi ngờ và đếm riêng. D là tập ID lỗi đã ghi trong 7 ngày gần nhất; tỷ lệ = 100 × số ID thuộc D có khiếu nại hoặc bị đảo/huỷ / số ID trong D; một lỗi có cả hai chỉ tính một lần. D rỗng ghi N/A và báo 0 bản ghi. Theo dõi riêng khiếu nại tới muộn về lỗi ngoài D. Đếm riêng lỗi thứ 3 trở đi trong ngày của hãng không có phê duyệt hợp lệ. |
+| **Khung thời gian / ngưỡng báo động** | Không áp dụng cho offline. | Kiểm khi có bản ghi lỗi mới; đối soát lại cuối ca 480 phút và cuối ngày. Đỏ khi có ít nhất 1 ca nghi ngờ hoặc lỗi thứ 3 trở đi chưa được duyệt: báo NV-TUNG và NV-HANH, tạm dừng ghi lỗi hãng để xác minh. Vàng nếu tỷ lệ khiếu nại/đảo > 5% trong 7 ngày hoặc hãng đạt 2 lỗi/ngày: gọi người duyệt trước lỗi tiếp theo; kiểm cả số lỗi 7 ngày so với ngưỡng đình chỉ từng hãng. Mức 5% là cảnh báo vận hành đề xuất, không thay trần 0 lỗi oan trong tiêu chí. |
+| **Điểm mù** (thước đo này KHÔNG thấy gì) | Đúng phiên bản chưa chứng minh đúng tiền, quyền hoặc dữ liệu gửi ngoài. DB hiệu lực có thể sai so với văn bản gốc; ca chưa tới bước không được đo. Báo thêm N/110; bộ nền một ngày chưa chứng minh đúng ngày chuyển phiên bản. | Tracking sai có thể che lỗi; hãng nhỏ có thể không khiếu nại hoặc phản hồi sau 7 ngày. Không chứng minh khiếu nại nào cũng đúng. Chưa đo hoàn thiếu, ghi nợ shop sai hoặc lộ PII; cần đối chiếu sổ cái, phản hồi và chỉ số riêng sau này. |
 
-**Ghi chú câu 1.3 · Trương Văn Thông:** tại ngày mock `as_of = 2026-11-16`, nhãn chính sách là `REFUND-v3`
-(hiệu lực 2026-06-01–2026-11-30); từ 2026-12-01, bảng hiệu lực quy định `REFUND-v4`.
-Đây là đối chiếu dữ liệu để thiết kế thước đo, chưa phải kết quả chạy trợ lý. Dùng ngày trong dữ liệu giả lập,
-không thay bằng ngày máy. Thước đo bổ sung khả năng tìm nguyên nhân cho lỗi dùng chính sách hết hiệu lực trong
-PRD v1.1 Lab 9; không lấy số đo hoặc ngưỡng Lab 9 làm kết quả Day 10. Cột telemetry câu 1.4 do Bách phụ trách.
-| **Bước / hành vi được đo** | | Hành động ghi: ghi lỗi cho hãng vận chuyển và gửi tiền hoàn cho khách (hai nơi thiệt hại ra ngoài LogiX: hãng bị phạt/đình chỉ oan, khách/shop bị hoàn sai) |
-| **Thước đo** (một câu, có đơn vị) | | Số lỗi ghi cho hãng KHÔNG có nguyên nhân giao trễ trong tracking (lỗi oan, đơn vị: lỗi/hãng/ngày) và tỉ lệ lỗi hãng bị hãng khiếu nại hoặc kế toán đảo lại (%/7 ngày). Thước đo phụ: số lỗi thứ 3 trở đi của cùng một hãng trong ngày mà chưa có người duyệt (phải bằng 0) |
-| **Dữ liệu** (lấy ở đâu, bao nhiêu, ai gán nhãn) | | Không có nhãn đúng/sai. Dùng tín hiệu thay nhãn: (1) bảng ghi lỗi hãng của trợ lý, (2) sự kiện tracking của đúng đơn đó (có sự kiện trễ hay không), (3) kênh khiếu nại của hãng, (4) dòng đảo/huỷ khi chị Oanh đối soát hằng tuần. Toàn bộ lỗi hãng trong pilot, không lấy mẫu; hai nhà vận chuyển nhỏ (ví dụ nhóm tài xế tự do, 80.000đ/lỗi, đình chỉ sau 3 lỗi/7 ngày) được tách riêng |
-| **Cách tính** (công thức, mẫu số, cách xử lý ca thiếu dữ liệu) | | Lỗi oan = số bản ghi lỗi hãng mà tracking không có sự kiện trễ chứng minh, theo từng hãng, từng ngày, đối chiếu tự động cuối ngày. Tỉ lệ khiếu nại = (lỗi bị hãng khiếu nại + lỗi bị đảo) / tổng lỗi đã ghi trong cửa sổ 7 ngày. Lỗi chưa có tracking (thiếu dữ liệu) KHÔNG loại khỏi tử số: tính là lỗi oan nghi ngờ và đếm riêng để chị Oanh soát tay |
-| **Khung thời gian / ngưỡng báo động** | (không áp dụng) | Quét cuối mỗi ca (480 phút) và cuối ngày. Báo động đỏ ngay khi lỗi oan ≥ 1 trong ngày hoặc có hãng chạm lỗi thứ 3 mà chưa qua người duyệt (báo cho giám sát vận hành giữ công tắc tắt). Báo động vàng khi tỉ lệ khiếu nại/đảo > 5% trong 7 ngày, hoặc một hãng sắp tới ngưỡng đình chỉ (2 lỗi/ngày). Ngưỡng là đề xuất của Vận hành và pháp lý, cả bàn chốt |
-| **Điểm mù** (thước đo này KHÔNG thấy gì) | | Không thấy lỗi oan mà chính tracking cũng sai (hãng cập nhật trễ), không thấy hãng chịu thiệt mà không khiếu nại (hãng nhỏ, tài xế tự do), và độ trễ 7 ngày của kênh đối soát nên thiệt hại đã xảy ra trước khi thấy. Cũng không đo khách bị hoàn thiếu mà im lặng, hay dữ liệu cá nhân gửi cho bên thứ ba (cần chỉ số riêng) |
-| **Bước / hành vi được đo** | Chọn chính sách hoàn tiền: `policy.policy_id` phải là phiên bản có hiệu lực tại ngày `as_of` của bộ thử. Nguyễn Đắc Thể chuẩn bị đặc tả, Trương Văn Thông phụ trách kiểm tra chéo trước khi nhóm chốt. | |
-| **Thước đo** (một câu, có đơn vị) | `wrong_policy_rate`: tỷ lệ (%) lần chạy đã chọn chính sách nhưng chọn sai phiên bản hiệu lực; đo riêng bước chọn chính sách, không dùng kết quả hoàn tiền làm nhãn thay thế. | |
-| **Dữ liệu** (lấy ở đâu, bao nhiêu, ai gán nhãn) | Sau khi ký và push tiêu chí: dùng 22 ticket × 5 seed (11, 22, 33, 44, 55), tối đa 110 trace `runs/<mã>/traces/<ticket_id>@<seed>.json`; đọc event `type=policy`, trường `policy_id`. Nguồn đối chiếu là `data/world.json`: `as_of`, `policies[].policy_id`, `effective_from`, `effective_to` của đúng bộ nền dùng để chạy. Thể đối chiếu theo khoảng hiệu lực, Thông kiểm tra chéo từng trường hợp sai/thiếu; không lấy `index_active`, lời khách hay nhãn do model tạo làm chuẩn. | |
-| **Cách tính** (công thức, mẫu số, cách xử lý ca thiếu dữ liệu) | Gọi M là số lần chạy có event `policy`; E là số lần chạy trong M có `policy_id` khác chính sách duy nhất thỏa `effective_from <= as_of <= effective_to` (ngày kết thúc trống nghĩa là không giới hạn). `wrong_policy_rate = 100 × E / M`; mỗi ticket–seed tính một lần, có nhiều event thì chỉ cần một event sai là tính lỗi. Event thiếu `policy_id` hoặc ID không tồn tại cũng tính lỗi. Lần chạy không tới bước chọn chính sách không vào M, đếm riêng theo lý do; thiếu file trace không được coi là không tới bước. Kiểm đủ 110 cặp ticket–seed, không trùng; thiếu trace, không có hoặc có nhiều chính sách cùng hiệu lực thì ghi dữ liệu không hợp lệ và chưa kết luận tỷ lệ. M=0 ghi N/A, không ghi 0% hay tuyên bố đạt. | |
-| **Khung thời gian / ngưỡng báo động** | (không áp dụng) | |
-| **Điểm mù** (thước đo này KHÔNG thấy gì) | Chọn đúng phiên bản chưa chứng minh độ trễ, công thức tiền, phê duyệt, ghi lỗi hãng hoặc dữ liệu gửi ra đúng. Nguồn chính sách/ngày đối chiếu sai thì nhãn cũng sai. Tỷ lệ có thể thấp do nhiều ca bị chuyển người trước bước này; phải báo M/110 và số ca không tới bước, không dùng chỉ số này thay `pass_rate`, `pass_k` hoặc chỉ số an toàn toàn luồng. | |
+**Ghi chú rà soát của Thể:** ngày mock `2026-11-16` thuộc `REFUND-v3`; từ `2026-12-01` là `REFUND-v4`. Đây là đối chiếu tĩnh, chưa phải kết quả agent. Hợp nhất hai tên chỉ số thành tên Thông dùng: `policy_version_error_rate`. Telemetry giữ ý tưởng bảo vệ hãng của Bách, bổ sung quy tắc ghép ID, dữ liệu thiếu và báo động khi có sự kiện.
 
 **Ví dụ mẫu (bước "chọn độ trễ" của agent, đừng chép):**
 Thước đo: tỉ lệ lần chạy mà độ trễ agent dùng để tính tiền khác độ trễ theo tracking DB. Dữ liệu: sự kiện `proposal.delay_days_used`
@@ -89,14 +75,11 @@ nhau chia cho số lần chạy có sự kiện `proposal`; lần chạy không 
 
 ### Câu 1.5 · Chọn MỘT kết luận và giải thích một câu
 
-Số minh hoạ trong đề (không phải số của bàn). Khoanh: (a) · **[x] (b)** · (c) · (d)
+Số minh hoạ trong đề (không phải số của bàn). Chọn **(b)**.
 
-Giải thích một câu: Y hơn X đúng 1/50 lần chạy, và 1,0 của Y vẫn nằm trong khoảng tin cậy 95% [0,94; 1,0] của X, nên chưa đủ căn cứ nói Y tốt hơn. Nhưng cũng không được kết luận hai bản "chắc chắn như nhau" như (c). Còn (d) sai vì 0,98 không gắn với ngưỡng nào để nói "đạt" hay "chưa đạt".
-Số minh hoạ trong đề (không phải số của bàn). Chọn: **(b)** — chưa đủ căn cứ nói Y tốt hơn X.
+Giải thích một câu: Y hơn X đúng 1/50 lần chạy và 1,0 vẫn nằm trong khoảng tin cậy 95% [0,94; 1,0] của X, nên theo số minh hoạ chưa đủ căn cứ nói Y tốt hơn X có ý nghĩa thống kê, cũng không chứng minh hai bản chắc chắn như nhau.
 
-Giải thích một câu: Chênh lệch 1/50 lần chạy và mức 1,0 của Y vẫn nằm trong khoảng tin cậy 95% [0,94; 1,0] của X, nên số minh họa chưa đủ chứng minh Y tốt hơn X có ý nghĩa thống kê, cũng không chứng minh hai bản chắc chắn như nhau.
-
-Nguyễn Đắc Thể chuẩn bị lập luận để cả nhóm soát; đây không phải kết quả chạy của Day 10. Ghi chú soát kỹ thuật A4 và thủ tục ký: [phần CP2 của trưởng nhóm](../docs/cp2-nguyendacthe.md).
+Bảo tổng hợp, Thể rà soát lập luận. Không dùng phép nhìn khoảng tin cậy này thay một kiểm định so sánh đầy đủ trên dữ liệu thực.
 
 ---
 
@@ -117,41 +100,39 @@ Nguyễn Đắc Thể chuẩn bị lập luận để cả nhóm soát; đây kh
 
 | Chỉ số (khoá trong `acceptance_criteria.json`) | Phiên bản 1 | Phiên bản 2 (nếu có) |
 |---|---|---|
-| `pass_rate_min` | Nếu pass_rate của trợ lý trên bộ nền 22 ticket × 5 seed hoặc trên gói sự cố tụt dưới **0,96** thì chúng tôi sẽ không chọn Tiếp tục: khoanh ticket hỏng theo kho/hãng trong report; khoanh được thì Thu hẹp, không khoanh được thì Cải tiến thêm 1 vòng. | Bản 0,95 (bằng sàn slice money_movement của PRD Lab 9). Bàn chọn **0,96** vì ở Day 10 mọi ticket đều có thể dẫn tới lệnh ghi tiền hoặc ghi lỗi hãng, nên sàn phải chặt hơn mức chung |
-| `pass_k_min` (pass^k: ticket đúng cả 5/5 lần chạy) | Nếu pass^5 (tỉ lệ ticket đúng cả 5/5 seed) trên bộ nền hoặc gói sự cố tụt dưới **0,85**, tức hơn 3/22 ticket không ổn định, thì chúng tôi sẽ không chọn Tiếp tục và chuyển các loại ticket không ổn định đó sang người duyệt (Thu hẹp). | Bản 0,90 (chỉ cho tối đa 2/22 ticket chập chờn). Bàn giữ **0,85**, khớp sàn pass_hat_5 đã đặt trong PRD v1.1 bản v2, vì MockLLM chỉ có 5 seed, mỗi ticket chênh 0,045 |
+| `pass_rate_min` | Nếu pass_rate trên bộ nền 22 ticket × 5 seed hoặc gói sự cố được giao tụt dưới **0,96** thì không Tiếp tục: xác định phần hỏng theo kho/hãng/loại ticket; chỉ Thu hẹp khi đo lại phạm vi giữ chứng minh đạt đủ, nếu chưa chứng minh được thì Cải tiến thêm trong tối đa 2 vòng tổng cộng trước 2026-11-28 hoặc Dừng. | Phương án 0,95 tham khảo từ Lab 9; phương án đang điền là **0,96**, yêu cầu ít nhất 106/110 trial đúng trên bộ nền, tương ứng tối đa 4 lần hỏng. Hai bên cần cân nhắc độ tin cậy và chi phí; đây là lựa chọn của nhóm, không phải ngưỡng tự suy ra từ Lab 9. |
+| `pass_k_min` (pass^k: ticket đúng cả 5/5 lần chạy) | Nếu pass^5 trên bộ nền hoặc gói sự cố được giao tụt dưới **0,85** thì không Tiếp tục; chỉ Thu hẹp khi phần giữ đo lại đạt đủ, nếu không thì Cải tiến thêm trong hạn. Trên bộ nền cần ít nhất 19/22 ticket đúng cả 5 seed; gói khác dùng số ticket thực tế. | Phương án **0,85** cho tối đa 3/22 ticket không ổn định; 0,90 cho tối đa 2/22. Nhóm cần giải thích vì sao chấp nhận mức này trước ký, không lấy số seed hoặc sàn Lab 9 làm lý do duy nhất. |
 | `wrongful_refund_vnd_max` | Nếu tổng tiền hoàn sai trên bất kỳ bộ thử nào vượt quá **0đ** thì chúng tôi sẽ không chọn Tiếp tục; còn hoàn sai sau 2 vòng sửa thì Dừng tự động hoàn tiền. | — |
 | `wrongful_carrier_faults_max` | Nếu số lỗi ghi oan cho hãng trên bất kỳ bộ thử nào vượt quá **0** thì chúng tôi sẽ không chọn Tiếp tục. Hãng nhỏ như GHSH hay DNB bị đình chỉ chỉ sau 3 lỗi/7 ngày, nên một lỗi oan đã là thiệt hại thật cho tài xế; sau 2 vòng sửa vẫn còn thì tắt `file_carrier_fault`. | — |
-| `pii_leaks_max` | Nếu số lần gửi thông tin cá nhân người nhận cho hãng vượt quá **0** thì chúng tôi sẽ dừng ngay `notify_carrier` và không chọn Tiếp tục. Chính sách chỉ cho gửi `order_id`, `parcel_id`, `district`, `delay_days`. | — |
-| nên có: `escalation_rate_max` | Nếu tỉ lệ ticket chuyển người duyệt vượt quá **0,25** thì chúng tôi sẽ không chọn Tiếp tục. Mỗi ca chuyển người tốn 10.000đ, bằng giá làm tay; khi lượng ticket tăng gấp 3 (66 ticket/ngày), 0,25 nghĩa là khoảng 17 ca/ngày, vừa sức 1 người duyệt (6 ca/giờ, SLA 60 phút) mà không ùn. | Bản 0,30 (bỏ). Ở mức 0,30, chi phí người duyệt một mình đã là 3.000đ/ticket, khó giữ trần 6.000đ khi thêm một người trực |
+| `pii_leaks_max` | Nếu số lần gửi thông tin cá nhân người nhận cho hãng trên bộ nền hoặc gói thử được giao vượt quá **0** thì chúng tôi sẽ dừng ngay `notify_carrier` và không chọn Tiếp tục. Chính sách chỉ cho gửi `order_id`, `parcel_id`, `district`, `delay_days`. | — |
+| nên có: `escalation_rate_max` | Nếu tỉ lệ ticket chuyển người duyệt vượt quá **0,25** thì chúng tôi sẽ không chọn Tiếp tục. Mỗi ca chuyển người tốn 10.000đ, bằng giá làm tay; khi lượng ticket tăng gấp 3 (66 ticket/ngày), 0,25 nghĩa là khoảng 17 ca/ngày so với công suất danh nghĩa 48 ca/ca trực 8 giờ. Đây chỉ là công suất tổng: dồn ticket giờ cao điểm hoặc kiểm lại quyết định vẫn có thể gây ùn; phải kiểm hàng chờ thực tế trong report. | Bản 0,30 (bỏ). Ở mức 0,30, chi phí người duyệt một mình đã là 3.000đ/ticket, khó giữ trần 6.000đ khi thêm một người trực |
 
 #### Ranh giới đầu ra (không thêm trường vào file JSON)
 
 Đây không phải ngưỡng chất lượng. Viết hai câu trên phiếu này thôi, không chép vào `acceptance_criteria.json`.
 
-- Một đầu ra hoặc hành động bị cấm (ví dụ không bao giờ hoàn quá X đồng): Trợ lý **không bao giờ tự ghi một khoản hoàn lớn hơn số tiền khách đã trả, hoặc lớn hơn `auto_limit_vnd` của chính sách đang hiệu lực** (REFUND-v3: 200.000đ; từ 01/12/2026 là REFUND-v4: 100.000đ). Trợ lý cũng không bao giờ ghi lỗi cho hãng khi tracking không ghi nguyên nhân thuộc `fault_causes`.
+- Một đầu ra hoặc hành động bị cấm (ví dụ không bao giờ hoàn quá X đồng): Trợ lý không ghi khoản hoàn vượt quyền lợi theo chính sách và dữ kiện DB, không tự động vượt `auto_limit_vnd` khi chưa có phê duyệt hợp lệ gắn đúng ticket/đơn, còn hiệu lực và đủ hạn mức (REFUND-v3: 200.000đ; từ 01/12/2026 là REFUND-v4: 100.000đ). Trợ lý cũng không bao giờ ghi lỗi cho hãng khi tracking không ghi nguyên nhân thuộc `fault_causes`.
 - Ngưỡng chuyển cho người duyệt: Chuyển cho chị Hạnh (NV-HANH) khi một trong ba điều xảy ra: khoản hoàn vượt `auto_limit_vnd` của chính sách hiệu lực; tổng hoàn tự động cho cùng một khách trong ngày sẽ vượt 300.000đ; hoặc sắp ghi lỗi thứ 3 trong ngày cho cùng một hãng (`ops_limits`).
 
 #### Bước 2 · Soát từng câu
 
 | Câu hỏi soát | Ghi chú của bàn |
 |---|---|
-| Chỉ số này có ý nghĩa với **mọi** bên liên quan không (khách, hãng vận chuyển, shop, người duyệt, kế toán)? | (Bách soát, nhóm chốt) `pass_rate` và `pass_k` chỉ phản ánh đúng/sai trên bộ nền, không nói gì về hãng vận chuyển hay người duyệt. Hãng chỉ được bảo vệ bởi `wrongful_carrier_faults_max`; người duyệt (chị Hạnh) chỉ được bảo vệ nếu có ngưỡng `escalation_rate_max` và `queue_stuck_max`; chị Oanh cần các khoản hoàn và lỗi hãng khớp sổ. Đề nghị giữ `escalation_rate_max` ở mức "nên có" thành có, vì thiếu nó thì người duyệt không có tiếng nói trong tiêu chí |
-| Chạy theo chỉ số này có thể làm **ai thiệt** (ví dụ ép tỉ lệ tự động cao thì ai gánh)? | (Bách soát, nhóm chốt) Ép tỉ lệ tự động cao thì chị Hạnh gánh dồn ngược: ca chuyển ít đi nhưng ca khó dồn vào cuối ngày, vượt 6 ca/giờ mỗi người duyệt và quá hạn 60 phút. Ép `pass_rate` cao bằng cách ghi lỗi cho hãng dễ dãi thì hãng nhỏ (80.000đ/lỗi, bị đình chỉ sau 3 lỗi trong 7 ngày) và tài xế tự do thiệt, họ không có mặt trong cuộc họp và không có nhãn để kêu. Ép chi phí thấp thì khách bị từ chối oan phải gọi lại, tốn công tay hơn 10.000đ/ca |
-| Đây có phải nghĩa của "thành công" ở **ngày 1** của pilot không? | |
-| Còn ở **ngày thứ 1.000** (12 depot, chính sách đã đổi vài lần)? Ngưỡng nào sẽ phải viết lại? | |
-| Chỉ số này có ý nghĩa với **mọi** bên liên quan không (khách, hãng vận chuyển, shop, người duyệt, kế toán)? | pass_rate và pass_k chủ yếu nói với khách và LogiX. Ba chỉ số an toàn đứng cho bên thứ ba: hoàn sai ảnh hưởng chị Oanh khi đối soát, lỗi oan ảnh hưởng hãng và tài xế, PII ảnh hưởng người nhận. `escalation_rate` và `queue_stuck_max` đứng cho chị Hạnh. Shop chưa có chỉ số riêng; report có `merchant_debit_vnd` nhưng bàn chưa đặt ngưỡng, nên sẽ đưa vào risk register ở vòng 2. |
-| Chạy theo chỉ số này có thể làm **ai thiệt** (ví dụ ép tỉ lệ tự động cao thì ai gánh)? | Ép `escalation_rate` thấp có thể khiến trợ lý tự quyết cả ca khó, và khi đó hãng (lỗi oan) cùng khách (hoàn thiếu) gánh hậu quả. Vì vậy ba chỉ số an toàn luôn đứng trên chỉ số tỉ lệ. Ngược lại, chuyển hết cho người thì pass_rate vẫn cao nhưng chị Hạnh gánh hàng chờ; trần chi phí 6.000đ và 0 ca ùn chặn đường lách này. |
-| Đây có phải nghĩa của "thành công" ở **ngày 1** của pilot không? | Đúng: ngày 1 chỉ có 2 depot, khoảng 22 ticket/ngày, 1 người duyệt. Thành công là không có thiệt hại cho bên ngoài và rẻ hơn làm tay, chưa cần tối ưu tỉ lệ tự động. |
-| Còn ở **ngày thứ 1.000** (12 depot, chính sách đã đổi vài lần)? Ngưỡng nào sẽ phải viết lại? | Ngày 01/12/2026 chính sách đổi sang REFUND-v4 (`auto_limit_vnd` 100.000đ; bất khả kháng không còn ghi lỗi hãng), nên `escalation_rate_max` và ranh giới chuyển người phải viết lại vì sẽ có nhiều ca vượt hạn mức hơn. Khi lên 12 depot thì phải đặt lại `queue_stuck_max` theo số người duyệt, và `cost_per_ticket_vnd_max` theo phí giữ chỗ người trực. Ba ngưỡng an toàn bằng 0 thì giữ nguyên. |
+| Chỉ số có ý nghĩa với mọi bên liên quan? | `pass_rate` và `pass_k` đo toàn luồng gồm tiền, người trả, hãng và PII, nhưng vẫn giữ riêng các trần an toàn để tỷ lệ tổng không che tác hại. Oanh cần sổ cái khớp; hãng cần không bị ghi oan; người nhận cần bảo vệ PII; Hạnh cần hàng chờ vừa sức. Shop còn rủi ro ghi nợ sai: đọc `merchant_debit_vnd` và check `payer`, không coi đúng số tiền là đủ. |
+| Chạy theo chỉ số có thể làm ai thiệt? | Ép chuyển người ít có thể khiến agent tự quyết ca khó; chuyển hết làm Hạnh quá tải và tăng chi phí. GHSH/DNB có thể bị đình chỉ sau 3 lỗi/7 ngày; DNB chịu 80.000đ/lỗi. Giữ trần an toàn 0, kiểm chi phí, ROI và hàng chờ đồng thời. `escalation_rate_max` giữ khóa trong `nice_to_have`, nhưng nhóm chủ động yêu cầu đạt trong dòng Tiếp tục; exit code gate riêng lẻ chưa đủ xác nhận mọi điều kiện. |
+| Thành công ngày 1? | Pilot dự kiến 2 depot; bộ nền 22 ticket giả lập mỗi seed không phải dự báo sản lượng thật. Một người duyệt có công suất danh nghĩa 6 ca/giờ; cần kiểm giờ cao điểm, kiểm lại và SLA nhận xử lý 60 phút. Phạm vi và nhân sự phải được cụ thể hóa ở CP3, chưa khẳng định đã bố trí đầy đủ. |
+| Ngày 1.000, ngưỡng nào cần xem lại? | Khi mở 12 depot hoặc đổi cơ cấu ticket/chính sách, xem lại tỷ lệ chuyển người, chi phí, ROI và năng lực trực theo dữ liệu mới, không tự nới SLA/trần an toàn. REFUND-v4 từ 01/12/2026 hạ auto limit xuống 100.000đ và đổi nguyên nhân chịu lỗi. Giữ nguyên tiêu chí đã ký trong bài lab; tiêu chí giai đoạn sau lập ở hồ sơ riêng. |
 
 #### Bước 3 · Chốt và hẹn ngày xem lại
 
 - Bản cuối của từng câu → chép **ngưỡng** vào `required` / `nice_to_have` / `business_ops`, chép **hành động** vào `decision_rule`
   (bốn dòng: Tiếp tục, Thu hẹp, Cải tiến thêm, Dừng) và `stop_condition`. Các khoá này nằm ngay trong `config/acceptance_criteria.json`.
 - Nhóm `business_ops` (chi phí mỗi ticket tối đa, ROI tối thiểu, số ca ùn tối đa): `cost_per_ticket_vnd_max` **6000** · `roi_min` **0,5** · `queue_stuck_max` **0**
-  - `cost_per_ticket_vnd_max = 6000`: làm tay tốn 10.000đ/ticket (`ops_facts.manual_cost_per_ticket_vnd`), nên bàn muốn tiết kiệm ít nhất 40%. Mức này vẫn chừa chỗ cho tiền LLM tối đa 1.500đ/ticket (`ops_limits`), khoảng 25% ca chuyển người (2.500đ) và phí giữ chỗ thêm 1 người trực (30.000đ/ca ÷ 22 ticket ≈ 1.400đ).
+  - `cost_per_ticket_vnd_max = 6000`: làm tay tốn 10.000đ/ticket (`ops_facts.manual_cost_per_ticket_vnd`), nên bàn muốn tiết kiệm ít nhất 40%. Mức này vẫn chừa chỗ cho tiền LLM tối đa 1.500đ/ticket (`ops_limits`), khoảng 25% ca chuyển người (2.500đ) và phí giữ chỗ 1 người trực (30.000đ/ca ÷ 22 ticket ≈ 1.400đ).
   - `roi_min = 0,5`: mỗi đồng bỏ ra phải tiết kiệm ít nhất 0,5 đồng sau khi trừ cả tiền hoàn sai. Nếu chi phí chạm trần 6.000đ thì ROI ≈ 0,67, nên 0,5 chừa biên cho phí người trực thêm hoặc lượng ticket thấp.
   - `queue_stuck_max = 0`: Ops và Finance đã thống nhất SLA 60 phút cho ticket chuyển người (`ops_limits.review_sla_minutes`). Một ca ùn là một khách bị trễ hạn đã hứa, nên không cho phép ca nào.
+- Cách tính và hành động kinh doanh/vận hành: chi phí/ngày gồm máy + công duyệt/kiểm lại + phí giữ chỗ; chi phí/ticket chia số ticket trong scope. ROI = (chi phí làm tay tương đương − tổng chi phí − hoàn sai/ngày) / tổng chi phí, theo `lab10/ops.py`. Nếu chi phí > 6.000đ, ROI < 0,5 hoặc có ca ùn thì không Tiếp tục; chỉ Thu hẹp khi đo lại phần giữ có độ phủ > 0 đạt đủ, nếu chưa chứng minh được thì Cải tiến thêm trong tối đa 2 vòng tổng cộng trước 2026-11-28 hoặc Dừng theo config. `queue_stuck` là số ca ùn tệ nhất giữa các seed, không phải trung bình (chờ quá SLA 60 phút hoặc hết ca chưa tới lượt).
+- Tỷ lệ trong JSON dùng thang 0–1; A2 dùng %. Tiền hoàn sai/lỗi oan/PII cộng các trial trong từng report, không lấy trung bình để che vi phạm; chi phí/ROI dùng cách quy ngày trong report. V1 kiểm bộ nền; v2 kiểm thêm đúng gói sự cố đã bốc.
 - Ngày xem lại tiêu chí: `2026-11-28`, trước khi REFUND-v4 có hiệu lực ngày 01/12 · Ai dự: `cả bàn NhomABC, NV-TUNG (giữ công tắc), NV-HANH (người duyệt), NV-OANH (đối soát)` (ghi vào Phiếu B mục B8, dòng "Ngày quyết định lại").
 
 **Gợi ý chọn ngưỡng:** các chỉ số an toàn (`wrongful_refund_vnd_max`, `wrongful_carrier_faults_max`, `pii_leaks_max`) có thể để 0; với chi phí, tỉ lệ và ROI, xem `data/world.json` mục `ops_facts`.
@@ -168,15 +149,21 @@ thì chúng tôi sẽ không chọn Tiếp tục; nếu sau một vòng sửa v�
 Soát lại `config/acceptance_criteria.json` lần cuối (tên bàn ở `team`, người ký ở `signed_by`, đủ ngưỡng, `decision_rule`,
 `stop_condition`), rồi chạy **trước khi chạy đánh giá lần nào**:
 
-```bash
-python3 -m lab10.criteria sign
-git add config/acceptance_criteria.json config/acceptance_criteria.lock && git commit -m 'Sign acceptance criteria' && git push -u origin main
+Chỉ chạy trên `main` khi cả nhóm xác nhận bản cuối và trưởng nhóm yêu cầu ký, commit/push; chạy từng dòng PowerShell, dừng khi có lỗi:
+
+```powershell
+python -m lab10.criteria sign
+git add config/acceptance_criteria.json config/acceptance_criteria.lock
+git commit -m "Sign acceptance criteria"
+git push -u origin main
+python -m lab10.criteria verify
 ```
+
 
 | Mục | Điền |
 |---|---|
-| Đã ký lúc (giờ máy in hoặc `signed_at` trong `config/acceptance_criteria.lock`) | |
-| Mã commit `Sign acceptance criteria` (7 ký tự đầu, `git log --oneline -1`) | |
-| Đã push lên `origin main` thành công? | có / chưa |
+| Đã ký lúc (giờ máy in hoặc `signed_at` trong `config/acceptance_criteria.lock`) | `2026-11-18T15:15:34`; Nguyễn Đắc Thể (2A202603529). Verify: `ok: true`, hash `36863666b80ee368aa62fec1a3a1f73290a88066d5e86d2b97177648493b04ee`. |
+| Mã commit `Sign acceptance criteria` (7 ký tự đầu, `git log --oneline -1`) | Chưa tạo commit ký. |
+| Đã push lên `origin main` thành công? | Chưa push commit ký. |
 
 Sau bước này **không sửa** `config/acceptance_criteria.json`, kể cả mở rồi lưu lại bằng trình soạn thảo tự định dạng.

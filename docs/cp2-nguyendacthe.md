@@ -4,7 +4,7 @@
 
 - Đặc tả chỉ số offline cho bước chọn chính sách trong Phiếu A, mục A2 câu 1.3; đây là phần hỗ trợ Trương Văn Thông theo TEAM.
 - Lập luận câu 1.5 trong A3 để nhóm review.
-- Bản soát kỹ thuật A4 và trình tự ký ở dưới. Chưa có kết luận nhóm đã thống nhất ngưỡng; A4, config và A5 còn chờ các phần việc khác.
+- Bản soát kỹ thuật A4 và trình tự ký ở dưới. Sau merge, đã hợp nhất Phiếu A và config theo [rà soát CP2](cp2-review.md); chưa ghi nhận đồng thuận cuối hoặc chữ ký.
 
 ## Cơ sở kỹ thuật cho A2
 
@@ -18,16 +18,16 @@ PRD Lab 9 nêu rủi ro FM-06 dùng chính sách hết hiệu lực; eval card l
 
 | Nội dung cần soát | Ý kiến kỹ thuật của Thể | Trạng thái hiện tại |
 |---|---|---|
-| Ý nghĩa với các bên | `pass_rate` cần đi cùng trần hoàn sai, lỗi hãng oan và lộ PII; tỷ lệ tổng thể cao vẫn có thể che tác hại cho shop, hãng hoặc khách. Chi phí/ROI và hàng chờ phải xét cùng khả năng vận hành. | Chờ Bảo/Bách điền tiêu chí cụ thể để đối chiếu. |
-| Ai có thể thiệt khi tối ưu | Ép ít chuyển người có thể dẫn tới tự ghi sai; chuyển mọi ca cho người có thể làm ùn hàng chờ và tăng chi phí. Tỷ lệ chọn đúng chính sách chỉ có nghĩa khi báo cả số ca tới bước. | Cần ghi rõ hành động khi trượt, không chỉ ghi con số. |
-| Thành công ngày 1 | Chỉ xét phạm vi pilot và năng lực trực mà nhóm thực sự bố trí; không lấy số Lab 9 làm kết quả Day 10. Các ranh giới tiền/quyền và dữ liệu phải được soát ngay cả khi tỷ lệ đúng cao. | Chưa có ngưỡng hoặc phạm vi được nhóm chốt. |
-| Ngày 1.000 | Khi tăng depot, đổi chính sách hoặc lượng ticket, phải đánh giá lại độ phủ dữ liệu, chi phí và năng lực người duyệt. Ghi ngày xem lại trên phiếu; tiêu chí đã ký của buổi lab vẫn giữ nguyên. | Chờ nhóm chốt ngày và người dự, không sửa JSON sau ký. |
+| Ý nghĩa với các bên | `pass_rate` cần đi cùng trần hoàn sai, lỗi hãng oan và lộ PII; tỷ lệ tổng thể cao vẫn có thể che tác hại cho shop, hãng hoặc khách. Chi phí/ROI và hàng chờ phải xét cùng khả năng vận hành. | Đã hợp nhất bốn câu soát ở A4, có lưu ý `payer` và `merchant_debit_vnd`. |
+| Ai có thể thiệt khi tối ưu | Ép ít chuyển người có thể dẫn tới tự ghi sai; chuyển mọi ca cho người có thể làm ùn hàng chờ và tăng chi phí. Tỷ lệ chọn đúng chính sách chỉ có nghĩa khi báo cả số ca tới bước. | Đã đồng bộ hành động với config, không chỉ dựa gate exit code. |
+| Thành công ngày 1 | Chỉ xét phạm vi pilot và năng lực trực mà nhóm thực sự bố trí; không lấy số Lab 9 làm kết quả Day 10. Các ranh giới tiền/quyền và dữ liệu phải được soát ngay cả khi tỷ lệ đúng cao. | Ngưỡng có trong bản dự thảo; phạm vi và nhân sự cụ thể thuộc CP3. |
+| Ngày 1.000 | Khi tăng depot, đổi chính sách hoặc lượng ticket, phải đánh giá lại độ phủ dữ liệu, chi phí và năng lực người duyệt. Ghi ngày xem lại trên phiếu; tiêu chí đã ký của buổi lab vẫn giữ nguyên. | Bản dự thảo có ngày 2026-11-28 và người dự; chờ nhóm xác nhận. |
 
 Phân biệt để review: `pass_rate` = số lần chạy pass / tổng lần chạy; `pass_k` trong Day 10 là pass^5 = số ticket pass đủ 5/5 seed / tổng ticket; pass@5 chỉ yêu cầu ít nhất một trong năm lần pass và không thay được pass^5.
 
 ## Điều kiện bàn giao trước ký
 
-Hiện A1, cột telemetry A2, A4 và JSON tiêu chí còn nguyên mẫu; A5 chưa có giờ ký, commit hoặc bằng chứng push. Vì vậy chưa đánh dấu CP2 toàn nhóm hoàn tất.
+Sau hợp nhất, A1–A4 và JSON đã có nội dung; A5 ghi rõ chưa ký, chưa có commit ký hoặc bằng chứng push. Bản rà soát không thay xác nhận của nhóm và không đánh dấu CP2 đã ký xong.
 
 Trưởng nhóm kiểm lần cuối sau khi nhận phần việc của các bạn:
 
