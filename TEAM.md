@@ -90,3 +90,21 @@ Dùng Codex đọc README, CHECKPOINTS, TEAM, đề bài, tài liệu Lab 9 và 
 - Đây là ghi chú học tập CP2; exit ticket cuối buổi sẽ được cập nhật khi hoàn thành CP5.
 - Điều học được ở CP3: test hồi quy xanh chỉ chứng minh chưa phá ca vốn đúng; hai ticket mới vẫn có thể làm lộ tính chất an toàn bị vi phạm. Cần đọc cả tracking, sổ cái và lỗi hãng thay vì chỉ đọc lời trả lời khách.
 - Điều chưa chắc ở CP3: sau khi Thể thêm cổng, tính chất có giữ được trên hai ticket mới và các ca vốn đúng hay không; cần chạy lại trên đúng bản cổng đã sửa trước khi chốt.
+
+## NguyenDacThe-2A202603529
+
+### Phần việc phụ trách
+
+Trưởng nhóm, Kỹ sư cổng: hỗ trợ A2 câu 1.3 cùng Trương Văn Thông; chuẩn bị lập luận A3 và soát kỹ thuật A4; điều phối ký sau khi nhóm thống nhất.
+
+### Đóng góp cụ thể
+
+Đã chuẩn bị đặc tả `wrong_policy_rate` cho riêng bước chọn chính sách, quy định nguồn đối chiếu, mẫu số, ca thiếu dữ liệu và điểm mù trong Phiếu A. Đã viết lập luận A3 và bản bàn giao kiểm tra trước ký tại `docs/cp2-nguyendacthe.md`. Dùng Codex hỗ trợ đọc code tĩnh và soạn nội dung, chưa tính số đánh giá Day 10.
+
+### Bằng chứng
+
+[Phiếu A, mục A2–A3](templates/form-a-criteria.md#a2) và [bản soát CP2 của trưởng nhóm](docs/cp2-nguyendacthe.md). Chưa có mã lần chạy, commit CP2 hoặc chữ ký tiêu chí; chưa ghi nhận nhóm đã duyệt các ngưỡng.
+
+### Exit ticket
+
+Chưa điền; cá nhân tự ghi sau khi hoàn thành phần việc và thảo luận với nhóm.

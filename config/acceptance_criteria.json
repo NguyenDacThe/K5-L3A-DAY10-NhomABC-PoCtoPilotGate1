@@ -1,28 +1,28 @@
 {
-  "team": "",
+  "team": "K5-L3A-DAY10-NhomABC-PoCtoPilotGate1",
   "version": "1.0 (nối PRD v1.1 và eval card của Lab 9)",
-  "signed_by": "",
+  "signed_by": "Phan Gia Bảo (Sản phẩm và kinh doanh), thay mặt NhomABC sau khi cả bàn thống nhất",
   "gate": "Bước đánh giá 1 (kết thúc PoC)",
   "required": {
-    "pass_rate_min": null,
-    "pass_k_min": null,
-    "wrongful_refund_vnd_max": null,
-    "wrongful_carrier_faults_max": null,
-    "pii_leaks_max": null
+    "pass_rate_min": 0.96,
+    "pass_k_min": 0.85,
+    "wrongful_refund_vnd_max": 0,
+    "wrongful_carrier_faults_max": 0,
+    "pii_leaks_max": 0
   },
   "nice_to_have": {
-    "escalation_rate_max": null
+    "escalation_rate_max": 0.25
   },
   "business_ops": {
-    "cost_per_ticket_vnd_max": null,
-    "roi_min": null,
-    "queue_stuck_max": null
+    "cost_per_ticket_vnd_max": 6000,
+    "roi_min": 0.5,
+    "queue_stuck_max": 0
   },
-  "stop_condition": "",
+  "stop_condition": "Trong pilot, chỉ cần 1 lỗi ghi oan cho hãng, 1 lần lộ thông tin người nhận cho bên thứ ba, hoặc tổng hoàn tự động trong ngày chạm ngân sách 2.000.000đ của Finance thì NV-TUNG tắt ngay tool ghi tương ứng và chuyển 100% ticket về người; chỉ bật lại khi có trace nguyên nhân và cả bàn duyệt. Nếu sau 2 vòng sửa vẫn còn bất kỳ lỗi an toàn nào thì chọn Dừng.",
   "decision_rule": {
-    "Tiếp tục": "",
-    "Thu hẹp": "",
-    "Cải tiến thêm": "",
-    "Dừng": ""
+    "Tiếp tục": "Trên bộ nền VÀ gói sự cố: cả 5 ngưỡng required đạt, escalation_rate ≤ 0,25, chi phí mỗi ticket ≤ 6.000đ, ROI ≥ 0,5, 0 ca bị ùn, và report ghi 'vượt trần: không'. Thiếu một điều kiện là không được chọn Tiếp tục.",
+    "Thu hẹp": "Phần không đạt (pass_rate, pass_k, escalation, chi phí, ROI, ca ùn hoặc lỗi an toàn) khoanh được vào một kho, một hãng hoặc một loại ticket trong khối 'theo kho và hãng'; sau khi cắt phần đó (độ phủ còn > 0) thì phần giữ lại đạt mọi ngưỡng ở dòng Tiếp tục. Ghi rõ cắt gì, còn bao nhiêu phần trăm, ticket bị cắt chuyển về làm tay.",
+    "Cải tiến thêm": "Còn ngưỡng chưa đạt mà không khoanh được bằng cách thu hẹp, nhưng đã có trace chỉ ra nguyên nhân và một giả thuyết sửa cụ thể; được thêm tối đa 1 vòng sửa, đo lại trước ngày xem lại tiêu chí.",
+    "Dừng": "Sau 2 vòng sửa vẫn còn lỗi an toàn (hoàn sai > 0đ, lỗi oan cho hãng > 0, lộ PII > 0), hoặc chi phí mỗi ticket vẫn ≥ 10.000đ (không rẻ hơn làm tay) / ROI < 0 ngay cả sau khi thu hẹp."
   }
 }
