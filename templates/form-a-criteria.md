@@ -48,12 +48,18 @@ trợ lý có đang gây thiệt hại cho bên ngoài LogiX không; không có 
 
 | | Offline, cho MỘT bước (câu 1.3) | Telemetry production (câu 1.4) |
 |---|---|---|
-| **Bước / hành vi được đo** | | |
-| **Thước đo** (một câu, có đơn vị) | | |
-| **Dữ liệu** (lấy ở đâu, bao nhiêu, ai gán nhãn) | | |
-| **Cách tính** (công thức, mẫu số, cách xử lý ca thiếu dữ liệu) | | |
+| **Bước / hành vi được đo** | Chọn phiên bản chính sách hoàn tiền tại bước `policy`, trước khi tính quyền lợi; chỉ đo bước chọn chính sách, không đo cả luồng. | |
+| **Thước đo** (một câu, có đơn vị) | `policy_version_error_rate`: tỉ lệ lần thực hiện bước chọn chính sách mà `policy_id` được chọn khác phiên bản có hiệu lực tại ngày vận hành giả lập, đơn vị %. | |
+| **Dữ liệu** (lấy ở đâu, bao nhiêu, ai gán nhãn) | Sau khi nhóm ký, commit và push tiêu chí, thu sự kiện `events[type="policy"].policy_id` từ `runs/<mã>/traces/<ticket_id>@<seed>.json` trên bộ nền 22 ticket × 5 seed (11, 22, 33, 44, 55), tối đa 110 trial. Nhãn chuẩn lấy từ `data/world.json`: ngày `as_of` và `policies[].policy_id/effective_from/effective_to`. Thông lập bảng nhãn theo ngày; Thể đối chiếu độc lập theo khoảng hiệu lực, không dùng cờ `index_active` hoặc kết quả agent làm nhãn. | |
+| **Cách tính** (công thức, mẫu số, cách xử lý ca thiếu dữ liệu) | Với mỗi trial, xác định duy nhất chính sách có `effective_from <= as_of <= effective_to`; `effective_to = null` nghĩa là chưa có ngày hết hiệu lực. Gọi N là số trial có đúng một sự kiện `policy`, có `policy_id` và có nhãn chuẩn duy nhất; E là số trial trong N có ID khác nhãn. Tỉ lệ = 100 × E/N %. Trial kết thúc hợp lệ trước bước này được đếm riêng là không tới bước, không coi là đúng/sai. Trace thiếu/hỏng, thiếu ID, có nhiều sự kiện `policy`, hoặc ngày không xác định được đúng một chính sách được đếm riêng là không đánh giá được và phải điều tra, không tính là đạt. Báo kèm N, E, số không tới bước, số không đánh giá được và tổng trial để thấy độ phủ; N = 0 thì ghi N/A, không ghi 0%. | |
 | **Khung thời gian / ngưỡng báo động** | (không áp dụng) | |
-| **Điểm mù** (thước đo này KHÔNG thấy gì) | | |
+| **Điểm mù** (thước đo này KHÔNG thấy gì) | Chọn đúng phiên bản chưa chứng minh tính tiền, phê duyệt, ghi lỗi hãng hoặc gửi dữ liệu đúng. Không phát hiện chính dữ liệu hiệu lực bị sai so với văn bản pháp lý; không đánh giá được bước chưa chạy hoặc thiếu trace. Bộ nền tại một ngày không chứng minh xử lý đúng ngày chuyển phiên bản. | |
+
+**Ghi chú câu 1.3 · Trương Văn Thông:** tại ngày mock `as_of = 2026-11-16`, nhãn chính sách là `REFUND-v3`
+(hiệu lực 2026-06-01–2026-11-30); từ 2026-12-01, bảng hiệu lực quy định `REFUND-v4`.
+Đây là đối chiếu dữ liệu để thiết kế thước đo, chưa phải kết quả chạy trợ lý. Dùng ngày trong dữ liệu giả lập,
+không thay bằng ngày máy. Thước đo bổ sung khả năng tìm nguyên nhân cho lỗi dùng chính sách hết hiệu lực trong
+PRD v1.1 Lab 9; không lấy số đo hoặc ngưỡng Lab 9 làm kết quả Day 10. Cột telemetry câu 1.4 do Bách phụ trách.
 
 **Ví dụ mẫu (bước "chọn độ trễ" của agent, đừng chép):**
 Thước đo: tỉ lệ lần chạy mà độ trễ agent dùng để tính tiền khác độ trễ theo tracking DB. Dữ liệu: sự kiện `proposal.delay_days_used`

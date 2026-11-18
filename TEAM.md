@@ -44,20 +44,34 @@ Ghi `members` trong `submission/submission.json` theo dạng `"HoVaTen-MSSV"`, k
 
 Mỗi thành viên tự viết một mục bên dưới (chép mẫu, đổi tiêu đề thành họ tên không dấu và MSSV, ví dụ `## NguyenVanAn-20241234`).
 
-## HoVaTen-MSSV
+## TruongVanThong-2A202603560
 
 ### Phần việc phụ trách
 
-Vai trong bàn; câu nào của đề, mục nào của phiếu A/B/C, file nào (`lab10/guards.py`, `config/operating_gates.json`, …).
+Kỹ sư cổng · kiểm thử và theo dõi. Trong CP2, cầm bút Phiếu A mục A2, câu 1.3: thiết kế offline metric cho một bước của agent, phối hợp Thể rà soát. Phạm vi cập nhật lần này chỉ là CP2; các nhiệm vụ CP3–CP5 trong bảng phân công chưa được ghi nhận là đã làm.
 
 ### Đóng góp cụ thể
 
-...
+- Đã điền cột Offline của A2 câu 1.3 trong `templates/form-a-criteria.md`, chọn bước chọn phiên bản chính sách và đặt tên thước đo `policy_version_error_rate` (đơn vị %).
+- Đã chỉ rõ nguồn trace, trường cần lấy, bộ nền 22 ticket × 5 seed, nguồn nhãn độc lập theo ngày hiệu lực và phân công Thông lập nhãn, Thể đối chiếu. Việc đối chiếu của Thể đang chờ thực hiện.
+- Đã viết công thức E/N, quy tắc mẫu số, cách xử lý trial không tới bước, dữ liệu không đánh giá được và trường hợp N = 0; yêu cầu báo số ca và độ phủ để tránh hiểu nhầm dữ liệu bị thiếu là kết quả tốt.
+- Đã nêu điểm mù: đúng phiên bản chưa bảo đảm đúng tiền/quyền/dữ liệu gửi ngoài; ngày hiệu lực trong DB có thể sai và bộ nền một ngày chưa kiểm được ngày chuyển chính sách.
+- Đã đối chiếu tĩnh dữ liệu mock: `as_of = 2026-11-16` thuộc hiệu lực `REFUND-v3`; mốc bắt đầu `REFUND-v4` là 2026-12-01. Đây là ví dụ xác định nhãn, chưa phải số đo agent.
+- A2 câu 1.4 do Bách phụ trách; ngưỡng và quyết định chung do nhóm thống nhất. Chưa ký tiêu chí, chưa sửa code cổng/monitor và chưa chạy `lab10.eval`, `lab10.trace` hoặc `lab10.grade` trong lần làm CP2 này.
+
+### Phần dùng AI
+
+Dùng Codex đọc README, CHECKPOINTS, TEAM, đề bài, tài liệu Lab 9 và cấu trúc code/dữ liệu Day 10; hỗ trợ soạn thước đo câu 1.3, soát công thức, điểm mù và cập nhật mục cá nhân. Nội dung cần được Thông rà soát và trao đổi với Thể trước khi nhóm chốt tiêu chí; không coi nội dung AI soạn là phê duyệt của cả nhóm.
 
 ### Bằng chứng
 
-Mã commit, mã lần chạy (`runs/<mã>`), dòng trong phiếu.
+- Sản phẩm CP2: [Phiếu A · A2, cột Offline câu 1.3](templates/form-a-criteria.md#a2), đủ bước đo, thước đo, dữ liệu, công thức và điểm mù.
+- Căn cứ dữ liệu: `data/world.json`, mục `as_of` và `policies`; cấu trúc sự kiện `policy` trong `lab10/agent.py`; quy ước file trace trong `lab10/eval.py`. Chỉ đọc các file này.
+- Kiểm tra môi trường theo CP1: `python -m unittest discover -s tests -v`, Python 3.11.9, ngày 18/11/2026 (GMT+7): **13 tests, OK**. Đây là kiểm tra công khai, không phải báo cáo đánh giá hay bằng chứng đạt Gate 1.
+- Chưa tạo commit hoặc mã lần chạy đánh giá cho phần CP2 này. A5 và việc ký, commit, push tiêu chí do trưởng nhóm thực hiện sau khi cả nhóm thống nhất.
 
 ### Exit ticket
 
-Một điều học được, một điều còn chưa chắc.
+- Điều học được ở CP2: thước đo cho một bước cần có nhãn độc lập và mẫu số rõ ràng; loại ca thiếu dữ liệu mà không báo độ phủ có thể khiến tỉ lệ trông tốt hơn thực tế.
+- Điều còn chưa chắc: ngày hiệu lực trong dữ liệu mock có phản ánh đúng quy trình cập nhật chính sách ngoài thực tế hay không; cần nhóm xác minh nguồn và người chịu trách nhiệm trước pilot.
+- Đây là ghi chú học tập CP2; exit ticket cuối buổi sẽ được cập nhật khi hoàn thành CP5.
