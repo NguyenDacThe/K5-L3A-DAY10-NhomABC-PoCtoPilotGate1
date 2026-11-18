@@ -18,7 +18,7 @@
 | Demo/phản biện trước lớp | **Chưa xác nhận:** đã có kịch bản5phút, câu hỏi phản biện và lệnh; không ghi thành đã trình bày trước Coach/bàn khác |
 | Gom bản cuối và manifest | Chạy collect sau cập nhật tài liệu; kết quả chính thức xem evidence/submission-check.txt |
 | Kiểm secret trong phần nộp | Không có file .env/API-key/mật khẩu được đưa vào gói; đối chiếu danh sách file trước commit |
-| Lưu và đẩy bản cuối | Đang chuẩn bị commit/push CP5; sẽ ghi kết quả xác nhận sau thao tác thực tế |
+| Lưu và đẩy bản cuối | Đã commit `192bf0ba5f91023e59fb4f4e941529f6f68323cc` và push lên `origin/main`; xác minh bằng `git ls-remote origin refs/heads/main` trả đúng mã này |
 | Repo Private, quyền Read của team chấm | **Chưa xác minh qua công cụ hiện có:** trưởng nhóm kiểm Settings và đúng tài khoản Coach cung cấp; không tự nhận đã mời |
 | Gửi link cho Coach/team chấm | Có [nội dung sẵn để gửi](submission-message.md); chưa gửi qua công cụ nhắn tin/email |
 | LMS từng người | **Chưa xác nhận:** Thể, Thông, Bảo, Bách phải dùng tài khoản cá nhân nộp cùng link repo; không tự ghi đã nộp |

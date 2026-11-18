@@ -12,13 +12,14 @@
   "submission_components_complete": true,
   "submission_manifest_files": 22,
   "protected_files_unchanged": true,
-  "credential_scan_files": 210,
+  "credential_scan_files": 214,
   "credential_signature_matches": 0,
   "external_status": {
     "class_demo": "not_confirmed",
     "individual_exit_review": "not_confirmed",
     "lms_submissions": "not_confirmed",
     "repo_privacy_and_grader_invite": "not_confirmed",
-    "push_cp5": "pending"
+    "push_cp5": "verified_origin_main",
+    "pushed_cp5_commit": "192bf0ba5f91023e59fb4f4e941529f6f68323cc"
   }
 }
