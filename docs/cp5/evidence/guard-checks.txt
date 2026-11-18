@@ -1,0 +1,8 @@
+PASS: repeated write leaves one new refund row
+PASS: cross-owner or unrelated approval writes no money O-1001
+PASS: cross-owner or unrelated approval writes no money O-1008
+PASS: effective date wins over stale policy index
+PASS: repeated parcel fault creates no duplicate row
+PASS: carrier payload excludes free text and nested contact data
+PASS: missing recorded cause creates no carrier fault
+PASS: next carrier strike above daily cap is escalated without a write

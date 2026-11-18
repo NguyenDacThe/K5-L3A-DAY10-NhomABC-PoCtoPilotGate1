@@ -1,0 +1,44 @@
+KIỂM BÀI NỘP (submission/) · đây là kiểm ĐỦ THÀNH PHẦN, không phải chấm điểm
+
+  [ĐỦ  ] submission/submission.json đọc được
+  [ĐỦ  ] tên bàn (`team`): K5-L3A-DAY10-NhomABC-PoCtoPilotGate1
+  [ĐỦ  ] thành viên (`members`): 4 người
+  [ĐỦ  ] số thẻ đã bốc (`incident`): S7
+  [ĐỦ  ] quyết định v1 (`decision_v1`): Cải tiến thêm
+  [ĐỦ  ] quyết định v2 (`decision_v2`): Cải tiến thêm
+  [ĐỦ  ] ba dòng bắt buộc · giả định về môi trường (`three_lines.environment_assumption`)
+  [ĐỦ  ] ba dòng bắt buộc · giảm hay ngăn, vì sao (`three_lines.reduce_or_prevent`)
+  [ĐỦ  ] ba dòng bắt buộc · cần đo lại gì trong pilot thật (`three_lines.measure_in_pilot`)
+  [ĐỦ  ] có file submission/code/guards_round1.py
+  [ĐỦ  ] có file submission/code/guards.py
+  [ĐỦ  ] có file submission/code/monitors.py
+  [ĐỦ  ] có file submission/config/operating_gates.round1.json
+  [ĐỦ  ] có file submission/config/operating_gates.json
+  [ĐỦ  ] có file submission/config/switches.json
+  [ĐỦ  ] có file submission/config/acceptance_criteria.json
+  [ĐỦ  ] có file submission/config/acceptance_criteria.lock
+  [ĐỦ  ] có file submission/config/round1.lock
+  [ĐỦ  ] tiêu chí trong bài nộp khớp hash đã ký (36863666)
+  [ĐỦ  ] tiêu chí giữ nguyên từ commit 'Sign acceptance criteria'
+  [ĐỦ  ] cổng vòng 1 trong bài nộp khớp bản đã chốt (0580db3e)
+  [ĐỦ  ] config cổng (operating_gates.json) dùng được
+  [ĐỦ  ] cổng con người đã điền: PIC, người duyệt, kênh báo tin, điều kiện dừng
+  [ĐỦ  ] có báo cáo tự kiểm tra (runs/grade-report.json)
+  [ĐỦ  ] báo cáo là của đúng thẻ đã bốc (S7)
+  [ĐỦ  ] mốc base: mã lần chạy R-S7-before-20261118-173555-d5f014
+  [ĐỦ  ] mốc prepared: mã lần chạy R-S7-prepared-20261118-173555-d5f014
+  [ĐỦ  ] mốc after: mã lần chạy R-S7-after-20261118-173555-d5f014
+  [ĐỦ  ] báo cáo được chạy trên đúng code và config hiện tại
+  [ĐỦ  ] báo cáo ghi nhận tiêu chí đã ký, còn nguyên
+  [ĐỦ  ] phiếu docs/form-a-criteria.md đã điền
+  [ĐỦ  ] phiếu docs/form-a-criteria.md: mọi mục đều đã điền
+  [ĐỦ  ] phiếu docs/form-b-evaluation-gates.md đã điền
+  [ĐỦ  ] phiếu docs/form-b-evaluation-gates.md: mọi mục đều đã điền
+  [ĐỦ  ] phiếu docs/form-c-incident.md đã điền
+  [ĐỦ  ] phiếu docs/form-c-incident.md: mọi mục đều đã điền
+  [ĐỦ  ] dòng 'Thẻ đã bốc' trong form-c-incident.md: S7
+  [ĐỦ  ] lần đánh giá đầu tiên (submission/runs/journal.jsonl): 2026-11-18T15:29:20; ký: 2026-11-18T15:15:34; commit ký: 2026-11-18T15:29:04
+  [ĐỦ  ] có submission/manifest.json
+  [ĐỦ  ] manifest khớp các file trong submission/
+
+ĐỦ THÀNH PHẦN. Đẩy lên repo của bàn (tên đúng dạng K5_Day10_3A_<TenNhom> hoặc K5_Day10_3B_<TenNhom>, ví dụ K5_Day10_3A_TenNhom; TenNhom không dấu, không cách) rồi gửi link repo cho team chấm theo cách Lab Coach hướng dẫn.

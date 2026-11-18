@@ -22,7 +22,7 @@ số thẻ của bàn; các phần khác để trống.
 
 ---
 
-**Bản tích hợp CP4 trên main:** grade `R-S7-grade-20261118-171745-d5f014`. C12 đã điền theo report; kết quả tổng **FAIL do integrity**, không ghi thành đạt toàn bộ. [Bằng chứng tích hợp](../docs/cp4-integration/README.md).
+**Mốc tích hợp CP4 trước kiểm cuối CP5:** grade `R-S7-grade-20261118-171745-d5f014`. C12 đã điền theo report; kết quả tổng **FAIL do integrity**, không ghi thành đạt toàn bộ. [Bằng chứng tích hợp](../docs/cp4-integration/README.md).
 
 <a id="c0"></a>
 
@@ -57,6 +57,11 @@ Bản report, trace chọn lọc và nhật ký được lưu ở [bằng chứn
 | R-S7-after-20261118-171745-d5f014 | S7 · after | Grade sau tích hợp, không thêm thay đổi | 1.0 [1;1] · 1.0 | 0 · 0 · 0 | 0 | Visible/regression/monitor đạt; integrity chưa đạt |
 
 Grade cuối `R-S7-grade-20261118-171745-d5f014` có4mục đạt (criteria, visible, regression, monitor), hidden chưa có, integrity thiếu28file của S1–S6/S8. Lượt đầu `R-S7-grade-20261118-163825-0892bd` được giữ làm mốc nhận thẻ trước sửa; không thay bằng prepared tái dựng ở lượt cuối.
+
+
+### Ki?m cu?i CP5 sau ch?y th? demo
+
+Grade `R-S7-grade-20261118-173554-d5f014`, ch? th? S7; ba m?c base/prepared/after l?n l??t `R-S7-before-20261118-173555-d5f014`, `R-S7-prepared-20261118-173555-d5f014`, `R-S7-after-20261118-173555-d5f014`. S7 base pass_rate/pass^5=0.25, PII30; prepared/after 1.0, PII0. N?n after110/110. Kh?ng s?a code/config trong demo; grade t?ng FAIL do integrity, monitor ?? ??t. [Log v? metadata CP5](../docs/cp5/README.md).
 
 <a id="c1"></a>
 
@@ -541,14 +546,14 @@ Phát triển từ phần Bách; cập nhật bằng report `R-S7-grade-20261118
 |---|---|
 | Commit ký tiêu chí | **60fbf2c**, Sign acceptance criteria; hash file36863666… giống v1 |
 | Hash chốt vòng1 | **0580db3eec03517dff170d3175fa5dcf3bd7d546a3482b840bf5c60fc175b448**, 8ký tự đầu0580db3e, giống v1 |
-| Mã lần chạy S7 | Base **R-S7-before-20261118-171745-d5f014**; prepared **R-S7-prepared-20261118-171745-d5f014**; after **R-S7-after-20261118-171745-d5f014** |
-| Grade / hồi quy nền | **R-S7-grade-20261118-171745-d5f014**; nền after **R-base-after-20261118-171744-d5f014** |
+| Mã lần chạy S7 | Base **R-S7-before-20261118-173555-d5f014**; prepared **R-S7-prepared-20261118-173555-d5f014**; after **R-S7-after-20261118-173555-d5f014** |
+| Grade / hồi quy nền | **R-S7-grade-20261118-173554-d5f014**; nền after **R-S7-grade-20261118-173554-d5f014 (mục after.base)** |
 | Còn vượt trần trong report? | Không: ops.violations rỗng, mọi ngưỡng đã ký đạt trên nền và S7. Tuy nhiên integrity vẫn❌ vì thiếu28file không được giao; kiểm tra tải dồn B7.6 chưa được giải quyết. Không đổi FAIL thành PASS vì riêng phần số tốt. |
 | Kho/hãng xấu nhất và ảnh hưởng? | Base S7 HCM/VNX lộ15lần, HN/GHSH10, DN/DNB5; after các phân khúc đều PII0/pass1.0. Chi phí S7 cao nhất HN2102đ theo kho; tổng S75005đ. Nền nhóm kho? vẫn10359đ>làm tay10000đ và không bị tính vào đếm kho đắt, là rủi ro theo dõi C10. Nhìn riêng các điểm này vẫn chưa chọn Tiếp tục. |
 | Quyết định | **Cải tiến thêm** |
-| Bằng chứng1 | R-S7-after-20261118-171745-d5f014: pass_rate1.0 CI[1;1], pass^5=1, hoàn sai0, lỗi oan0, PII0, coverage1.0; prepared đã chặn30lần lộ từ base. |
-| Bằng chứng2 | R-S7-after-20261118-171745-d5f014: chi phí5005đ<=6000đ, ROI1.0>=0.5, escalation0<=0.25, ca ùn0. Nền:4456đ, ROI1.24, escalation0.2273, ca ùn0; không ca mới hỏng. |
-| Bằng chứng3 | R-S7-grade-20261118-171745-d5f014: hai monitor✅, schema base nền0.509091/S70.875 và contact0/S70.25, prepared/after0/0. Chỉ integrity đỏ. B7.6/peak-queue-check.json còn7ca quá SLA với1người hoặc1ca với2người khi14ca tới cùng lúc, chưa có phương án mới chứng minh đạt. |
+| Bằng chứng1 | R-S7-after-20261118-173555-d5f014: pass_rate1.0 CI[1;1], pass^5=1, hoàn sai0, lỗi oan0, PII0, coverage1.0; prepared đã chặn30lần lộ từ base. |
+| Bằng chứng2 | R-S7-after-20261118-173555-d5f014: chi phí5005đ<=6000đ, ROI1.0>=0.5, escalation0<=0.25, ca ùn0. Nền:4456đ, ROI1.24, escalation0.2273, ca ùn0; không ca mới hỏng. |
+| Bằng chứng3 | R-S7-grade-20261118-173554-d5f014: hai monitor✅, schema base nền0.509091/S70.875 và contact0/S70.25, prepared/after0/0. Chỉ integrity đỏ. B7.6/peak-queue-check.json còn7ca quá SLA với1người hoặc1ca với2người khi14ca tới cùng lúc, chưa có phương án mới chứng minh đạt. |
 | Khớp decision_rule nào? | **Cải tiến thêm**: SLA/hàng chờ trên kiểm tra bất lợi còn chưa đạt, chưa chứng minh phạm vi hẹp giải quyết được; nguyên nhân thiếu công suất/điều phối, có giả thuyết, PIC và hạn. Lỗi integrity còn cần Coach làm rõ trước khi xác nhận hồ sơ đạt. Không nói ngưỡng số trên bộ S7 đang trượt khi report thực tế đều đạt. |
 | Nếu Thu hẹp | Không chọn: không có report phương án hẹp chứng minh an toàn, đủ độ phủ và chi phí kể cả luồng tay; cắt kho không sửa cơ chế gửi dữ liệu. |
 | Giả thuyết/hạn Cải tiến thêm | Bách/Hạnh/Tùng kiểm cách phân tải/nhận theo công suất và nguồn lực dự phòng; Bảo kiểm tổng chi phí, Thông kiểm stress/monitor, Thể tích hợp và hỏi Coach về integrity. Theo tiêu chí tối đa2vòng sửa tổng cộng, không tự đặt lại bộ đếm khi đổi nhánh; trước **2026-11-28** phải chứng minh đạt, hết hạn/giới hạn vẫn chưa đạt thì Dừng. |
@@ -559,7 +564,7 @@ Phát triển từ phần Bách; cập nhật bằng report `R-S7-grade-20261118
 ### Chỉ ở v2
 
 - **Giữ Cải tiến thêm so với v1.** Vòng2 đã có monitor và giữ S7/nền sạch, nhưng chưa có phương án đạt SLA tải dồn và xác nhận integrity. Không lấy monitor✅ làm bằng chứng đã giải quyết mọi rủi ro vận hành.
-- Report **R-S7-grade-20261118-171745-d5f014** còn đỏ integrity; mọi file hiện có khớp hash, danh sách lỗi chỉ là S1–S6/S8 vắng mặt. Hidden chưa có, không ghi là đã đạt hidden. Tổng verdict **FAIL** được giữ nguyên.
+- Report **R-S7-grade-20261118-173554-d5f014** còn đỏ integrity; mọi file hiện có khớp hash, danh sách lỗi chỉ là S1–S6/S8 vắng mặt. Hidden chưa có, không ghi là đã đạt hidden. Tổng verdict **FAIL** được giữ nguyên.
 - Prepared **0580db3e** đã bảo vệ30thông báo PII trước biết S7. Phần thêm vòng2 là telemetry, hai monitor và quy trình/hồ sơ; không ghi thành vừa sửa xong G3 mới có PII0.
 - Report ghi **“Được phép cân nhắc Tiếp tục”** về ngưỡng số trên bộ đã chạy; đó không phải yêu cầu chọn Tiếp tục hoặc chứng nhận integrity/nguồn lực thật. Quyết định bảo thủ dựa thêm kiểm tải định lượng còn chưa đạt và điều kiện vận hành chưa xác minh.
 - Chưa đo log cuộc gọi/sử dụng dữ liệu thật của hãng, đồng thuận người nhận, mapping nguồn, tải/chi phí thực, đường xuất khác và hidden; vì vậy chưa mở pilot thật.
@@ -571,3 +576,5 @@ Phát triển từ phần Bách; cập nhật bằng report `R-S7-grade-20261118
 3. Trước bước đánh giá2 cần đo tải dồn và SLA hàng chờ, tổng chi phí kể cả luồng tay, PII trong dữ liệu nguồn/đầu ra bằng kiểm mẫu và phản ánh, độ phủ và lỗi telemetry, cùng xác nhận người trực, kênh báo và quy trình đối tác thực tế.
 
 Ba câu được chép nguyên vào submission/submission.json. Kiểm đủ thành phần không đồng nghĩa grade PASS hoặc đã được phê duyệt pilot.
+
+**Kiểm cuối CP5:** report trên được chạy lại sau chạy thử demo kỹ thuật; không thay code/config, tiêu chí hoặc snapshot. Ba ca S7-01/S7-20/S7-05 đã kiểm ở ba mốc, hai ticket hiểm B7.3 không phát sinh ghi sai. Demo trước lớp và nộp LMS chưa được xác nhận; xem checklist CP5.

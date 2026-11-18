@@ -1,0 +1,103 @@
+{
+  "incident": "S7",
+  "grade_id": "R-S7-grade-20261118-173554-d5f014",
+  "run_ids": {
+    "before": "R-S7-before-20261118-173555-d5f014",
+    "prepared": "R-S7-prepared-20261118-173555-d5f014",
+    "after": "R-S7-after-20261118-173555-d5f014"
+  },
+  "grade_exit_code": 1,
+  "grade_verdict": "FAIL",
+  "checks": {
+    "integrity": false,
+    "criteria": true,
+    "visible": true,
+    "hidden": null,
+    "regression": true,
+    "monitor": true
+  },
+  "code_hash": "d5f0147ab99a227b9622480290dcae1b1775a82bc9e7f67ab844af17b8ac3014",
+  "criteria_hash": "36863666b80ee368aa62fec1a3a1f73290a88066d5e86d2b97177648493b04ee",
+  "checkpoint_hash": "0580db3eec03517dff170d3175fa5dcf3bd7d546a3482b840bf5c60fc175b448",
+  "public_tests": 13,
+  "guard_checks": 8,
+  "monitor_tests": 9,
+  "privacy_boundary_checks": {
+    "count": 5,
+    "assumption_counterexamples": 1
+  },
+  "rehearsal": {
+    "three_stage_tickets": [
+      "S7-01",
+      "S7-20",
+      "S7-05"
+    ],
+    "adversarial_tickets": 2,
+    "settings_changed": false,
+    "live_class_demo_confirmed": false
+  },
+  "protected_hashes_before": {
+    "lab10/guards.py": "21cd697aea175e8642891bb664fb3f070be7b1450179b54d573bf21ce8a00ad9",
+    "lab10/monitors.py": "fbb2c06ed799c4d5ffde0622df6a8026cf9116d49713fc2bef379da66d50fd3f",
+    "lab10/grade.py": "6b04b587da14a34af93a97dec5ea7255f9db662a2a3dd2fac67f4a1bd9281642",
+    "lab10/MANIFEST.json": "87e2b259faab511bbf02e2458814c340f0647723e0ff0296cd4f0a659a1a019f",
+    "config/operating_gates.json": "a0809fdbb7327d0aa4713d1fac65a7ff3e18a1d56161bb5f26fc39e805df523b",
+    "config/switches.json": "9fcdb809437346392c6ded442f4f562c357ef89a7688a454505f94bcd969866b",
+    "config/acceptance_criteria.json": "36863666b80ee368aa62fec1a3a1f73290a88066d5e86d2b97177648493b04ee",
+    "config/acceptance_criteria.lock": "9947b557b7b7728dc59356ca09374d330731844a12ddc2f23a3282c2ce12484e",
+    "lab10/guards_round1.py": "590d0b813a86199c28dad7e7e215371920c290cd2f178607b0becade45079d9e",
+    "config/operating_gates.round1.json": "a0809fdbb7327d0aa4713d1fac65a7ff3e18a1d56161bb5f26fc39e805df523b",
+    "config/round1.lock": "0b5dac4abe5e1b567522d2db2536147bdc2163069c80b9f4007ea668ac374f05",
+    "incidents/S7/card.md": "96455cf8dafa4a1483de66949f071534809a76b78e10e01617f5aa97bef08ee4",
+    "incidents/S7/card.json": "a043a4bd86184db147532d6732f4863dc8ed259196cb2cb814fa6edcda526c43",
+    "incidents/S7/tickets.jsonl": "8b9c9c4a6097ea9547ba538c8faa2449dae8249c9cf0312bd30aac844ca82df9",
+    "incidents/S7/world_patch.json": "b895fa4a8d620e44e87da521929c9a5fca5200d12bcd110a0f48e002429fc657"
+  },
+  "protected_hashes_after": {
+    "lab10/guards.py": "21cd697aea175e8642891bb664fb3f070be7b1450179b54d573bf21ce8a00ad9",
+    "lab10/monitors.py": "fbb2c06ed799c4d5ffde0622df6a8026cf9116d49713fc2bef379da66d50fd3f",
+    "lab10/grade.py": "6b04b587da14a34af93a97dec5ea7255f9db662a2a3dd2fac67f4a1bd9281642",
+    "lab10/MANIFEST.json": "87e2b259faab511bbf02e2458814c340f0647723e0ff0296cd4f0a659a1a019f",
+    "config/operating_gates.json": "a0809fdbb7327d0aa4713d1fac65a7ff3e18a1d56161bb5f26fc39e805df523b",
+    "config/switches.json": "9fcdb809437346392c6ded442f4f562c357ef89a7688a454505f94bcd969866b",
+    "config/acceptance_criteria.json": "36863666b80ee368aa62fec1a3a1f73290a88066d5e86d2b97177648493b04ee",
+    "config/acceptance_criteria.lock": "9947b557b7b7728dc59356ca09374d330731844a12ddc2f23a3282c2ce12484e",
+    "lab10/guards_round1.py": "590d0b813a86199c28dad7e7e215371920c290cd2f178607b0becade45079d9e",
+    "config/operating_gates.round1.json": "a0809fdbb7327d0aa4713d1fac65a7ff3e18a1d56161bb5f26fc39e805df523b",
+    "config/round1.lock": "0b5dac4abe5e1b567522d2db2536147bdc2163069c80b9f4007ea668ac374f05",
+    "incidents/S7/card.md": "96455cf8dafa4a1483de66949f071534809a76b78e10e01617f5aa97bef08ee4",
+    "incidents/S7/card.json": "a043a4bd86184db147532d6732f4863dc8ed259196cb2cb814fa6edcda526c43",
+    "incidents/S7/tickets.jsonl": "8b9c9c4a6097ea9547ba538c8faa2449dae8249c9cf0312bd30aac844ca82df9",
+    "incidents/S7/world_patch.json": "b895fa4a8d620e44e87da521929c9a5fca5200d12bcd110a0f48e002429fc657"
+  },
+  "missing_integrity_files": [
+    "incidents/S1/card.json",
+    "incidents/S1/card.md",
+    "incidents/S1/tickets.jsonl",
+    "incidents/S1/world_patch.json",
+    "incidents/S2/card.json",
+    "incidents/S2/card.md",
+    "incidents/S2/tickets.jsonl",
+    "incidents/S2/world_patch.json",
+    "incidents/S3/card.json",
+    "incidents/S3/card.md",
+    "incidents/S3/tickets.jsonl",
+    "incidents/S3/world_patch.json",
+    "incidents/S4/card.json",
+    "incidents/S4/card.md",
+    "incidents/S4/tickets.jsonl",
+    "incidents/S4/world_patch.json",
+    "incidents/S5/card.json",
+    "incidents/S5/card.md",
+    "incidents/S5/tickets.jsonl",
+    "incidents/S5/world_patch.json",
+    "incidents/S6/card.json",
+    "incidents/S6/card.md",
+    "incidents/S6/tickets.jsonl",
+    "incidents/S6/world_patch.json",
+    "incidents/S8/card.json",
+    "incidents/S8/card.md",
+    "incidents/S8/tickets.jsonl",
+    "incidents/S8/world_patch.json"
+  ]
+}

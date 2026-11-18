@@ -1,0 +1,24 @@
+{
+  "team_members": [
+    "NguyenDacThe-2A202603529",
+    "TruongVanThong-2A202603560",
+    "PhanGiaBao-2A202603562",
+    "NguyenTuanBach-2A202603596"
+  ],
+  "source_code_hash": "d5f0147ab99a227b9622480290dcae1b1775a82bc9e7f67ab844af17b8ac3014",
+  "incident": "S7",
+  "grade_id": "R-S7-grade-20261118-173554-d5f014",
+  "grade_verdict": "FAIL",
+  "submission_components_complete": true,
+  "submission_manifest_files": 22,
+  "protected_files_unchanged": true,
+  "credential_scan_files": 210,
+  "credential_signature_matches": 0,
+  "external_status": {
+    "class_demo": "not_confirmed",
+    "individual_exit_review": "not_confirmed",
+    "lms_submissions": "not_confirmed",
+    "repo_privacy_and_grader_invite": "not_confirmed",
+    "push_cp5": "pending"
+  }
+}

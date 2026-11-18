@@ -1,0 +1,10 @@
+test_benign_number_does_not_block_a_valid_notice (__main__.PrivacyBoundary.test_benign_number_does_not_block_a_valid_notice) ... ok
+test_new_telemetry_contains_no_rejected_keys_or_values (__main__.PrivacyBoundary.test_new_telemetry_contains_no_rejected_keys_or_values) ... ok
+test_no_valid_fault_means_no_notice (__main__.PrivacyBoundary.test_no_valid_fault_means_no_notice) ... ok
+test_trusted_fields_are_an_explicit_external_assumption (__main__.PrivacyBoundary.test_trusted_fields_are_an_explicit_external_assumption) ... ok
+test_untrusted_payload_cannot_replace_db_fields (__main__.PrivacyBoundary.test_untrusted_payload_cannot_replace_db_fields) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.008s
+
+OK

@@ -1,195 +1,116 @@
-# Team
+# TEAM · NhomABC
 
-## Thông tin nhóm
+## Thông tin và thành viên
 
-- Tên nhóm (`TenNhom`, không dấu, không khoảng trắng): NhomABC
-- Lớp: `L3A`
-- Repo của bàn: https://github.com/NguyenDacThe/K5-L3A-DAY10-NhomABC-PoCtoPilotGate1.git
-- Thẻ sự cố đã bốc (S1–S8): S7
-
-## Thành viên
-
-Họ tên đầy đủ và MSSV của **mọi** thành viên; thêm dòng nếu cần. Vai: Kỹ sư cổng · Sản phẩm và kinh doanh · Vận hành và pháp lý (README mục 3, phút 0–15).
+- Tên nhóm: `NhomABC` · Lớp: `L3A`.
+- Repo: https://github.com/NguyenDacThe/K5-L3A-DAY10-NhomABC-PoCtoPilotGate1
+- Thẻ được giao: **S7**. Chỉ dùng `incidents/S7/`; không lấy hoặc làm thẻ khác.
+- Tài liệu chung Lab 9: [PRD v1.1](docs/lab9/PRD_v1.1.md), [eval card](docs/lab9/eval_card.md); [nguồn và giới hạn](docs/lab9/README.md).
 
 | STT | Họ và tên | MSSV | Vai | Trưởng nhóm |
-| --: | --------- | ---- | --- | :---------: |
-|   1 | Nguyễn Đắc Thể | 2A202603529 | Kỹ sư cổng · điều phối | Có |
-|   2 | Trương Văn Thông | 2A202603560 | Kỹ sư cổng · kiểm thử và theo dõi |     |
-|   3 | Phan Gia Bảo | 2A202603562 | Sản phẩm và kinh doanh |     |
-|   4 | Nguyễn Tuấn Bách | 2A202603596 | Vận hành và pháp lý |     |
+|---:|---|---|---|:---:|
+| 1 | Nguyễn Đắc Thể | 2A202603529 | Kỹ sư cổng, điều phối và tích hợp | Có |
+| 2 | Trương Văn Thông | 2A202603560 | Kiểm thử, trace và monitor | |
+| 3 | Phan Gia Bảo | 2A202603562 | Sản phẩm và kinh doanh | |
+| 4 | Nguyễn Tuấn Bách | 2A202603596 | Vận hành và pháp lý | |
 
-Ghi `members` trong `submission/submission.json` theo dạng `"HoVaTen-MSSV"`, khớp bảng trên.
+## Hồ sơ chung cuối buổi
 
-## Tài liệu chung từ Lab 9
+| Mốc | Bằng chứng |
+|---|---|
+| Ký tiêu chí trước đánh giá | `60fbf2c`; signed_at `2026-11-18T15:15:34`; hash `36863666…`; không sửa sau ký |
+| Chốt vòng 1 | Checkpoint `0580db3e`; hai snapshot và `round1.lock` còn nguyên |
+| Quyết định v1 và v2 | **Cải tiến thêm**; xem [B8](templates/form-b-evaluation-gates.md#b8) và [C12](templates/form-c-incident.md#c12) |
+| Grade sau chạy thử demo CP5 | `R-S7-grade-20261118-173554-d5f014`; S7 after 40/40, nền 110/110, không hồi quy; không có PII trên mẫu after |
+| Trạng thái grade | Criteria/visible/regression/monitor đạt; tổng **FAIL** vì 28 đường dẫn thẻ không được giao vắng mặt. Mọi file hiện có khớp hash; không sửa grader/manifest để làm xanh |
+| CP5 | Đã chuẩn bị demo, chạy thử kỹ thuật, soát checklist và gom hồ sơ; xem [checklist cuối](docs/cp5/checklist.md) |
 
-- Chọn bộ tài liệu của Nguyễn Đắc Thể trong repo `K5-L3A-DAY09-NguyenDacThe-2A202603529-EvaluationandFailureAnalysis`.
-- Tài liệu chính: [PRD v1.1](docs/lab9/PRD_v1.1.md).
-- Tài liệu đi kèm theo yêu cầu Day 10: [eval card](docs/lab9/eval_card.md).
-- Nguồn, phạm vi sử dụng và giới hạn: [ghi chú tham chiếu](docs/lab9/README.md).
-
-## Phân công từ CP1
-
-| Thành viên | CP2 · Phiếu A | CP3 · Phiếu B | CP4–CP5 · Sự cố và nộp bài |
-|---|---|---|---|
-| Nguyễn Đắc Thể | Cùng Thông thiết kế chỉ số offline A2; điều phối soát tiêu chí, ký và push sau khi cả nhóm thống nhất | Chạy baseline, đọc gate; code cổng trong `lab10/guards.py` (B1, B7.1); chốt vòng 1 sau khi nhóm soát | Sửa cổng theo nguyên nhân, chạy báo cáo ba mốc, điều phối demo và đẩy bài |
-| Trương Văn Thông | Cầm bút A2 câu 1.3: chọn một bước, dữ liệu, công thức và điểm mù | Dò trace T-002@55 và B2; kiểm thử B7.2–B7.3 cùng Bách; kiểm tra hồi quy | Dò trace sự cố, thêm chỉ số trong `lab10/monitors.py`, ghi bằng chứng kiểm thử và C8 |
-| Phan Gia Bảo | Cầm bút A1 câu 1.1, A4 và config tiêu chí; tổng hợp A3 cả nhóm, ghi A5 sau ký | Bản đồ dữ liệu/drift B3; cổng `business` và B7.4; tổng hợp quyết định v1 B8 | Phân tích chi phí/ROI/phạm vi, tổng hợp C12 và quyết định v2 theo bằng chứng |
-| Nguyễn Tuấn Bách | A1 câu 1.2, A2 câu 1.4; soát tác động lên người duyệt và bên thứ ba | HAZOP B4, checklist B5; config `operations`/`legal`; runbook B7.5–B7.6 | Runbook C11, risk register, gom bài và `submission/submission.json`, kiểm đủ thành phần |
-
-- Cả nhóm cùng làm pre-mortem B6, soát A3–A4 và thống nhất mọi ngưỡng, quyết định v1/v2; người cầm bút không tự quyết thay nhóm.
-- CP2 chỉ viết tiêu chí; sau khi ký, commit và push thành công mới chạy đánh giá. CP1 chưa sửa cổng hay đặt ngưỡng.
-- Từng thành viên tự ghi đóng góp, bằng chứng, phần dùng AI và exit ticket vào mục cá nhân trước khi nộp; bảng trên là việc được giao.
-
-## Phân công CP4 · Thẻ S7
-
-**Sự cố:** lộ thông tin người nhận quà qua thông báo gửi hãng vận chuyển. Phân công dưới đây là việc cần làm, không phải xác nhận từng thành viên đã hoàn thành hoặc cả nhóm đã họp chốt. Chỉ làm thẻ S7; CP5 và quyết định v2 sẽ thực hiện sau khi đủ bằng chứng CP4.
-
-| Thành viên · nhánh | Công việc chính | Mục Phiếu C / file phụ trách | Sản phẩm bàn giao |
-|---|---|---|---|
-| **Nguyễn Đắc Thể** · `NguyenDacThe` | Điều phối và giữ bằng chứng trước sửa; tổng hợp cổng vòng 1 đã đỡ được gì. Viết specification, giả định môi trường và fault tree trước/sau. Chỉ sửa cổng nếu phân tích chỉ ra phần còn thiếu; tích hợp các nhánh, chạy kiểm tra cuối. | **C0–C1, C5–C7, C9**; `lab10/guards.py`; tích hợp config sau khi Bảo/Bách bàn giao | Mã report base/prepared/after thực tế; spec kênh gửi hãng và giả định; hai fault tree có nhánh code, dữ liệu, người/quy trình; bảng sửa nêu giảm hay ngăn và nguyên nhân. Report cuối không hồi quy; báo Coach vấn đề integrity kiểm thẻ chưa được giao. |
-| **Trương Văn Thông** · `Thông` | Dò ít nhất hai ca lỗi theo cơ chế khác nhau ở mốc base, so với prepared/after. Kiểm các ca S7-01, S7-04, S7-20, S7-21 theo gợi ý thẻ; chọn ca thể hiện hai cơ chế khác nhau, dùng S7-05 làm đối chứng có số nhưng không phải SĐT. Thiết kế, thêm và kiểm chứng ít nhất một monitor mới. | **C2, C8**; `lab10/monitors.py`; phối hợp Thể ghi lần chạy vào C0 | Bảng lỗi đủ biểu hiện, bên chịu hại, mức độ, loại lỗi, nguồn và hướng xử lý; trace có vị trí sự kiện. Monitor nhận `trials` không có nhãn, trả về số và được đăng ký trong `MONITORS`; đủ thước đo–dữ liệu–cách tính, ngưỡng/điểm mù. Kiểm hồi quy và ghi đúng kết quả, không coi mọi dãy số là PII. |
-| **Phan Gia Bảo** · `2A202603562_PhanGiaBao` | Đọc chi phí, ROI, độ phủ, hàng chờ, phân khúc theo kho/hãng của S7; phân biệt tác hại bên thứ ba với chỉ số tổng thể. Đề xuất thay đổi kinh doanh nếu bằng chứng yêu cầu, tổng hợp rủi ro còn lại. | Phần kinh doanh **C1, C7**; cầm bút **C10**; `config/operating_gates.json` mục `business` | Bảng so base/prepared/after kèm mã report; lý do từng thay đổi tiền/phạm vi, giữ độ phủ >0; ít nhất một dòng risk register có PIC, tín hiệu, hành động. Bàn giao số liệu cho C12 ở CP5, chưa tự chốt v2 trong CP4. |
-| **Nguyễn Tuấn Bách** · `bach` | Phân tích lòng tin của người đặt và người nhận quà, dữ liệu rời hệ thống khi họ không biết. Làm HAZOP riêng cho S7, cập nhật trách nhiệm, khiếu nại, điều kiện dừng và phục hồi. Soát giả định môi trường và rủi ro cùng Thể/Bảo. | **C3.3, C4, C11**; phần vận hành/pháp lý **C5, C7, C10**; config mục `operations` và `legal` | C3.3 đủ hai mốc tin quá mức/không tin cho cả hai đối tượng; HAZOP ít nhất ba dòng, không ghi đè B4. Checklist đủ chín nhóm, mỗi dòng có PIC; runbook phần 4–5 có tín hiệu, ngưỡng, người quyết định, hành động và điều kiện bật lại, khớp config và monitor. Căn cứ pháp lý chưa xác minh ghi rõ cần Pháp chế kiểm. |
-
-### Thứ tự làm và bàn giao CP4
-
-1. **Đồng bộ bản chung:** sau khi trưởng nhóm đã đưa bản CP3 và thẻ S7 lên `main`, mỗi người cập nhật `main` vào nhánh của mình. Kiểm tra chữ ký và snapshot còn nguyên. Không chép thẻ của bàn khác.
-2. **Giữ mốc trước sửa:** Thể lưu report grade S7 ban đầu vào C0–C1. Grade đã được chạy trước sửa vòng 2; cả nhóm dùng cùng mã bằng chứng, không coi báo cáo sau sửa là prepared ban đầu. Vấn đề integrity do manifest kiểm cả thẻ khác phải nhờ Coach hướng dẫn, không sửa grader/manifest để làm xanh.
-3. **Phân tích trước:** Thông bàn giao C2, Bách bàn giao C3.3–C4; Thể tổng hợp C5–C6 với dữ kiện của Bảo. Cả nhóm đối chiếu specification và giả định, chọn đúng nguyên nhân rồi mới triển khai thay đổi vòng 2.
-4. **Sửa và đo:** Thể phụ trách cổng, Thông phụ trách monitor; Bảo/Bách chỉ chỉnh khối JSON được giao. Ghi mỗi thay đổi và mã lần chạy vào C0/C7. Cổng vòng 1 đã bảo vệ được bộ S7 công khai thì không sửa chỉ để có thay đổi; vẫn phải có monitor mới theo yêu cầu thẻ và kiểm tra các giả định/điểm mù.
-5. **Tích hợp:** từng người bàn giao commit hoặc PR trên nhánh riêng. Thể merge theo từng mục Phiếu C và khối config, giữ đủ nội dung; chạy lại S7, bộ nền và grade trên bản tích hợp. Không tự ghi kết quả từ code nhánh riêng thành kết quả của `main`.
-6. **Khép CP4:** Thể hoàn thiện C9, Bảo C10, Bách C11; soát C0–C11 và bằng chứng. Mục tiêu tự kiểm: integrity, visible, regression, monitor đạt và độ phủ >0; nếu còn lỗi thì ghi đúng nguyên nhân, không tuyên bố CP4 đã đạt. Sau đó cả nhóm mới tổng hợp quyết định v2/C12 và bài nộp CP5.
-
-### Quy ước tránh xung đột và giữ bằng chứng
-
-- `templates/form-c-incident.md` là file chung: mỗi người chỉ chỉnh mục được giao; các mục phối hợp gửi nội dung cho người cầm bút chính, không thay cả file bằng bản từ nhánh mình.
-- `config/operating_gates.json`: Bảo giữ `business`, Bách giữ `operations`/`legal`, Thể tích hợp và kiểm cả ba khối. Không tự đặt lại ngưỡng trong tiêu chí đã ký.
-- Giữ nguyên `config/acceptance_criteria.json`, `.lock`, `lab10/guards_round1.py`, `config/operating_gates.round1.json`, `config/round1.lock` và nội dung gói `incidents/S7/` đã khớp hash gốc. Không xử lý riêng theo mã ticket, seed hay câu chữ.
-- Report/trace trong `runs/` bị gitignore: người chạy cung cấp mã và bản bằng chứng để các bạn đọc được; không chỉ gửi tên thư mục trên máy cá nhân. Chỉ điền phần riêng **C3.3 của S7**, không làm phần thẻ khác.
-- Mỗi người ghi phần dùng AI và đóng góp thật trong mục cá nhân; không tự viết xác nhận hoàn thành hoặc exit ticket thay thành viên khác.
-
-## Cá nhân
-
-Mỗi thành viên tự viết một mục bên dưới (chép mẫu, đổi tiêu đề thành họ tên không dấu và MSSV, ví dụ `## NguyenVanAn-20241234`).
-
-## TruongVanThong-2A202603560
-
-### Phần việc phụ trách
-
-Kỹ sư cổng · kiểm thử và theo dõi. Trong CP2, cầm bút Phiếu A mục A2, câu 1.3: thiết kế offline metric cho một bước của agent, phối hợp Thể rà soát. Trong CP3, phụ trách trace T-002@55/B2, hai bước tránh rò rỉ dữ liệu B7.2, hai ticket kiểm tính chất B7.3 và kiểm tra hồi quy. CP4 phụ trách C2, C8, monitor và bằng chứng S7, phối hợp bàn giao mã run vào C0. CP5 chưa thực hiện.
-
-### Đóng góp cụ thể
-
-- Đã điền cột Offline của A2 câu 1.3 trong `templates/form-a-criteria.md`, chọn bước chọn phiên bản chính sách và đặt tên thước đo `policy_version_error_rate` (đơn vị %).
-- Đã chỉ rõ nguồn trace, trường cần lấy, bộ nền 22 ticket × 5 seed, nguồn nhãn độc lập theo ngày hiệu lực và phân công Thông lập nhãn, Thể đối chiếu. Việc đối chiếu của Thể đang chờ thực hiện.
-- Đã viết công thức E/N, quy tắc mẫu số, cách xử lý trial không tới bước, dữ liệu không đánh giá được và trường hợp N = 0; yêu cầu báo số ca và độ phủ để tránh hiểu nhầm dữ liệu bị thiếu là kết quả tốt.
-- Đã nêu điểm mù: đúng phiên bản chưa bảo đảm đúng tiền/quyền/dữ liệu gửi ngoài; ngày hiệu lực trong DB có thể sai và bộ nền một ngày chưa kiểm được ngày chuyển chính sách.
-- Đã đối chiếu tĩnh dữ liệu mock: `as_of = 2026-11-16` thuộc hiệu lực `REFUND-v3`; mốc bắt đầu `REFUND-v4` là 2026-12-01. Đây là ví dụ xác định nhãn, chưa phải số đo agent.
-- A2 câu 1.4 do Bách phụ trách; ngưỡng và quyết định chung do nhóm thống nhất. Chưa ký tiêu chí, chưa sửa code cổng/monitor và chưa chạy `lab10.eval`, `lab10.trace` hoặc `lab10.grade` trong lần làm CP2 này.
-
-**CP3 · Kiểm thử và phân tích lỗi (18/11/2026):**
-
-- Đã chạy `python -m lab10.trace --suite base --ticket T-002 --seed 55` và điền đủ ba phần B2: hai hậu quả (hoàn sai 20.000đ, ghi lỗi oan VNX), nguồn lỗi, bên chịu hại và hướng xử lý. Trace 03 ghi `model_override` từ DB 2 ngày sang lời khai 5 ngày; kết quả `HỎNG` ở status, refund_amount và carrier_fault.
-- Đã hoàn thiện B7.2: phân biệt bộ phát triển/hồi quy công khai với kiểm tra độc lập, không xử lý riêng theo ticket hoặc seed, chỉ dùng đúng thẻ sự cố khi tới CP4, không tìm bộ ẩn hoặc sửa nhãn/ngưỡng để hợp thức hoá kết quả.
-- Đã thiết kế và chạy hai ticket adhoc ở mốc `after`, seed 11, trên O-1002/C-02 và O-1004/C-04; ghi nội dung, lệnh tái lập, kết quả kỳ vọng và kết quả thực tế ở B7.3. Cả hai **không giữ được tính chất**: hoàn sai lần lượt 30.000đ và 33.000đ, kèm lỗi hãng sai. Bách chưa xác nhận phần rà soát chung.
-- Đã chạy bộ kiểm tra công khai: **13 tests, OK**, gồm kiểm tra không làm hỏng ca vốn đúng. Lỗi nền T-002@55 và hai ticket hiểm vẫn còn vì cổng hiện tại chưa được sửa; không ghi là đã sửa xong hoặc đạt Gate 1.
-- Đã bàn giao đề xuất cho Thể: kiểm quyền lợi từ tracking/chính sách trước `issue_refund` và kiểm điều kiện ghi lỗi độc lập trước `file_carrier_fault`. Chờ cổng B7.1 để chạy lại hai ticket và xác nhận hồi quy trên bản sửa; chưa tự làm phần code cổng, ký/chốt vòng 1 hay quyết định v1 của nhóm.
-- Tiêu chí vẫn chưa ký: chỉ chạy trace chẩn đoán và unittest, không chạy eval/grade hoặc tạo báo cáo đạt ngưỡng. Chưa thêm monitor CP4; các tên metric ở B2 chỉ là đề xuất.
-
-**CP4 · Thẻ S7 · Phần của Thông (18/11/2026):**
-
-- Trên bản chung đã có chữ ký và snapshot hợp lệ, đã lưu grade trước thêm monitor; dò 15 trace: S7-01/04/20/21 và đối chứng S7-05, mỗi ticket ở base/prepared/after, seed 11. Đã điền đủ ba phần C2 cho hai nguồn lộ khác nhau: chép PII từ ticket và tự thêm liên hệ người nhận từ DB; ghi rõ địa chỉ không cần SĐT và mã vận đơn không phải PII.
-- Thêm, đăng ký `carrier_unexpected_field_rate` và `carrier_contact_field_rate` trong `lab10/monitors.py`, chỉ dùng outbound không có nhãn. Điền C8 đủ dữ liệu, công thức/mẫu số, lỗi telemetry, ngưỡng đề xuất và điểm mù; không đọc mã ticket/seed hay coi mọi dãy số là điện thoại.
-- Đã kiểm thử: 9 test monitor và 13 test công khai đạt. Grade đạt criteria/visible/regression/monitor, nền after 110/110 và S7 after 40/40, độ phủ 100%; PII S7 từ base 30 xuống prepared/after 0. Không có hidden để xác nhận.
-- Cổng G3 vòng 1 đã bảo vệ S7 công khai, nên giữ nguyên guards/config/tiêu chí/snapshot/gói S7. Thay đổi của Thông chỉ thêm phát hiện; không nhận monitor là biện pháp ngăn hoặc nhận công sửa cổng của Thể.
-- Grade tổng vẫn **FAIL integrity** cả trước và sau: 19 file cũ lệch hash do CRLF/LF, 28 đường dẫn thuộc thẻ khác không có. Đã chẩn đoán chỉ đọc, không sửa manifest/grader hoặc lấy thẻ khác. Bàn giao chi tiết để Thể/Coach xử lý; chưa xác nhận CP4 toàn nhóm đạt hay quyết định v2.
-
-### Phần dùng AI · CP4
-
-Dùng Codex đọc phân công/thẻ S7, chạy trace/eval/grade và kiểm thử, hỗ trợ viết monitor, C2/C8, lưu bằng chứng và bàn giao. Các kết quả là output thực chạy trên nhánh cá nhân; chưa ghi nhận Bách đã chốt ngưỡng runbook hoặc Thể đã merge. Ngưỡng giám sát pilot mới là đề xuất, không sửa tiêu chí đã ký.
-
-### Bằng chứng
-
-- Sản phẩm CP2: [Phiếu A · A2, cột Offline câu 1.3](templates/form-a-criteria.md#a2), đủ bước đo, thước đo, dữ liệu, công thức và điểm mù.
-- Căn cứ dữ liệu: `data/world.json`, mục `as_of` và `policies`; cấu trúc sự kiện `policy` trong `lab10/agent.py`; quy ước file trace trong `lab10/eval.py`. Chỉ đọc các file này.
-- Kiểm tra môi trường theo CP1: `python -m unittest discover -s tests -v`, Python 3.11.9, ngày 18/11/2026 (GMT+7): **13 tests, OK**. Đây là kiểm tra công khai, không phải báo cáo đánh giá hay bằng chứng đạt Gate 1.
-- Chưa tạo commit hoặc mã lần chạy đánh giá cho phần CP2 này. A5 và việc ký, commit, push tiêu chí do trưởng nhóm thực hiện sau khi cả nhóm thống nhất.
-- Sản phẩm CP3: [Phiếu B · B2](templates/form-b-evaluation-gates.md#b2) và [B7.2–B7.3](templates/form-b-evaluation-gates.md#b7), có lệnh trace tái lập và kết quả thực chạy. CLI trace chỉ in kết quả, không tạo thư mục `runs/<mã>`; không có mã eval để ghi vào B0.
-- Kiểm tra CP3: `python -m unittest discover -s tests -v` ngày 18/11/2026, Python 3.11.9: **13 tests, OK**. `test_team_guards_do_not_break_base` đạt trên bản hiện tại; cần chạy lại sau khi cổng thay đổi. Chưa tạo commit cho lần cập nhật CP3 này.
-- CP4: [bàn giao và lệnh tái lập](docs/cp4-thong.md), [C2](templates/form-c-incident.md#c2), [C8](templates/form-c-incident.md#c8), [bản sao report/trace](docs/cp4-thong-evidence/verification-summary.json). Grade trước `R-S7-grade-20261118-165630-0892bd`; grade sau `R-S7-grade-20261118-165851-43edee`; eval nền sau `R-base-after-20261118-165851-43edee`. Chưa tạo commit/push cho phần CP4 trong lần làm này.
-
-### Exit ticket
-
-- Điều học được ở CP2: thước đo cho một bước cần có nhãn độc lập và mẫu số rõ ràng; loại ca thiếu dữ liệu mà không báo độ phủ có thể khiến tỉ lệ trông tốt hơn thực tế.
-- Điều còn chưa chắc: ngày hiệu lực trong dữ liệu mock có phản ánh đúng quy trình cập nhật chính sách ngoài thực tế hay không; cần nhóm xác minh nguồn và người chịu trách nhiệm trước pilot.
-- Đây là ghi chú học tập CP2; exit ticket cuối buổi sẽ được cập nhật khi hoàn thành CP5.
-- Điều học được ở CP3: test hồi quy xanh chỉ chứng minh chưa phá ca vốn đúng; hai ticket mới vẫn có thể làm lộ tính chất an toàn bị vi phạm. Cần đọc cả tracking, sổ cái và lỗi hãng thay vì chỉ đọc lời trả lời khách.
-- Điều chưa chắc ở CP3: sau khi Thể thêm cổng, tính chất có giữ được trên hai ticket mới và các ca vốn đúng hay không; cần chạy lại trên đúng bản cổng đã sửa trước khi chốt.
-- Điều học được ở CP4: dữ liệu có thể tự đi từ DB ra ngoài dù ticket không có PII; tín hiệu vi phạm schema và bằng chứng lộ PII là hai điều khác nhau. Monitor sau gửi phát hiện được sự cố nhưng không thu hồi thông tin.
-- Điều chưa chắc ở CP4: PII có thể lọt qua giá trị của trường được phép hoặc kênh ngoài outbound; cần kiểm dữ liệu thật và chất lượng telemetry. Grade còn lỗi integrity môi trường, cần Thể/Coach xử lý trước khi khép CP4.
+Đóng góp bên dưới được rút từ commit, phiếu và report, không phải xác nhận từng người tự chạy mọi lệnh. Theo yêu cầu trưởng nhóm, **Codex thực hiện phần hoàn thiện CP5 cho cả bốn vai**. Exit ticket của Thông/Bảo được rút gọn từ nội dung đã có; phần của Thể/Bách được soạn hoặc chuẩn hóa từ bằng chứng để cá nhân rà soát. Không tự xác nhận đã demo trước lớp, được Coach phê duyệt, hoặc đã nộp LMS.
 
 ## NguyenDacThe-2A202603529
 
-### Phần việc phụ trách
+### Phần việc và đóng góp
 
-Trưởng nhóm, Kỹ sư cổng: hỗ trợ A2 câu 1.3 cùng Trương Văn Thông; chuẩn bị lập luận A3 và soát kỹ thuật A4; điều phối ký sau khi nhóm thống nhất.
-
-### Đóng góp cụ thể
-
-Đã chuẩn bị đặc tả (sau hợp nhất dùng tên `policy_version_error_rate`) cho riêng bước chọn chính sách, quy định nguồn đối chiếu, mẫu số, ca thiếu dữ liệu và điểm mù trong Phiếu A. Đã viết lập luận A3 và bản bàn giao kiểm tra trước ký tại `docs/cp2-nguyendacthe.md`. Dùng Codex hỗ trợ đọc code tĩnh và soạn nội dung, chưa tính số đánh giá Day 10.
-
-**CP4 · Phần việc nhánh Thể (S7):** đã tổng hợp C0–C1 từ grade trước sửa, viết C5–C7/C9 và lưu bằng chứng. Bổ sung log tối thiểu vào G3 để Thông có dữ liệu monitor, không sửa cơ chế chặn vốn đã bảo vệ prepared. S7 after R-S7-after-20261118-165018-2bd310 đạt40/40; bộ nền R-base-after-20261118-165018-2bd310 đạt110/110, không hồi quy. Kiểm bổ sung ghi rõ phản ví dụ khi dữ liệu nhạy cảm nằm ngay trong district được whitelist, không nhận là đã ngăn mọi PII. Chưa sửa monitors/config thay các bạn, chưa chốt C12 hoặc gửi báo cáo cho Coach; đã soạn nội dung bàn giao. Dùng Codex hỗ trợ phân tích code/trace, viết telemetry, kiểm thử và ghi phiếu. [Hồ sơ phần Thể](docs/cp4-nguyendacthe/README.md).
+- CP2: phối hợp metric chọn chính sách, soát tiêu chí và tổ chức ký; hỗ trợ A2–A5, giữ tiêu chí nguyên vẹn.
+- CP3: chạy baseline/gate, viết G1–G3 ngoài model, điền B0–B1/B7.1, tích hợp cấu hình và chốt prepared; quyết định v1 dựa cả bằng chứng tải dồn.
+- CP4: C0–C1/C5–C7/C9; thêm telemetry G3 chỉ ghi số đếm/cờ, tích hợp monitor, hồ sơ và C12, giữ các giới hạn dữ liệu nguồn và integrity.
+- CP5 (Codex thực hiện thay): tổng hợp bản cuối, kiểm tính nhất quán C12/submission, chạy thử demo và chuẩn bị đẩy bài.
 
 ### Bằng chứng
 
-[Phiếu A, mục A2–A3](templates/form-a-criteria.md#a2) và [bản soát CP2 của trưởng nhóm](docs/cp2-nguyendacthe.md). Đã ký, commit xác nhận `60fbf2c` được push trước đánh giá. Trong CP3: baseline `R-base-before-20261118-152920-bde05c`, after `R-base-after-20261118-153059-1c7843`; đã viết G1–G3 trong `lab10/guards.py`, điền B0–B1/B7.1 và đề xuất phối hợp B6. [Report và bàn giao](docs/cp3-nguyendacthe.md). Dùng Codex hỗ trợ code/kiểm thử, không xử lý riêng theo mã ticket. Chưa chốt prepared hay quyết định v1; chưa commit/push phần code CP3.
-
-### Exit ticket
-
-Chưa điền; cá nhân tự ghi sau khi hoàn thành phần việc và thảo luận với nhóm.
-
-## PhanGiaBao-2A202603562
-
-### Phần việc phụ trách
-
-Vai: **Sản phẩm và kinh doanh**.
-
-- CP2 · Phiếu A: câu 1.1 (A1), tổng hợp câu 1.5 (A3), câu 1.6 (A4), file `config/acceptance_criteria.json` (bản nháp trước ký), A5 sau khi ký.
-- CP3 · Phiếu B: câu 2.3 (B3, bản đồ dữ liệu và drift), câu 2.9 (B7.4 và mục `business` trong `config/operating_gates.json`), lăng kính kinh doanh trong pre-mortem B6, tổng hợp quyết định v1 (B8).
-- CP4–CP5 · Phiếu C: phân tích chi phí, ROI, phạm vi pilot; tổng hợp quyết định v2 (C12).
-
-### Đóng góp cụ thể
-
-- **Bản tiêu chí** (`config/acceptance_criteria.json`): đề xuất toàn bộ ngưỡng số mà bản đã ký giữ nguyên: `pass_rate_min` 0,96 · `pass_k_min` 0,85 · ba chỉ số an toàn bằng 0 · `escalation_rate_max` 0,25 · `cost_per_ticket_vnd_max` 6.000đ · `roi_min` 0,5 · `queue_stuck_max` 0. Viết bản đầu `stop_condition` và bốn dòng `decision_rule`; bản ký là bản đã được Thể rà soát lại (phân biệt v1/v2, tối đa 2 vòng sửa), xem `docs/cp2-review.md`.
-- **Phiếu A:** câu 1.1; câu 1.5 chọn (b) kèm giải thích; câu 1.6 gồm câu "Nếu … thì chúng tôi sẽ …" cho 6 chỉ số, hai câu ranh giới đầu ra, bảng soát bốn câu hỏi, lý do nhóm `business_ops`, ngày xem lại 28/11/2026 (trước khi REFUND-v4 có hiệu lực ngày 01/12).
-- **Phiếu A mục A5:** cập nhật giờ ký, commit `60fbf2c` "Sign acceptance criteria", trạng thái push. Phát hiện file tiêu chí được ký trên bản xuống dòng CRLF (hash `36863666…`) trong khi repo lưu LF (hash `afdd890f…`), nên máy lấy về bản LF thấy "ĐÃ BỊ SỬA sau khi ký". Đã báo trưởng nhóm, không tự sửa JSON hay file khoá.
-- **Phiếu B mục B3:** bản đồ dữ liệu 9 dòng (nguồn sự thật hay bản sao cho từng trường then chốt) và ví dụ drift REFUND-v3 → v4 ngày 01/12/2026 (concept drift; ảnh hưởng `wrongful_carrier_faults_max`, `escalation_rate_max`; v4 đang `index_active = false`).
-- **Phiếu B mục B7.4 và `config/operating_gates.json` mục `business`:** `daily_refund_cap_vnd` 1.600.000 · `cost_budget_per_ticket_vnd` 1.500 · `pilot_scope` all · `roi_min` 0,5, mỗi số một câu lý do từ `ops_limits`, `ops_facts`.
-- **Phiếu B mục B6 (lăng kính Kinh doanh):** ba lý do thất bại: chi phí mỗi ticket vượt làm tay; tổng hoàn tự động vượt ngân sách Finance; ticket giá trị lớn luôn phải chuyển người. Hai lý do đầu gắn với cổng config đã đặt (`cost_budget_per_ticket_vnd`, `roi_min`, `daily_refund_cap_vnd`) và đề xuất một cổng code trần 300.000đ/khách/ngày; lý do thứ ba vào risk register.
-- **CP4 · Thẻ S7 · Phiếu C:** phần kinh doanh của **C1** (bảng so base/prepared trên gói S7: 30 lần lộ PII → 0 trong khi ROI 1,27 → 1,0 và chi phí 4.405đ → 5.005đ, đều đạt trần; theo kho và hãng cho thấy lộ PII rải ở 3 kho, 3 hãng nên Thu hẹp theo kho không xử lý được S7), phần kinh doanh của **C7** (giữ nguyên mục `business`, kèm lý do; ước tính dưới khoảng 7 ticket/ngày thì vượt trần chi phí 6.000đ; danh sách số phải kiểm lại ở mốc after), cầm bút **C10** (3 dòng risk register: chỉ số tổng che tác hại bên thứ ba · lượng ticket thấp làm vượt trần chi phí · ticket không tra được đơn đắt hơn làm tay).
-- Chưa làm: cột after của C7 phần kinh doanh (chờ Thể sửa vòng 2), C12 và quyết định v2 (CP5). Các lăng kính còn lại của B6 do cả bàn điền.
-
-### Bằng chứng
-
-- Commit `1817d93` "CP2: draft acceptance criteria and Phieu A (1.1, 1.5, 1.6)", merge vào `main` qua PR #3 (`d203dfd`).
-- Commit CP3 (B3, B6 dòng Kinh doanh, B7.4, mục `business`, A5): `964aae9`, merge vào `main` qua `050d10e`.
-- Mã lần chạy dùng cho B8 (theo Phiếu B mục B8): base `R-base-before-20261118-152920-bde05c` · prepared `R-base-prepared-20261118-160738-0892bd`. Mã lần chạy cho C12: `________` (điền ở CP5).
-- Dòng trong phiếu: Phiếu A mục A1 câu 1.1, A3, A4, A5; Phiếu B mục B3, B6 (dòng Kinh doanh), B7.4; Phiếu C mục C1 (phần kinh doanh), C7 (phần kinh doanh), C10.
-- Số liệu CP4 lấy từ grade S7 trước sửa vòng 2 trên `main` @ `f1d4e31`, hash code đội `0892bd295a9e`, cổng vòng 1 `0580db3e`.
+Commit `4382f2d` (CP3), `d634d3e` (CP4), `1bbad85` (tích hợp/C12); [hồ sơ CP4](docs/cp4-nguyendacthe/README.md), [report CP5](docs/cp5/evidence/grade-report.md).
 
 ### Dùng AI
 
-Dùng Claude để đọc các file markdown của đề, đọc `data/world.json` và PRD Lab 9, rồi viết nháp Phiếu A (1.1, 1.5, 1.6, A5), Phiếu B (B3, B7.4) và đề xuất ngưỡng, con số cổng `business`. Claude cũng giúp phát hiện lỗi lệch xuống dòng CRLF/LF của file tiêu chí. Mọi ngưỡng và con số do cả bàn soát và chịu trách nhiệm giải thích lúc demo.
+Codex hỗ trợ đọc repo/trace, soạn phiếu, viết và kiểm cổng/telemetry, tích hợp, kiểm thử và hoàn thiện CP5. Không xử lý riêng theo ID ticket/seed; không sửa tiêu chí hoặc snapshot để hợp thức hóa số đo.
 
-### Exit ticket
+### Exit ticket · bản soạn để cá nhân rà soát
 
-- Một điều học được: phải viết ngưỡng và hành động "nếu trượt thì làm gì" trước khi xem kết quả; ngưỡng an toàn (hoàn sai, lỗi oan cho hãng, lộ PII) phải đứng trên các chỉ số tỉ lệ.
-- Một điều còn chưa chắc: trần chi phí 6.000đ và `escalation_rate_max` 0,25 có quá chặt khi lượng ticket tăng hoặc khi REFUND-v4 hạ hạn mức tự hoàn xuống 100.000đ hay không.
+- Điều học được từ phần việc: cần tách base, prepared và after để chứng minh cổng có trước sự cố đã đỡ được gì; report đẹp không thay quyết định khớp các điều kiện vận hành.
+- Điều còn chưa chắc: dữ liệu nhạy cảm có thể nằm ngay trong trường DB được phép; cần kiểm nguồn dữ liệu và mọi đường xuất trước pilot thật.
 
-## Tích hợp CP3
+## TruongVanThong-2A202603560
 
-Đã merge nội dung các nhánh Thể, Thông, Bảo và Bách vào main local; đối chiếu phần từng người trong Phiếu B B0–B8. Bản chốt 0580db3e, prepared R-base-prepared-20261118-160738-0892bd. Các số nền đạt, stress queue còn vượt SLA nên v1 Cải tiến thêm. Không tự điền exit ticket hoặc ghi nhận cuộc họp chưa diễn ra. Xem [kiểm tra CP3 sau merge](docs/cp3-integration-review.md).
+### Phần việc và đóng góp
 
-## Tích hợp CP4 và C12
+- CP2: A2 câu 1.3, `policy_version_error_rate`, nguồn nhãn theo ngày hiệu lực, mẫu số và ca không đánh giá được.
+- CP3: B2 trace T-002@55, B7.2 chống rò dữ liệu đánh giá, B7.3 hai ticket hiểm và kiểm hồi quy. Kết quả lỗi trước sửa đã được giữ và chạy lại đạt sau tích hợp.
+- CP4: C2 phân biệt PII từ ticket với liên hệ từ DB; C8 và hai monitor `carrier_unexpected_field_rate`/`carrier_contact_field_rate`, chỉ đọc outbound không có nhãn; 9 kiểm tra monitor.
+- CP5 (Codex thực hiện thay): kiểm thử bản cuối, chạy thử ca ba mốc và hai ticket hiểm, lưu output để demo/phản biện.
 
-Đã merge bốn nhánh CP4 vào main local, ghi đủ Phiếu C C0–C12 theo phần bàn giao và report `R-S7-grade-20261118-171745-d5f014`. S7 40/40, nền110/110; criteria/visible/regression/monitor đạt; grade tổng FAIL vì thiếu28file thẻ khác theo manifest. V2 giữ Cải tiến thêm, không xác nhận pilot thật. Xem [bản kiểm tra tích hợp](docs/cp4-integration/README.md). Chưa nhận hướng dẫn Coach xử lý integrity, chưa gửi tin nhắn hoặc nộp LMS.
+### Bằng chứng
+
+Commit `2ea029f` (CP3), `91ea2ca` (CP4); [bàn giao monitor](docs/cp4-thong.md), [kịch bản demo](docs/cp5/demo.md), [kiểm thử cuối](docs/cp5/evidence/monitor-tests.txt).
+
+### Dùng AI
+
+Theo khai báo trong nhánh cá nhân, dùng Codex hỗ trợ đọc dữ liệu/code, trace, thước đo, ticket kiểm thử, monitor và ghi bằng chứng; Codex tiếp tục hoàn thiện CP5 theo yêu cầu trưởng nhóm. Monitor phát hiện sau gửi, không tự nhận là biện pháp ngăn hay thu hồi dữ liệu.
+
+### Exit ticket · rút gọn từ ghi chú cá nhân
+
+- Điều học được: dữ liệu có thể tự đi từ DB ra ngoài dù ticket không có PII; vi phạm schema và bằng chứng lộ PII là hai tín hiệu khác nhau.
+- Điều còn chưa chắc: PII trong giá trị trường được phép hoặc kênh ngoài outbound có thể không hiện ở hai monitor; cần kiểm dữ liệu thật và chất lượng telemetry.
+
+## PhanGiaBao-2A202603562
+
+### Phần việc và đóng góp
+
+- CP2: A1 câu 1.1, A3/A4, bản nháp ngưỡng và hành động; các ngưỡng số giữ trong bản ký. Phát hiện vấn đề CRLF/LF của file tiêu chí, không tự sửa lock.
+- CP3: B3 bản đồ dữ liệu/drift, B6 phần kinh doanh, B7.4; cap tự động 1.600.000đ, ngân sách máy 1.500đ, phạm vi all và ROI tối thiểu 0,5, có lý do từ dữ liệu.
+- CP4: phần kinh doanh C1/C7 và C10; chỉ ra ROI/chi phí đạt vẫn có thể che 30 lần lộ PII, cùng rủi ro phí người trực khi lượng ticket thấp và nhóm kho chưa xác định.
+- CP5 (Codex thực hiện thay): đối chiếu số cuối với tiêu chí, giữ v2 Cải tiến thêm và chuẩn bị lập luận demo về ROI, độ phủ và hàng chờ.
+
+### Bằng chứng
+
+Commit `1817d93` (CP2), `964aae9` (CP3), `989d5cb` (CP4); [C1/C7/C10/C12](templates/form-c-incident.md#c1), [tóm tắt quyết định](docs/cp5/demo.md).
+
+### Dùng AI
+
+Theo khai báo cá nhân, Claude hỗ trợ nháp tiêu chí, phân tích dữ liệu, phần kinh doanh và phát hiện lệch CRLF/LF. Codex hỗ trợ rà soát/tích hợp bản chung và thực hiện CP5. Ngưỡng và quyết định phải được nhóm hiểu, giải thích và chịu trách nhiệm; không coi AI là phê duyệt kinh doanh.
+
+### Exit ticket · rút gọn từ ghi chú cá nhân
+
+- Điều học được: viết ngưỡng cùng hành động trước khi xem kết quả; trần hoàn sai, lỗi hãng oan và PII phải được đọc riêng trước ROI/pass_rate.
+- Điều còn chưa chắc: chi phí 6.000đ/ticket và escalation tối đa 0,25 có còn phù hợp khi tăng tải hoặc REFUND-v4 hạ hạn mức tự hoàn xuống 100.000đ hay không.
+
+## NguyenTuanBach-2A202603596
+
+### Phần việc và đóng góp
+
+- CP2: mục tiêu của Oanh/Hạnh và telemetry A2 câu 1.4; tác động lên người duyệt và bên thứ ba.
+- CP3: HAZOP/checklist B4–B5, khối operations/legal và runbook B7.5–B7.6; phân tích giới hạn năng lực giờ cao điểm.
+- CP4: C3.3 lòng tin người đặt/người nhận, C4 HAZOP kênh notify_carrier và C11 checklist/runbook; phần cập nhật vận hành C7 và tên monitor ở commit mới được đối chiếu khi hoàn thiện hồ sơ.
+- CP5 (Codex thực hiện thay): bổ sung mục cá nhân còn thiếu, soát chín nhóm checklist, runbook, thông tin bốn thành viên và bản gom bài nộp.
+
+### Bằng chứng
+
+Commit `2f11502` (CP2), `a810352` (CP3), `8dd380e` (CP4 đã merge); nguồn bổ sung mục cá nhân `1819afd` và cập nhật vận hành `1143577` trên nhánh bach. Nội dung cuối xem [C3.3/C4/C11](templates/form-c-incident.md#c3) và [checklist CP5](docs/cp5/checklist.md); không ghi hai commit bổ sung là đã được merge nếu lịch sử chưa có.
+
+### Dùng AI
+
+Theo khai báo trong cập nhật nhánh bach, Claude Code hỗ trợ đọc repo/thẻ S7, trace chẩn đoán, nháp phần vận hành/pháp lý và thử tích hợp. Codex chuẩn hóa mục cá nhân, soát bản chung và thực hiện CP5. Các mốc phản ứng 15 phút/24 giờ là đề xuất vận hành, không tự nhận là nghĩa vụ pháp lý đã xác minh.
+
+### Exit ticket · bản nháp từ nhánh cá nhân đã chuẩn hóa
+
+- Điều học được: chỉ số kinh doanh có thể đạt trong khi bên thứ ba vẫn chịu lộ thông tin; allowlist phải đi cùng trách nhiệm vận hành và kiểm soát nguồn dữ liệu.
+- Điều còn chưa chắc: cổng đúng trên mock chưa chứng minh đủ PII thật, kênh ngoài hệ thống hoặc nghĩa vụ thông báo; cần Pháp chế xác nhận và diễn tập trước pilot.
