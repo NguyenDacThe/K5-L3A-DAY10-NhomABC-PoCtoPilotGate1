@@ -48,12 +48,12 @@ trợ lý có đang gây thiệt hại cho bên ngoài LogiX không; không có 
 
 | | Offline, cho MỘT bước (câu 1.3) | Telemetry production (câu 1.4) |
 |---|---|---|
-| **Bước / hành vi được đo** | | |
-| **Thước đo** (một câu, có đơn vị) | | |
-| **Dữ liệu** (lấy ở đâu, bao nhiêu, ai gán nhãn) | | |
-| **Cách tính** (công thức, mẫu số, cách xử lý ca thiếu dữ liệu) | | |
+| **Bước / hành vi được đo** | Chọn chính sách hoàn tiền: `policy.policy_id` phải là phiên bản có hiệu lực tại ngày `as_of` của bộ thử. Nguyễn Đắc Thể chuẩn bị đặc tả, Trương Văn Thông phụ trách kiểm tra chéo trước khi nhóm chốt. | |
+| **Thước đo** (một câu, có đơn vị) | `wrong_policy_rate`: tỷ lệ (%) lần chạy đã chọn chính sách nhưng chọn sai phiên bản hiệu lực; đo riêng bước chọn chính sách, không dùng kết quả hoàn tiền làm nhãn thay thế. | |
+| **Dữ liệu** (lấy ở đâu, bao nhiêu, ai gán nhãn) | Sau khi ký và push tiêu chí: dùng 22 ticket × 5 seed (11, 22, 33, 44, 55), tối đa 110 trace `runs/<mã>/traces/<ticket_id>@<seed>.json`; đọc event `type=policy`, trường `policy_id`. Nguồn đối chiếu là `data/world.json`: `as_of`, `policies[].policy_id`, `effective_from`, `effective_to` của đúng bộ nền dùng để chạy. Thể đối chiếu theo khoảng hiệu lực, Thông kiểm tra chéo từng trường hợp sai/thiếu; không lấy `index_active`, lời khách hay nhãn do model tạo làm chuẩn. | |
+| **Cách tính** (công thức, mẫu số, cách xử lý ca thiếu dữ liệu) | Gọi M là số lần chạy có event `policy`; E là số lần chạy trong M có `policy_id` khác chính sách duy nhất thỏa `effective_from <= as_of <= effective_to` (ngày kết thúc trống nghĩa là không giới hạn). `wrong_policy_rate = 100 × E / M`; mỗi ticket–seed tính một lần, có nhiều event thì chỉ cần một event sai là tính lỗi. Event thiếu `policy_id` hoặc ID không tồn tại cũng tính lỗi. Lần chạy không tới bước chọn chính sách không vào M, đếm riêng theo lý do; thiếu file trace không được coi là không tới bước. Kiểm đủ 110 cặp ticket–seed, không trùng; thiếu trace, không có hoặc có nhiều chính sách cùng hiệu lực thì ghi dữ liệu không hợp lệ và chưa kết luận tỷ lệ. M=0 ghi N/A, không ghi 0% hay tuyên bố đạt. | |
 | **Khung thời gian / ngưỡng báo động** | (không áp dụng) | |
-| **Điểm mù** (thước đo này KHÔNG thấy gì) | | |
+| **Điểm mù** (thước đo này KHÔNG thấy gì) | Chọn đúng phiên bản chưa chứng minh độ trễ, công thức tiền, phê duyệt, ghi lỗi hãng hoặc dữ liệu gửi ra đúng. Nguồn chính sách/ngày đối chiếu sai thì nhãn cũng sai. Tỷ lệ có thể thấp do nhiều ca bị chuyển người trước bước này; phải báo M/110 và số ca không tới bước, không dùng chỉ số này thay `pass_rate`, `pass_k` hoặc chỉ số an toàn toàn luồng. | |
 
 **Ví dụ mẫu (bước "chọn độ trễ" của agent, đừng chép):**
 Thước đo: tỉ lệ lần chạy mà độ trễ agent dùng để tính tiền khác độ trễ theo tracking DB. Dữ liệu: sự kiện `proposal.delay_days_used`
@@ -74,6 +74,11 @@ nhau chia cho số lần chạy có sự kiện `proposal`; lần chạy không 
 Số minh hoạ trong đề (không phải số của bàn). Khoanh: (a) · **[x] (b)** · (c) · (d)
 
 Giải thích một câu: Y hơn X đúng 1/50 lần chạy, và 1,0 của Y vẫn nằm trong khoảng tin cậy 95% [0,94; 1,0] của X, nên chưa đủ căn cứ nói Y tốt hơn. Nhưng cũng không được kết luận hai bản "chắc chắn như nhau" như (c). Còn (d) sai vì 0,98 không gắn với ngưỡng nào để nói "đạt" hay "chưa đạt".
+Số minh hoạ trong đề (không phải số của bàn). Chọn: **(b)** — chưa đủ căn cứ nói Y tốt hơn X.
+
+Giải thích một câu: Chênh lệch 1/50 lần chạy và mức 1,0 của Y vẫn nằm trong khoảng tin cậy 95% [0,94; 1,0] của X, nên số minh họa chưa đủ chứng minh Y tốt hơn X có ý nghĩa thống kê, cũng không chứng minh hai bản chắc chắn như nhau.
+
+Nguyễn Đắc Thể chuẩn bị lập luận để cả nhóm soát; đây không phải kết quả chạy của Day 10. Ghi chú soát kỹ thuật A4 và thủ tục ký: [phần CP2 của trưởng nhóm](../docs/cp2-nguyendacthe.md).
 
 ---
 
