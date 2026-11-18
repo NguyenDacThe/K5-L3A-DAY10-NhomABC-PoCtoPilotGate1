@@ -17,12 +17,12 @@
       "Khi thời gian chờ người duyệt lâu nhất > 60 phút hoặc có ca bị ùn thì thu hẹp business.pilot_scope, ticket ngoài phạm vi làm tay",
       "Khi tổng hoàn tự động trong ngày chạm trần ngân sách thì tắt issue_refund, chuyển ticket cho NV-HANH"
     ],
-    "alert_channel": "Kênh báo tin Ops của pilot (tên kênh thật cần Ops xác nhận), người nhận NV-TUNG và NV-HANH",
+    "alert_channel": "Chưa xác định, Ops xác nhận tên kênh; người nhận NV-TUNG và NV-HANH",
     "decision_note": true,
     "review_sampling_pct": 10
   },
   "legal": {
-    "pii_fields_blocked_to_third_party": ["recipient_contact", "name", "phone", "street"],
+    "pii_fields_blocked_to_third_party": ["recipient_contact"],
     "carrier_fault_requires_recorded_cause": true
   }
 }
