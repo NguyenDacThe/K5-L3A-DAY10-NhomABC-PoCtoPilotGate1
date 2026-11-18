@@ -1,6 +1,8 @@
 # CP3 · Nguyễn Đắc Thể · 2A202603529
 
-## Kết quả phần việc hiện tại
+Sau khi merge bốn nhánh, trạng thái mới nhất và quyết định v1 nằm ở [kiểm tra CP3 tích hợp](cp3-integration-review.md). Các phần dưới giữ lịch sử phần việc trên nhánh Thể trước tích hợp; số kiểm tra biên mới nhất là 8, snapshot prepared đã tạo sau merge.
+
+## Kết quả phần việc trước tích hợp
 
 - Đã được trưởng nhóm cho phép xử lý Git. Tạo commit xác nhận rỗng `60fbf2c` đúng tên `Sign acceptance criteria` trên main và push thành công; không sửa lịch sử cũ, JSON hoặc lock. Đồng bộ nhánh `NguyenDacThe` bằng fast-forward. Chữ ký và kiểm tra lịch sử đều đạt trước baseline.
 - Baseline: `R-base-before-20261118-152920-bde05c`; after: `R-base-after-20261118-153059-1c7843`.

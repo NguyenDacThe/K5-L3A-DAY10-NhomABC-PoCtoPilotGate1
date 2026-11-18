@@ -17,17 +17,21 @@
     "review_capacity_per_hour": 6,
     "max_queue_wait_minutes": 60,
     "stop_conditions": [
-      "Khi hoàn sai > 0đ, lỗi hãng oan >= 1 hoặc lộ dữ liệu cá nhân >= 1 thì tắt thao tác ghi liên quan trong config/switches.json, trong tối đa 15 phút, NV-TUNG bấm",
+      "Khi hoàn sai > 0đ, lỗi hãng oan >= 1 hoặc lộ dữ liệu cá nhân >= 1: NV-TUNG ngừng nhận ghi liên quan ngay, bấm công tắc off và xác nhận đã dừng trong tối đa 15 phút; NV-HANH thay nếu Tùng vắng",
       "Khi thời gian chờ người duyệt lâu nhất > 60 phút hoặc có ca bị ùn thì thu hẹp business.pilot_scope, ticket ngoài phạm vi làm tay",
-      "Khi tổng hoàn tự động trong ngày chạm trần ngân sách thì tắt issue_refund, chuyển ticket cho NV-HANH"
+      "Khi tổng hoàn tự động trong ngày chạm trần bàn đặt 1600000đ thì ngừng hoàn tự động mới, chuyển ticket cho NV-HANH; không đợi chạm ngân sách Finance 2000000đ"
     ],
-    "alert_channel": "Chưa xác định, Ops xác nhận tên kênh; người nhận NV-TUNG và NV-HANH",
+    "alert_channel": "LogiX-Pilot-NhomABC (kênh mô phỏng trong lab, NV-TUNG và NV-HANH trực; sự cố báo trực tiếp ngay)",
     "decision_note": true,
     "review_sampling_pct": 10
   },
   "legal": {
     "pii_fields_blocked_to_third_party": [
-      "recipient_contact"
+      "recipient_contact",
+      "customer_note",
+      "name",
+      "phone",
+      "street"
     ],
     "carrier_fault_requires_recorded_cause": true
   }

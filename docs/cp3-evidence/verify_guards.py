@@ -60,6 +60,11 @@ tools.file_carrier_fault(ticket_id=ctx.ticket["ticket_id"], order_id=order["orde
                          driver_id=parcel.get("driver_id"), delay_days=999)
 assert len(world.faults) == 1
 assert world.faults[0]["delay_days"] == H.db_delay_days(parcel, world.as_of)
+assert tools.file_carrier_fault(ticket_id=ctx.ticket["ticket_id"], order_id=order["order_id"],
+                                parcel_id=parcel["parcel_id"], carrier_id=parcel["carrier_id"],
+                                driver_id=parcel.get("driver_id"), delay_days=999) is None
+assert len(world.faults) == 1
+print("PASS: repeated parcel fault creates no duplicate row")
 tools.notify_carrier(ticket_id=ctx.ticket["ticket_id"], carrier_id=parcel["carrier_id"],
                      payload={"customer_note": "SECRET", "recipient_contact": {"phone": "123"}})
 assert len(world.outbound) == 1
@@ -75,3 +80,17 @@ assert tools.file_carrier_fault(ticket_id=ctx.ticket["ticket_id"], order_id=orde
                                 delay_days=99) is None
 assert not world.faults
 print("PASS: missing recorded cause creates no carrier fault")
+
+world, ctx, tools = context()
+cap = world.data['ops_limits']['max_auto_strikes_per_carrier_per_day']
+world.faults = [dict(order_id='EARLIER-ORDER', parcel_id='EARLIER-' + str(i),
+                     carrier_id=parcel['carrier_id']) for i in range(cap)]
+try:
+    tools.file_carrier_fault(ticket_id=ctx.ticket['ticket_id'], order_id=order['order_id'],
+                             parcel_id=parcel['parcel_id'], carrier_id=parcel['carrier_id'],
+                             delay_days=99)
+except Escalated:
+    assert len(world.faults) == cap
+else:
+    raise AssertionError('Carrier cap was not enforced')
+print('PASS: next carrier strike above daily cap is escalated without a write')

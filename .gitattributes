@@ -1,0 +1,14 @@
+# Stable checkout bytes for the lab's SHA-256 checks.
+* text=auto eol=lf
+# This file was signed with CRLF; preserve the existing signed hash.
+/config/acceptance_criteria.json text eol=crlf
+# Preserve the editable source bytes used by the frozen prepared report.
+/config/operating_gates.json text eol=crlf
+/config/switches.json text eol=crlf
+/lab10/monitors.py text eol=crlf
+# Checkpoint copies must retain exactly the bytes that were frozen.
+/lab10/guards_round1.py -text
+/config/operating_gates.round1.json -text whitespace=cr-at-eol
+# Generated evidence is copied byte-for-byte from runs/.
+/docs/cp3-evidence/*.json -text whitespace=cr-at-eol
+/docs/cp3-evidence/*.jsonl -text whitespace=cr-at-eol

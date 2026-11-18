@@ -145,3 +145,6 @@ Dùng Claude để đọc các file markdown của đề, đọc `data/world.jso
 - Một điều học được: phải viết ngưỡng và hành động "nếu trượt thì làm gì" trước khi xem kết quả; ngưỡng an toàn (hoàn sai, lỗi oan cho hãng, lộ PII) phải đứng trên các chỉ số tỉ lệ.
 - Một điều còn chưa chắc: trần chi phí 6.000đ và `escalation_rate_max` 0,25 có quá chặt khi lượng ticket tăng hoặc khi REFUND-v4 hạ hạn mức tự hoàn xuống 100.000đ hay không.
 
+## Tích hợp CP3
+
+Đã merge nội dung các nhánh Thể, Thông, Bảo và Bách vào main local; đối chiếu phần từng người trong Phiếu B B0–B8. Bản chốt 0580db3e, prepared R-base-prepared-20261118-160738-0892bd. Các số nền đạt, stress queue còn vượt SLA nên v1 Cải tiến thêm. Không tự điền exit ticket hoặc ghi nhận cuộc họp chưa diễn ra. Xem [kiểm tra CP3 sau merge](docs/cp3-integration-review.md).

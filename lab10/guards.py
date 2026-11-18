@@ -94,6 +94,13 @@ def write_gate(ctx, action):
     if tool == "file_carrier_fault":
         if not H.carrier_at_fault(policy, parcel, delay):
             return Verdict.deny("tracking không chứng minh hãng chịu lỗi theo chính sách")
+        existing = ctx.tools.fault_rows(carrier_id=parcel["carrier_id"])
+        if any(f.get("order_id") == order["order_id"] and f.get("parcel_id") == parcel["parcel_id"]
+               for f in existing):
+            return Verdict.deny("kiện này đã có bản ghi lỗi hãng, không ghi lặp")
+        cap = ctx.tools.ops_limits().get("max_auto_strikes_per_carrier_per_day")
+        if cap is not None and len(existing) >= cap:
+            return Verdict.escalate("đã chạm trần lỗi tự động của hãng trong ngày, chuyển người duyệt")
         facts = {"parcel_id": parcel["parcel_id"], "carrier_id": parcel["carrier_id"],
                  "driver_id": parcel.get("driver_id"), "delay_days": delay}
         if any(action.get(k) != v for k, v in facts.items()):

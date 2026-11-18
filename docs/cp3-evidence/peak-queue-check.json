@@ -1,0 +1,17 @@
+{
+  "assumption": "14 review requests arrive simultaneously at minute 0; not a measured production load",
+  "results": {
+    "1": {
+      "reviewers": 1,
+      "capacity_per_hour": 6.0,
+      "max_wait_minutes": 130.0,
+      "queue_stuck": 7
+    },
+    "2": {
+      "reviewers": 2,
+      "capacity_per_hour": 12.0,
+      "max_wait_minutes": 65.0,
+      "queue_stuck": 1
+    }
+  }
+}
