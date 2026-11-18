@@ -1,0 +1,13 @@
+{
+  "config/acceptance_criteria.json": "36863666b80ee368aa62fec1a3a1f73290a88066d5e86d2b97177648493b04ee",
+  "config/acceptance_criteria.lock": "91f92eff83f44328ce0d445ecca472a6b1f4f0daac987c281d0a1811589973d1",
+  "lab10/guards_round1.py": "590d0b813a86199c28dad7e7e215371920c290cd2f178607b0becade45079d9e",
+  "config/operating_gates.round1.json": "a0809fdbb7327d0aa4713d1fac65a7ff3e18a1d56161bb5f26fc39e805df523b",
+  "config/round1.lock": "0b5dac4abe5e1b567522d2db2536147bdc2163069c80b9f4007ea668ac374f05",
+  "lab10/guards.py": "590d0b813a86199c28dad7e7e215371920c290cd2f178607b0becade45079d9e",
+  "config/operating_gates.json": "a0809fdbb7327d0aa4713d1fac65a7ff3e18a1d56161bb5f26fc39e805df523b",
+  "incidents/S7/card.json": "a043a4bd86184db147532d6732f4863dc8ed259196cb2cb814fa6edcda526c43",
+  "incidents/S7/card.md": "96455cf8dafa4a1483de66949f071534809a76b78e10e01617f5aa97bef08ee4",
+  "incidents/S7/tickets.jsonl": "8b9c9c4a6097ea9547ba538c8faa2449dae8249c9cf0312bd30aac844ca82df9",
+  "incidents/S7/world_patch.json": "b895fa4a8d620e44e87da521929c9a5fca5200d12bcd110a0f48e002429fc657"
+}
