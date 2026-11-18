@@ -88,7 +88,7 @@ Trưởng nhóm, Kỹ sư cổng: hỗ trợ A2 câu 1.3 cùng Trương Văn Th�
 
 ### Bằng chứng
 
-[Phiếu A, mục A2–A3](templates/form-a-criteria.md#a2) và [bản soát CP2 của trưởng nhóm](docs/cp2-nguyendacthe.md). Chưa có mã lần chạy, commit CP2 hoặc chữ ký tiêu chí; chưa ghi nhận nhóm đã duyệt các ngưỡng.
+[Phiếu A, mục A2–A3](templates/form-a-criteria.md#a2) và [bản soát CP2 của trưởng nhóm](docs/cp2-nguyendacthe.md). Đã ký, commit xác nhận `60fbf2c` được push trước đánh giá. Trong CP3: baseline `R-base-before-20261118-152920-bde05c`, after `R-base-after-20261118-153059-1c7843`; đã viết G1–G3 trong `lab10/guards.py`, điền B0–B1/B7.1 và đề xuất phối hợp B6. [Report và bàn giao](docs/cp3-nguyendacthe.md). Dùng Codex hỗ trợ code/kiểm thử, không xử lý riêng theo mã ticket. Chưa chốt prepared hay quyết định v1; chưa commit/push phần code CP3.
 
 ### Exit ticket
 
@@ -96,4 +96,4 @@ Chưa điền; cá nhân tự ghi sau khi hoàn thành phần việc và thảo 
 
 ## Rà soát CP2 trước ký
 
-Phần việc bốn thành viên đã hợp nhất trong Phiếu A. Xem [bản rà soát CP2](docs/cp2-review.md) để biết bổ sung theo từng người. Chưa ghi nhận chữ ký hoặc đồng thuận cuối của cả nhóm; không tự điền exit ticket cho thành viên khác.
+Phần việc bốn thành viên đã hợp nhất trong Phiếu A. Xem [bản rà soát trước ký](docs/cp2-review.md). Sau rà soát, trưởng nhóm đã yêu cầu ký; commit xác nhận `60fbf2c` đã push, tiêu chí giữ nguyên. Không tự điền exit ticket cho thành viên khác.

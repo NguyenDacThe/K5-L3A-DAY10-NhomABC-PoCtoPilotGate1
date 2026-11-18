@@ -1,6 +1,8 @@
 # Phiếu B · Đo, rủi ro, cổng vòng 1 và quyết định v1 · Khối 2A + 2B + chốt (phút 65–115)
 
-**Bàn:** ______
+**Bàn:** K5-L3A-DAY10-NhomABC-PoCtoPilotGate1
+
+Phần cập nhật của Nguyễn Đắc Thể: B0, B1, đề xuất phối hợp B6 và B7.1. Các mục của thành viên khác và quyết định v1 chưa được ghi nhận hoàn tất. [Bằng chứng và bàn giao](../docs/cp3-nguyendacthe.md).
 
 Tiêu chí đã ký ở Phiếu A. Từ phút 65 bàn mới được chạy trợ lý. Khối 2A (65–85) chưa sửa code hay config. Khối 2B (85–105) sửa
 `lab10/guards.py` và `config/operating_gates.json`. Phút 105–115 chốt cổng vòng 1 rồi viết quyết định v1. Sau phút 115 không sửa phiếu này
@@ -29,9 +31,9 @@ Mọi con số trong quyết định Gate 1 phải trỏ về một dòng ở đ
 
 | # | Mã lần chạy | Bộ ticket · mốc | Đổi MỘT thứ gì so với lần trước | pass_rate (khoảng tin cậy 95%) | pass_k | Hoàn sai (đ) · lỗi hãng oan · lộ dữ liệu | Tỉ lệ chuyển người | Kết luận (một câu) |
 |---|---|---|---|---|---|---|---|---|
-| 1 | | base · base | (baseline, chưa có cổng) | | | | | |
-| 2 | | base · after | (cổng vòng 1, thử trước khi chốt) | | | | | |
-| 3 | | base · prepared | (cổng vòng 1 đã chốt) | | | | | |
+| 1 | R-base-before-20261118-152920-bde05c | base · base | Baseline trước sửa cổng/config | 0.9909 [0.9727; 1.0] | 0.9545 | 20.000 · 1 · 0 | 0.2273 | Chất lượng tổng cao nhưng trượt hai trần an toàn; chưa được Tiếp tục. |
+| 2 | R-base-after-20261118-153059-1c7843 | base · after | Thay file guards.py bằng gói cổng G1–G3, giữ nguyên config; chưa tách hiệu quả riêng từng cổng | 1.0 [1.0; 1.0] | 1.0 | 0 · 0 · 0 | 0.2273 | Đạt các ngưỡng đã ký trên bộ nền, không có ca mới hỏng; chưa phải bản prepared đã tích hợp. |
+| 3 | Chưa chạy | base · prepared | Chỉ chạy sau tích hợp và chốt vòng 1 | Chưa đo | Chưa đo | Chưa đo | Chưa đo | Chưa đủ 3 mốc; không tạo snapshot trên nhánh riêng lúc này. |
 | 4 | | | | | | | | |
 
 ---
@@ -45,18 +47,18 @@ python3 -m lab10.eval --suite base --stage base --note "baseline"
 python3 -m lab10.gate --run runs/<mã lần chạy>/report.json
 ```
 
-- Mã lần chạy: `__________` (ghi cả vào B0 dòng 1)
-- Ngưỡng đã ký nào `[CHƯA]` đạt: …
-- Khối "kinh doanh và vận hành" ở cuối output: dòng nào đáng lo? …
-- Khối "theo kho và hãng": kho hoặc hãng nào có số xấu nhất? …
+- Mã lần chạy: `R-base-before-20261118-152920-bde05c` (B0 dòng 1; [report sao chép nguyên trạng](../docs/cp3-evidence/baseline-report.json)).
+- Ngưỡng `[CHƯA]`: `wrongful_refund_vnd = 20000 > 0` và `wrongful_carrier_faults = 1 > 0`. `pass_rate = 0.9909`, `pass_k = 0.9545`, PII = 0 và các ngưỡng kinh doanh/vận hành đều đạt. Không được lấy tỷ lệ tổng cao để bỏ hai lỗi an toàn.
+- Kinh doanh/vận hành: chi phí 4.203đ/ticket, ROI 1,34, 1 người duyệt × 6 ca/giờ, 5 ca chuyển người/ngày, chờ lâu nhất 0 phút, 0 ca ùn; LLM đắt nhất 670đ, hoàn tự động ngày lớn nhất 155.000đ. `ops.violations` rỗng nhưng vẫn trượt trần an toàn đã ký. Config chưa có PIC, trần tiền bàn đặt và runbook nên chưa thể coi sẵn sàng pilot; công suất tổng không chứng minh chịu được giờ cao điểm.
+- Phân khúc xấu nhất về an toàn: kho HCM có pass_rate 0,96, hoàn sai 20.000đ, 1 lỗi oan; hãng VNX có pass_rate 0,9714 và cùng thiệt hại. Về chi phí, nhóm `?` có 10.359đ/ticket > làm tay 10.000đ; đây là ca thiếu phân loại đơn/kho, không tự quy thành một depot thật. DN là kho có chi phí cao nhất trong các kho xác định: 4.586đ/ticket. Cần Bảo/Bách kiểm nhóm `?`, không dùng trung bình để che chi phí ca chuyển người.
 
 **Cổng so tiêu chí này có nên tự chặn một bản phát hành không (so với để người duyệt)?**
 
 | Lý lẽ ủng hộ tự chặn | Lý lẽ phản đối |
 |---|---|
-| | |
+| Chặn tự động khi có hoàn sai, lỗi hãng oan, PII hoặc vi phạm cứng giúp ngăn tác hại ngay cả khi tỷ lệ pass tổng cao; baseline này là bằng chứng cụ thể. Phép đo tất định và có trace giúp kiểm lại. | Bộ nền mock nhỏ, thiếu tình huống thật; nhãn có thể sai và cảnh báo có thể gây gián đoạn. Exit code gate chưa cưỡng chế hết chi phí, escalation và câu chữ decision_rule; người chịu trách nhiệm phải đọc đầy đủ report, phạm vi và khả năng trực. |
 
-Khuyến nghị (khoanh một): **tự chặn · người duyệt · kết hợp**. Vì: …
+Khuyến nghị: **kết hợp**. Tự chặn khi trượt trần an toàn hoặc thiếu bằng chứng; người có thẩm quyền xác minh nguồn/trace, cân nhắc phạm vi và nguồn lực, quyết định v1/v2 theo tiêu chí đã ký. Không cho người duyệt tự miễn trừ lỗi an toàn chỉ vì pass_rate cao. Đây là khuyến nghị kỹ thuật của Thể, chờ cả bàn soát.
 
 ---
 
@@ -251,10 +253,10 @@ Bốn lăng kính (bắt buộc đủ cả bốn; dự án AI hay chết ở ba 
 
 | Lý do thất bại (viết ở thì quá khứ) | Lăng kính | Kiểm được hôm nay? (trace / data / config nào) | Thành cổng phòng ngừa nào (code hay config) / hay vào risk register |
 |---|---|---|---|
-| | Kỹ thuật | | |
-| | Kinh doanh | | |
-| | Con người và vận hành | | |
-| | Pháp lý | | |
+| Đề xuất của Thể: agent đã dùng số ngày khách tự khai hoặc chính sách cũ làm phát sinh hoàn sai. | Kỹ thuật | Baseline T-002@55, event policy/proposal và dữ liệu hiệu lực | Chọn G1 ghim chính sách, G2 đối chiếu quyền lợi DB trước issue_refund; nhóm cần soát chung. |
+| Đề xuất của Thể: tổng tiền hoàn hoặc chi phí máy + người đã vượt khả năng tài trợ. | Kinh doanh | ops_limits/ops_facts và khối cost/refund trong report | Bảo phụ trách business cap, ngân sách và ROI; chưa coi config hoàn tất. |
+| Đề xuất của Thể: ticket dồn giờ cao điểm và việc kiểm lại đã làm hàng chờ quá sức người duyệt. | Con người và vận hành | 6 ca/giờ/người, SLA 60 phút, queue/review_rate | Bách phụ trách năng lực trực, PIC, stop condition và runbook; chưa coi quy trình hoàn tất. |
+| Đề xuất của Thể: hãng đã bị quy lỗi sai kiện/nguyên nhân, dữ liệu cá nhân đã theo nguyên văn ticket ra ngoài. | Pháp lý | Tracking/parcel, fault_causes và carrier_notice_fields | Chọn G3 đối chiếu trách nhiệm và dựng lại payload tối thiểu; kết hợp legal config của Bách. |
 | | | | |
 
 ---
@@ -275,9 +277,9 @@ python3 -m unittest discover -s tests
 
 | # | Cổng (hàm và nhánh, ví dụ `write_gate` khi `tool == "issue_refund"`) | Ứng với dòng nào ở B6 / B4 | Chặn điều gì, dựa vào nguồn sự thật nào | Mã lần chạy `base · after` | Ca đang đúng nào bị hỏng? (phải là "không") |
 |---|---|---|---|---|---|
-| 1 | | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
+| 1 | G1: pre_guard ghim policy_id duy nhất theo ngày hiệu lực | B6 kỹ thuật (đề xuất Thể) | Không chọn theo cờ index_active cũ; tra lookup_policies và ctx.as_of, thiếu/trùng chính sách thì chuyển người | R-base-after-20261118-153059-1c7843 | Không; so toàn gói cổng với baseline. |
+| 2 | G2: write_gate nhánh issue_refund | B6 kỹ thuật và rủi ro tiền | Kiểm chủ đơn/ticket, quyền lợi theo DB đúng kiện, số đã hoàn trong ledger, phê duyệt đúng đối tượng/hạn mức; deny khi không còn quyền lợi, modify tiền/payer theo chuẩn | R-base-after-20261118-153059-1c7843 | Không; T-002@55 từ sai thành đúng, không có ca mới hỏng. |
+| 3 | G3: write_gate nhánh file_carrier_fault/notify_carrier | B6 pháp lý (đề xuất Thể) | Chỉ quy lỗi có tracking đủ điều kiện, đúng kiện/hãng/tài xế; dựng payload theo carrier_notice_fields từ DB, không gửi nguyên văn ticket hoặc liên hệ người nhận | R-base-after-20261118-153059-1c7843 | Không; kết quả áp dụng cả G1–G3, không khẳng định đã cô lập hiệu quả từng cổng. |
 
 ### B7.2 · Câu 2.7 · Hai bước tránh rò rỉ dữ liệu
 

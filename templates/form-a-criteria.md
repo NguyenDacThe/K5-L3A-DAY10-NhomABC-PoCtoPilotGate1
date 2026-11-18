@@ -2,7 +2,7 @@
 
 **Bàn:** K5-L3A-DAY10-NhomABC-PoCtoPilotGate1 · **Người cầm bút chính:** vai Sản phẩm và kinh doanh (câu 1.3: Kỹ sư cổng; câu 1.2, 1.4: Vận hành và pháp lý)
 
-**Trạng thái:** đã ký theo yêu cầu trưởng nhóm Nguyễn Đắc Thể; thời gian trong lock `2026-11-18T15:15:34`, SHA-256 bắt đầu `36863666`. Đã commit và push tại `dddb073`; tên commit chưa đúng yêu cầu tự kiểm tra (xem A5). Giữ nguyên JSON tiêu chí từ thời điểm ký.
+**Trạng thái:** đã ký theo yêu cầu trưởng nhóm Nguyễn Đắc Thể; thời gian trong lock `2026-11-18T15:15:34`, SHA-256 bắt đầu `36863666`. Commit xác nhận đúng tên `Sign acceptance criteria`: `60fbf2c`, đã push trước baseline CP3. Giữ nguyên JSON tiêu chí từ thời điểm ký.
 
 Điền phiếu này **trước khi chạy trợ lý lần nào**. Viết xong thì chép ngưỡng sang `config/acceptance_criteria.json`, ký ở phút 60–65,
 rồi mới chạy đánh giá. Khối 1 không sửa code.
@@ -163,9 +163,9 @@ python -m lab10.criteria verify
 | Mục | Điền |
 |---|---|
 | Đã ký lúc (giờ máy in hoặc `signed_at` trong `config/acceptance_criteria.lock`) | `2026-11-18T15:15:34`; Nguyễn Đắc Thể (2A202603529). Verify: `ok: true`, hash `36863666b80ee368aa62fec1a3a1f73290a88066d5e86d2b97177648493b04ee`. |
-| Mã commit `Sign acceptance criteria` (7 ký tự đầu, `git log --oneline -1`) | `dddb073` — commit thực tế chứa tiêu chí và lock, tên `nhom truong da ki` (chưa đúng tên yêu cầu `Sign acceptance criteria`). |
-| Đã push lên `origin main` thành công? | Có. Đã đối chiếu trực tiếp bằng `git ls-remote origin refs/heads/main`: GitHub main ở `dddb073085037bb8c324a6ad92b09b5b4fee4c82`. |
+| Mã commit `Sign acceptance criteria` (7 ký tự đầu, `git log --oneline -1`) | `60fbf2c` — commit xác nhận đúng tên; JSON/lock được lưu từ `dddb073` và giữ nguyên. |
+| Đã push lên `origin main` thành công? | Có. `git push origin main` thành công từ `f5ef383` tới `60fbf2c` trước lần baseline `R-base-before-20261118-152920-bde05c`. |
 
-Lưu ý trước CP3: `lab10.criteria.check_sign_git_history` tìm đúng tên commit `Sign acceptance criteria`; lịch sử hiện chưa có tên này. Chữ ký file đã verify `ok: true`, nhưng cần xử lý tên commit/lịch sử theo yêu cầu lab trước khi coi hồ sơ ký hoàn chỉnh. Không sửa JSON hoặc tạo lại lock để xử lý vấn đề tên commit.
+Kiểm tra trước CP3 đã đạt: `criteria.status()['ok'] == True` và `criteria.check_sign_git_history()[0] == True`. Commit xác nhận `60fbf2c` không sửa file tiêu chí, không ký lại và không đổi lock.
 
 Sau bước này **không sửa** `config/acceptance_criteria.json`, kể cả mở rồi lưu lại bằng trình soạn thảo tự định dạng.
