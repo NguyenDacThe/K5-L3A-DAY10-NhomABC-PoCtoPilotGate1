@@ -1,12 +1,17 @@
 {
-  "team": "",
-  "members": [],
-  "incident": "",
-  "decision_v1": "",
-  "decision_v2": "",
+  "team": "K5-L3A-DAY10-NhomABC-PoCtoPilotGate1",
+  "members": [
+    "NguyenDacThe-2A202603529",
+    "TruongVanThong-2A202603560",
+    "PhanGiaBao-2A202603562",
+    "NguyenTuanBach-2A202603596"
+  ],
+  "incident": "S7",
+  "decision_v1": "Cải tiến thêm",
+  "decision_v2": "Cải tiến thêm",
   "three_lines": {
-    "environment_assumption": "",
-    "reduce_or_prevent": "",
-    "measure_in_pilot": ""
+    "environment_assumption": "Thiết kế giả định district và các định danh trong DB đúng nghĩa, không chứa thông tin liên hệ, mọi đường gửi hãng đi qua G3 và allowlist đã được phê duyệt; nhập liệu sai hoặc kênh xuất khác có thể làm giả định này sai.",
+    "reduce_or_prevent": "G3 ngăn sao chép các trường ngoài allowlist qua đường ghi đã kiểm dưới giả định nguồn dữ liệu đúng; hai monitor chỉ phát hiện sau gửi và runbook chỉ giảm tác hại, chưa bảo đảm không có PII trong giá trị trường hợp lệ hoặc ngoài kênh đã kiểm.",
+    "measure_in_pilot": "Trước bước đánh giá2 cần đo tải dồn và SLA hàng chờ, tổng chi phí kể cả luồng tay, PII trong dữ liệu nguồn/đầu ra bằng kiểm mẫu và phản ánh, độ phủ và lỗi telemetry, cùng xác nhận người trực, kênh báo và quy trình đối tác thực tế."
   }
 }

@@ -189,3 +189,7 @@ Dùng Claude để đọc các file markdown của đề, đọc `data/world.jso
 ## Tích hợp CP3
 
 Đã merge nội dung các nhánh Thể, Thông, Bảo và Bách vào main local; đối chiếu phần từng người trong Phiếu B B0–B8. Bản chốt 0580db3e, prepared R-base-prepared-20261118-160738-0892bd. Các số nền đạt, stress queue còn vượt SLA nên v1 Cải tiến thêm. Không tự điền exit ticket hoặc ghi nhận cuộc họp chưa diễn ra. Xem [kiểm tra CP3 sau merge](docs/cp3-integration-review.md).
+
+## Tích hợp CP4 và C12
+
+Đã merge bốn nhánh CP4 vào main local, ghi đủ Phiếu C C0–C12 theo phần bàn giao và report `R-S7-grade-20261118-171745-d5f014`. S7 40/40, nền110/110; criteria/visible/regression/monitor đạt; grade tổng FAIL vì thiếu28file thẻ khác theo manifest. V2 giữ Cải tiến thêm, không xác nhận pilot thật. Xem [bản kiểm tra tích hợp](docs/cp4-integration/README.md). Chưa nhận hướng dẫn Coach xử lý integrity, chưa gửi tin nhắn hoặc nộp LMS.
